@@ -112,7 +112,10 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                     if i>0 and data[i-1] == u"\u064F" and ((len(data)==i+1) or (len(data)>i+1 and data[i+1] not in (u"\u064E", u"\u0650"))): # damma
                         trans_data = trans_data[:-1]+u"\u016B" #long damma
                     elif i>0 and data[i-1] not in (u"\u064E", u"\u064F", u"\u0650", u"\u0652", u" "): # fatha, damma, kasra, sukun, space
-                        trans_data += u"\u016B" #long damma
+                        if len(data) > i+1 and data[i+1] in (u"\u064E", u"\u064F", u"\u0650"):
+                            trans_data += u"w"
+                        else:
+                            trans_data += u"\u016B" #long damma
                         #if (i==1) or (i>2 and data[i-3:i] != u"\u0627\u0644\u0652"): # not preceeded by bare 'alif + lam + sukun
                         #    trans_data += u"\u016B" #long damma
                         #else:
@@ -181,16 +184,18 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                     trans_data += u"[UNK]"
         ret_data = []
         # IGNORE LAST DIACRITIC + POST-PROCESSING
-        #print trans_data
-        for word in trans_data.split(" "):
-            if word[-1] in (u"a", u"u", u"i"):
-                word = word[:-1]
-                if len(word) > 1 and word[-2:] == "iy":
-                    word = word[:-2]+u"\u012B"
-            if word.startswith(u"w"+u"\u0101"+u"l-"): # conjunction waaw joined into another word
-                word = u"wal-"+word[4:]
-            if word[-1] == u"t" and (word.startswith(u"al-") or word.startswith(u"wal-")):
-                word = word[:-1]+u"h"
-            word = word.replace(u"T", u"t") # taa maftou7a, back to lower case
-            ret_data.append(word)
+        #print trans_data.strip()
+        for word in trans_data.strip().split(" "):
+            #print word, len(word)
+            if len(word) > 0:
+                if word[-1] in (u"a", u"u", u"i"):
+                    word = word[:-1]
+                    if len(word) > 1 and word[-2:] == "iy":
+                        word = word[:-2]+u"\u012B"
+                if word.startswith(u"w"+u"\u0101"+u"l-"): # conjunction waaw joined into another word
+                    word = u"wal-"+word[4:]
+                if word[-1] == u"t" and (word.startswith(u"al-") or word.startswith(u"wal-")):
+                    word = word[:-1]+u"h"
+                word = word.replace(u"T", u"t") # taa maftou7a, back to lower case
+                ret_data.append(word)
         return u" ".join(ret_data)
