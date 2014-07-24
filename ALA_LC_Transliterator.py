@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import string
 from ArabicTransliterator import ArabicTransliterator
 
 class ALA_LC_Transliterator(ArabicTransliterator):
@@ -85,6 +86,11 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         trans_data += u"a"
                     elif i == 0: # Alif as first character
                         continue # don't add anything
+                    elif (i==2 and data[i-2:i] in (u"\u0628\u0650", u"\u0644\u0650")) or (i>2 and data[i-3:i] in (u" \u0628\u0650", u" \u0644\u0650")): #'ALIF preceded by prepositions "bi" or "li" RULES 10 and 17b
+                        if len(data) > i+1 and data[i+1] == u"\u0644":
+                            trans_data += "-a"
+                        else:
+                            trans_data += "-"
                     elif i>0 and data[i-1] == u"\u064E": # fatHa
                         trans_data = trans_data[:-1]+u"\u0101" # long fatha
                     elif i>1 and data[i-1] == u"\u0652" and data[i-2] == u"\u0644": # sukuun laam
@@ -121,6 +127,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                             trans_data += u"w"
                         else:
                             trans_data += u"\u016B" #long damma
+                        #TODO: case when waaw is preceeded by 'ALIF
                         #if (i==1) or (i>2 and data[i-3:i] != u"\u0627\u0644\u0652"): # not preceeded by bare 'alif + lam + sukun
                         #    trans_data += u"\u016B" #long damma
                         #else:
@@ -135,8 +142,10 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         # waaw + bare 'alif at the beginning
                         elif (i==3 and data[i-3:i]==u"\u0648\u064E\u0627") or (i>3 and data[i-4:i]==u" \u0648\u064E\u0627"):
                             trans_data += u"l-"
+                        elif len(trans_data) > 3 and trans_data[-2] == u"-": # RULES 10 and 17b
+                            trans_data += u"l-"
                         else:
-                              trans_data += u"l"
+                            trans_data += u"l"
                     else:
                         trans_data += u"l"
                 
@@ -159,10 +168,11 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         trans_data += u"\u00E1"
                 
                 elif data[i] in (u"\u0623", u"\u0624", u"\u0625", u"\u0626"): # HAMZA-ON-'ALIF, HAMZA-ON-WAAW, HAMZA-UNDER-'ALIF, HAMZA-ON-YAA' - RULE 8
-                    if (i>0 and data[i-1] != " ") or (i>1 and data[i-2:i] != u"\u0627\u0644"): # hamza not at the begigging or preceeded by al-
-                        trans_data += u"\u2019"
-                    else:
+                    if i==0 or (i>0 and data[i-1] == " ") or (i>1 and data[i-2:i] == u"\u0627\u0644") or (i>2 and data[i-3:i] == u"\u0627\u0644\u0652"): # hamza at the begigging or preceeded by al- or al- plus sukun
                         continue # don't add anything
+                    else:
+                        trans_data += u"\u2019"
+                        
                 
                 elif data[i] == u"\u064E": # FATHA
                     if i>0 and data[i-1] == u"\u0627": # bare 'alif
@@ -187,6 +197,8 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                             continue # don't add anything
                         else:
                             trans_data += "y"
+                elif data[i] in string.punctuation or data[i].isdigit(): # don't trasnliterate punctuation marks and digits 
+                    trans_data += data[i]
                 else:
                     trans_data += u"[UNK]"
         ret_data = []
