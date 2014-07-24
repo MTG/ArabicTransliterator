@@ -83,12 +83,14 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                     #print `data[:]`
                     if len(data) > i+1 and data[i+1] == u"\u0644" and (i==0 or (i>0 and data[i-1] == ' ')): # laam at the beggining of a word
                         trans_data += u"a"
+                    elif i == 0: # Alif as first character
+                        continue # don't add anything
                     elif i>0 and data[i-1] == u"\u064E": # fatHa
                         trans_data = trans_data[:-1]+u"\u0101" # long fatha
                     elif i>1 and data[i-1] == u"\u0652" and data[i-2] == u"\u0644": # sukuun laam
-                        pass # don't add anything
+                        continue # don't add anything
                     elif i>0 and data[i-1] == u"\u064B": # fatHatayn
-                        pass # don't add anything
+                        continue # don't add anything
                     else:
                         trans_data += u"\u0101"
                 
@@ -104,7 +106,10 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                             trans_data = trans_data[:-1]+u"\u012B" #long kasra
                     elif i>0 and data[i-1] not in (u"\u064E", u"\u064F", u"\u0627") and ((len(data)>i+1 and data[i+1] not in (u"\u064E", u"\u064F", u"\u0650")) or len(data) == i+1):
                         # yaa' (not preceeded by fatha/damma or bare 'alif) and (not suceeded by vowel or it's end of word)
-                        trans_data += u"\u012B" #long kasra
+                        if len(data) > i+1 and data[i+1] in (u"\u0627"): #succeeded by alif and fatha omitted
+                            trans_data += u"y"
+                        else:
+                            trans_data += u"\u012B" #long kasra
                     else:
                         trans_data += u"y"
                 
@@ -149,7 +154,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                     if i>0 and data[i-1] == u"\u064E": # fatHa
                         trans_data = trans_data[:-1]+u"\u00E1" # long fatha but with alif maqSuura
                     elif i > 0 and data[i-1] == u"\u064B": #fatHatayn
-                        pass # don't add anything
+                        continue # don't add anything
                     else:
                         trans_data += u"\u00E1"
                 
@@ -157,18 +162,20 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                     if (i>0 and data[i-1] != " ") or (i>1 and data[i-2:i] != u"\u0627\u0644"): # hamza not at the begigging or preceeded by al-
                         trans_data += u"\u2019"
                     else:
-                        pass # don't add anything
+                        continue # don't add anything
                 
                 elif data[i] == u"\u064E": # FATHA
                     if i>0 and data[i-1] == u"\u0627": # bare 'alif
-                        pass # don't add anything
+                        continue # don't add anything
                     else:
                         trans_data += 'a'
                 
                 elif data[i] == u"\u0651": #SHADDA - RULE 11
                     if i>0 and data[i-1] not in (u"\u064A", u"\u0648"): # not yaa' nor waaw' --> double character
                         if i>2 and data[i-3:i-1] == u"\u0627\u0644": # if shadda is preceeded by al-
-                            pass # don't add anything
+                            continue # don't add anything
+                        elif i>1 and data[i-2:i] == u"\u0627\u0644": # if shadda is over the l of al-:
+                            trans_data += "l"
                         elif self.table.has_key(data[i-1]):
                             trans_data += self.table[data[i-1]]
                         else:
@@ -177,7 +184,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         trans_data += "w"
                     elif i>1 and data[i-1] == u"\u064A": # yaa'
                         if data[i-2] == u"\u0650" and len(data) == i+1 or (len(data) == i+2 and data[i+1] in (u"\u064E", u"\u064F", u"\u0650")) or (len(data) > (i+2) and data[i+2]==u" "): #final yaa' preceeded by kasra
-                            pass # don't add anything
+                            continue # don't add anything
                         else:
                             trans_data += "y"
                 else:
