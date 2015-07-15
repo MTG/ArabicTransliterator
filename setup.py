@@ -7,5 +7,5 @@ setup(name='arabictransliterator',
       description='A code for transliterating (romanizing) Arabic text using the ALA-LC standard',
       author='CompMusic / MTG UPF',
       url='http://compmusic.upf.edu',
-      packages=find_packages(include=["mishkal"])
+      packages=find_packages()
 )
