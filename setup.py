@@ -7,7 +7,14 @@ setup(name='arabictransliterator',
       description='A code for transliterating (romanizing) Arabic text using the ALA-LC standard',
       author='CompMusic / MTG UPF',
       url='http://compmusic.upf.edu',
-      packages=["tashkeel"],
-      install_requires=['Tashaphyne', 'Qalsadi', 'PyArabic', 'Naftawayh==0.1'],
-      package_dir={'tashkeel': 'mishkal/tashkeel', 'libqutrub':'mishkal/lib/qalsadi/libqutrub'},
+      packages=["tashkeel", "arabic"],
+      package_dir={
+              'tashaphyne':'tashaphyne',
+              'naftawayh':'mishkal/lib/naftawayh', 
+              'pyarabic':'mishkal/lib/pyarabic',
+              'qalsadi':'mishkal/lib/qalsadi', 
+              'arabic':'', 
+              'tashkeel': 
+              'mishkal/tashkeel', 
+              'libqutrub':'mishkal/lib/qalsadi/libqutrub'},
 )
