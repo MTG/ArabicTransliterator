@@ -13,8 +13,8 @@ setup(name='arabictransliterator',
               'naftawayh':'mishkal/lib/naftawayh', 
               'pyarabic':'mishkal/lib/pyarabic',
               'qalsadi':'mishkal/lib/qalsadi', 
+              'libqutrub':'mishkal/lib/qalsadi/libqutrub',
               'arabic':'', 
-              'tashkeel': 
-              'mishkal/tashkeel', 
-              'libqutrub':'mishkal/lib/qalsadi/libqutrub'},
+              'tashkeel': 'mishkal/tashkeel' },
+
 )
