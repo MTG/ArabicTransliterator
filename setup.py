@@ -7,13 +7,13 @@ setup(name='arabictransliterator',
       description='A code for transliterating (romanizing) Arabic text using the ALA-LC standard',
       author='CompMusic / MTG UPF',
       url='http://compmusic.upf.edu',
-      packages=["mishkal", 'pyarabic', 'naftawayh', 'tashaphyne', 'qalsadi',"qalsadi.libqutrub"  ],
+      packages=["mishkal", 'pyarabic', 'naftawayh', 'tashaphyne', 'qalsadi',"qalsadi.libqutrub","arabic"],
       package_dir={
               'tashaphyne':'tashaphyne',
-              'naftawayh':'naftawayh', 
+              'naftawayh':'naftawayh',
               'pyarabic':'pyarabic',
-              'qalsadi':'qalsadi', 
+              'qalsadi':'qalsadi',
               'libqutrub':'qalsadi/libqutrub',
-              'arabic':'', 
-              'mishkal':'mishkal'} 
+              'arabic':'',
+              'mishkal':'mishkal'}
 )
