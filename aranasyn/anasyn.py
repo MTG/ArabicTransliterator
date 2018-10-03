@@ -13,6 +13,8 @@
 """
 Syntaxic Analysis
 """
+from __future__ import print_function
+
 if __name__ == "__main__":
     import sys
     sys.path.append('../lib')
@@ -567,4 +569,4 @@ if __name__ == "__main__":
     # the result contains objets
     #print repr(result)
     TextToDisplay  =  anasynt.display(result)
-    print TextToDisplay.encode('utf8')
+    print(TextToDisplay.encode('utf8'))

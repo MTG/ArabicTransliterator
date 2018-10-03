@@ -110,6 +110,8 @@
  * @license   LGPL <http://www.gnu.org/licenses/lgpl.txt>
  * @link      http://www.ar-php.org
  """
+from __future__ import print_function
+
 import math
 import araby
 from number import *
@@ -783,7 +785,7 @@ def detectNumberWords(text):
 			vocUnit=vocalizeUnit(numeric, next);
 			simUnit = araby.vocalizedSimilarity(vocUnit, next);					
 			if sim<0:
-				print u'\t'.join([str(sim), numberedwords, vocalized, str(numeric), u' '.join([previous,phrase, next]), next, vocUnit, str(simUnit)]).encode('utf8');
+				print(u'\t'.join([str(sim), numberedwords, vocalized, str(numeric), u' '.join([previous,phrase, next]), next, vocUnit, str(simUnit)]).encode('utf8'));
 
 def preTashkeelNumber(wordlist):
 	"""
@@ -828,7 +830,7 @@ if __name__ == '__main__':
 		# result = detectNumberWords(text);
 		# print u";".join(result).encode('utf8');
 		positions= detectNumberPhrasesPosition(araby.tokenize(text));
-		print positions;
+		print(positions);
 		phrases = extractNumberPhrases(text);
-		print text.encode('utf8');
-		print u'\t'.join(phrases).encode('utf8');
+		print(text.encode('utf8'));
+		print(u'\t'.join(phrases).encode('utf8'));

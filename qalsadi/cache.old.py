@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 if __name__=="__main__":
 	import sys
 	sys.path.append('..');
@@ -52,7 +54,7 @@ class cache :
 		self.cache['FreqWords'][wordtype][original]=freq;
 		
 def mainly():
-	print "test";		
+	print("test");		
 	
 if __name__=="__main__":
 	mainly();

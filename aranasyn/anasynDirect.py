@@ -10,6 +10,7 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
 
 import syn_const
 import stemmedword
@@ -101,7 +102,7 @@ class SyntaxAnalyzer:
 						previous, stmword  =  self.bigramAnalyze(previous, stmword, previousCasePosition, stmwordCasePosition);
 						previousCasePosition +=1 ; 
 							
-					if debug: print "stmword.getSyntax",stmword.getSyntax()
+					if debug: print("stmword.getSyntax",stmword.getSyntax())
 				# if the current word is transparent, ignore it and fix the previous index to the previous word.
 				if stmword.isTransparent():
 					ignore=True;
@@ -118,8 +119,8 @@ class SyntaxAnalyzer:
 				# previous index is mantained.
 				ignore=False;
 			# previousIndex = currentIndex;
-			if debug:print previousIndex , currentIndex;
-		if debug: print " counter total of items analyzed", counter;
+			if debug:print(previousIndex , currentIndex);
+		if debug: print(" counter total of items analyzed", counter);
 		return stemmedSynWordListList;
 
 	def bigramAnalyze(self,previous, current, previousPosition=0, currentPosition=0):
@@ -140,7 +141,7 @@ class SyntaxAnalyzer:
 		# Todo treat the actual word according to the previous word
 		
 		# treat the initial case when previous =None
-		if debug: print current.isBreak(), 		current.isPounct()
+		if debug: print(current.isBreak(), 		current.isPounct())
 		# to save the forced case to link previous and current word.
 		# the word can be forced before this treatement, 
 		# the this variable is used to indicate if the word is forced during the actual process.
@@ -168,12 +169,12 @@ class SyntaxAnalyzer:
 			# تحولّ إلى ثنائيات
 			# [None. جاء]، [جاء، ولد]، [ولد، None]
 
-			if debug:print current.isBreak(), current.isPounct() 
+			if debug:print(current.isBreak(), current.isPounct()) 
 			# if the pounct is a break, the tanwin is prefered
 			# the previous will have twnin
 	
 			if current.isBreak() and previous.isTanwin():
-				if debug: print current.isBreak(), "case 51"
+				if debug: print(current.isBreak(), "case 51")
 				previous.forcedCase();
 				forcedCase = True;
 			# add a relation to previous
@@ -183,12 +184,12 @@ class SyntaxAnalyzer:
 			#if the word is pounctuation and it's transparent, the effect of previous factor will be kept
 			#then we ignore this word in the next step, 
 			#the variable 'previous' will not take the actual word.
-			if debug:print current.isBreak(), current.isPounct() 
+			if debug:print(current.isBreak(), current.isPounct()) 
 			# if the pounct is a break, the tanwin is prefered
 			# the previous will have twnin
 	
 			if current.isBreak() and previous.isTanwin():
-				if debug: print current.isBreak(), "case 51"
+				if debug: print(current.isBreak(), "case 51")
 				previous.forcedCase();
 				forcedCase = True;				
 		#the stop word is factors, others no, if the previous is not stop word return.
@@ -197,7 +198,7 @@ class SyntaxAnalyzer:
 				current.forcedCase();
 				forcedCase = True;			
 			if current.isNoun():# and previous.isDirectNominalFactor():
-				if debug: print 'is noun';
+				if debug: print('is noun');
 				if not current.hasProcletic() or current.getProcletic()==u'ال':
 	
 					if (previous.isDirectJar() or previous.isDirectAddition()) and  current.isMajrour():
@@ -205,17 +206,17 @@ class SyntaxAnalyzer:
 						current.forcedCase();
 						previous.addSyntax(u'جار');
 						forcedCase = True;				
-						if debug: print 'add syntax *';							
+						if debug: print('add syntax *');							
 					elif previous.isDirectNaseb() and  current.isMansoub():
 						current.forcedCase();
 						forcedCase = True;				
-						if debug: print 'add syntax *';									
+						if debug: print('add syntax *');									
 					elif previous.isInitial() and  current.isMarfou3():
 						current.forcedCase();	
 						forcedCase = True;				
-						if debug: print 'add syntax *';									
+						if debug: print('add syntax *');									
 					elif previous.isDirectRafe3() and current.isMarfou3():
-						if debug: print 'add syntax *';								
+						if debug: print('add syntax *');								
 						current.forcedCase();
 						forcedCase = True;
 			#verb
@@ -502,4 +503,4 @@ if __name__ == "__main__":
 	# the result contains objets
 	#print repr(result);
 	TextToDisplay  =  anasynt.display(result);
-	print TextToDisplay.encode('utf8');
+	print(TextToDisplay.encode('utf8'));

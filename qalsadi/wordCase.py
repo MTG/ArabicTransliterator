@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2014
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 if __name__=="__main__":
 	import sys
 	sys.path.append('..');
@@ -207,7 +209,7 @@ class wordCase:
 		self.__dict__ = aList;
 
 if __name__=="__main__":
-	print "test";
+	print("test");
 	rdict={}
 	rdict = {"word": u"الحياة",		# input word
 			"vocalized": u"الْحَيَاةُ",   # vocalized form of the input word 
@@ -227,7 +229,7 @@ if __name__=="__main__":
 			u'semantic':u'',
 			};
 	stmwrd  =wordCase(rdict);
-	print stmwrd.__dict__;
+	print(stmwrd.__dict__);
 	
 	stmwrd.setWord("4444");
 	stmwrd.setVocalized("4444");
@@ -237,5 +239,5 @@ if __name__=="__main__":
 	stmwrd.setType("4444");
 	stmwrd.setOriginal("4444");
 	
-	print stmwrd;
+	print(stmwrd);
 	

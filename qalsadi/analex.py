@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 if __name__=="__main__":
 	import sys
 	sys.path.append('..');
@@ -649,7 +651,7 @@ The analyzed data given by morphological analyzer Qalsadi have the following for
 		return u"عدد";
 
 def mainly():
-	print "test";		
+	print("test");		
 	analyzer=analex();
 	analyzer.disableAllowCacheUse()
 	# text=u"""تجف أرض السلام بالسلام الكبير.	مشى على كتاب السلام.
@@ -658,7 +660,7 @@ def mainly():
 		text=u"يعبد الله تطلع الشمس"
 		voc = analyzer.check_text(text);
 		# voc = analyzer.check_text(text);		
-		print voc;#.encode('utf8');
+		print(voc);#.encode('utf8');
 	
 if __name__=="__main__":
 	mainly();

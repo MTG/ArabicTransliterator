@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 import collocationdictionary
 #import collocationdictionary as colloDict
 import collocation_const
@@ -358,16 +360,16 @@ if __name__ == '__main__':
 	import re
 	for i in range(1):
 		newlist=collo.lookup(wordlist);
-		print u'\t'.join(newlist).encode('utf8')
+		print(u'\t'.join(newlist).encode('utf8'))
 	inputtext = words
 	for g in collocation_const.GENERAL_COLLOCATIONS.keys():
-		print g.encode('utf8'),collocation_const.GENERAL_COLLOCATIONS[g].get('v','').encode('utf8')
+		print(g.encode('utf8'),collocation_const.GENERAL_COLLOCATIONS[g].get('v','').encode('utf8'))
 		if g in inputtext:
-			print  'ok'
+			print('ok')
 		#~ iputtext = inputtext.replace(g,collocation_const.GENERAL_COLLOCATIONS[g].get('v','') );
 		#~ iputtext = inputtext.replace(g, "#" );
 		inputtext = re.sub( g, collocation_const.GENERAL_COLLOCATIONS[g].get('v',''), inputtext )
 
 	#~ txt =collo.lookupForLongCollocations(words);
-	print "long collo, ",inputtext.encode('utf8')	
+	print("long collo, ",inputtext.encode('utf8'))	
 

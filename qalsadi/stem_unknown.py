@@ -10,6 +10,7 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
 
 import re
 import pyarabic.araby as araby
@@ -114,7 +115,7 @@ class unknownStemmer:
 				encletic=noun[seg[1]:]
 				secondsuffix=u'';
 				proaffix=u'-'.join([procletic,encletic])
-				if self.debug: print "\t", "-".join([procletic,stem,encletic]).encode("utf8") ;
+				if self.debug: print("\t", "-".join([procletic,stem,encletic]).encode("utf8")) ;
 
 				# ajusting nouns variant
 				list_stem=[stem];
@@ -133,7 +134,7 @@ class unknownStemmer:
 				result=[];
 				for stem in list_stem:
 					result+=self.steming_second_level(noun,stem,procletic,encletic);
-				if self.debug:print noun2.encode("utf8")+"\t"+str(len(result))+'\t['+(u'\t'.join(result)).encode("utf8")+"]";
+				if self.debug:print(noun2.encode("utf8")+"\t"+str(len(result))+'\t['+(u'\t'.join(result)).encode("utf8")+"]");
 				detailed_result+=result;
 		return detailed_result#list_found;
 
@@ -184,12 +185,12 @@ class unknownStemmer:
 			# noirmalize hamza before gessing  deffirents origines
 			stem_conj=tashaphyne.normalize.normalize_hamza(stem_conj)
 			if self.debug:
-				print "*\t", "-".join([str(len(stem_conj)),prefix_conj,stem_conj,suffix_conj]).encode("utf8") ;
+				print("*\t", "-".join([str(len(stem_conj)),prefix_conj,stem_conj,suffix_conj]).encode("utf8")) ;
 			# generate possible stems
 			# add stripped letters to the stem to constitute possible noun list
 			possible_noun_list=self.getStemVariants(stem_conj,prefix_conj,suffix_conj);
 			if self.debug:
-				print "\tpossible original nouns:  ","\t".join(possible_noun_list).encode('utf8');
+				print("\tpossible original nouns:  ","\t".join(possible_noun_list).encode('utf8'));
 			# search the noun in the dictionary
 			# we can return the tashkeel
 			infnoun_form_list=[];
@@ -201,9 +202,9 @@ class unknownStemmer:
 ##							listsingle=self.find_broken_plural(infnoun);
 ##							print ' *****','-'.join(listsingle).encode('utf8')
 				if len(infnoun_foundL)>0:
-					if self.debug: print "\t in dict",infnoun.encode('utf8');
+					if self.debug: print("\t in dict",infnoun.encode('utf8'));
 				else:
-					if self.debug: print infnoun.encode('utf8'),"not found in dictionary"
+					if self.debug: print(infnoun.encode('utf8'),"not found in dictionary")
 				infnoun_form_list+=infnoun_foundL;
 			for noun_tuple in infnoun_form_list:
 				# noun_tuple=self.nounDictionary.getEntryById(id);

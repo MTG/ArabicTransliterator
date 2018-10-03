@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2012
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 import sys
 sys.path.append('../lib');
 import qalsadi.stemmedword as stemmedword
@@ -940,7 +942,7 @@ class stemmedSynWord (stemmedword.stemmedWord):
 		return text.encode('utf8'); 
 		#return repr(self.__dict__);
 if __name__=="__main__":
-	print "test";
+	print("test");
 	rdict={}
 	rdict = {"word": u"الحياة",		# input word
 			"vocalized": u"الْحَيَاةُ",   # vocalized form of the input word 
@@ -962,29 +964,29 @@ if __name__=="__main__":
 			};
 	rdict=stemmedword.stemmedWord(rdict);
 	stmwrd=stemmedSynWord(rdict);	
-	print stmwrd.getDict();
-	print stmwrd.is3rdperson();
-	print stmwrd.isAdded();
-	print stmwrd.isDefined();
-	print stmwrd.isDirectJar();
-	print stmwrd.isDirectJazem();
-	print stmwrd.isDirectNaseb();
-	print stmwrd.isDirectNominalFactor();
-	print stmwrd.isDirectRafe3();
-	print stmwrd.isDirectVerbalFactor();
-	print stmwrd.isDirectVerbNaseb();
-	print stmwrd.isDirectVerbRafe3();
-	print stmwrd.isInitial();
-	print stmwrd.isMajrour();
-	print stmwrd.isMajzoum();
-	print stmwrd.isMansoub();
-	print stmwrd.isMarfou3();
-	print stmwrd.isNoun();
-	print stmwrd.isPassive();
-	print stmwrd.isPast();
-	print stmwrd.isPounct();
-	print stmwrd.isPresent();
-	print stmwrd.isTanwin();
-	print stmwrd.isTransparent();
-	print stmwrd.isVerb()	;
-	print stmwrd;
+	print(stmwrd.getDict());
+	print(stmwrd.is3rdperson());
+	print(stmwrd.isAdded());
+	print(stmwrd.isDefined());
+	print(stmwrd.isDirectJar());
+	print(stmwrd.isDirectJazem());
+	print(stmwrd.isDirectNaseb());
+	print(stmwrd.isDirectNominalFactor());
+	print(stmwrd.isDirectRafe3());
+	print(stmwrd.isDirectVerbalFactor());
+	print(stmwrd.isDirectVerbNaseb());
+	print(stmwrd.isDirectVerbRafe3());
+	print(stmwrd.isInitial());
+	print(stmwrd.isMajrour());
+	print(stmwrd.isMajzoum());
+	print(stmwrd.isMansoub());
+	print(stmwrd.isMarfou3());
+	print(stmwrd.isNoun());
+	print(stmwrd.isPassive());
+	print(stmwrd.isPast());
+	print(stmwrd.isPounct());
+	print(stmwrd.isPresent());
+	print(stmwrd.isTanwin());
+	print(stmwrd.isTransparent());
+	print(stmwrd.isVerb())	;
+	print(stmwrd);

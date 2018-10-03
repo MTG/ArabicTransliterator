@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 if __name__ == "__main__":
 	import sys
 	sys.path.append('../lib')
@@ -224,7 +226,7 @@ class SyntaxAnalyzer:
 						forcedCase = True;
 						current.setInnaNoun();
 						weight =  syn_const.InnaNasebMansoubRelation
-						if debug: print 'add syntax *';
+						if debug: print('add syntax *');
 
 
 					elif previous.isInitial() and  current.isMarfou3():
@@ -544,9 +546,9 @@ class SyntaxAnalyzer:
 				if not g.endswith('.'):
 					g+='.';
 				if g in syn_const.GrammarPhrase:
-					print g, 'ok';
+					print(g, 'ok');
 				else:
-					print g, 'no';
+					print(g, 'no');
 			# tmplist.append(g);
 		# grammarList=tmplist;
 	def decode(self, StemmedSynWordListList):
@@ -595,4 +597,4 @@ if __name__ == "__main__":
 	# the result contains objets
 	#print repr(result);
 	TextToDisplay  =  anasynt.display(result);
-	print TextToDisplay.encode('utf8');
+	print(TextToDisplay.encode('utf8'));

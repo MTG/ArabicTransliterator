@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding=utf-8 -*-
 #
+from __future__ import print_function
+
 import re, string,sys
 sys.path.append('../lib')
 import pyarabic.araby as araby
@@ -314,13 +316,13 @@ if __name__ == '__main__':
 	];
 	for text in texts:
 		positions = detectNamedPosition(text.split(' '));
-		print positions;
+		print(positions);
 		# result=extractNamed(text);
 		# print u"\t".join(result).encode('utf8');
 		# result= extractNamedWithinContext(text);
 		text=araby.stripTashkeel(text);
 		result= preTashkeelNamed(araby.tokenize(text));
-		print u' '.join(result).encode('utf8');
+		print(u' '.join(result).encode('utf8'));
 		# result=detectNamed(text);
 		# print u"\t".join(result).encode('utf8');
 

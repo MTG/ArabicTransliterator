@@ -14,6 +14,8 @@
 Arabic Dictionary Class from Arramooz Al Waseet.
 Used in multiporpus morpholigical treatment
 """
+from __future__ import print_function
+
 import re
 import os, os.path
 #from pysqlite2 import dbapi2 as sqlite
@@ -63,9 +65,9 @@ class arabicDictionary:
 				self.dbConnect.row_factory = sqlite.Row 
 				self.cursor = self.dbConnect.cursor()
 			except:
-				print "Fatal Error Can't find the database file", file_path
+				print("Fatal Error Can't find the database file", file_path)
 		else:
-			print u" ".join(["Inexistant File", file_path, " current dir ", os.curdir]).encode('utf8');
+			print(u" ".join(["Inexistant File", file_path, " current dir ", os.curdir]).encode('utf8'));
 		#create index  by word stampfor dictionary to accelerate word search.
 		# the word stamp is the arabic word without any affixation  letters, for example
 		# the word مضرب give ضر, by removing meem and beh, the word ضرم give ضر. the stamp is used as a first level of indexing,especially
@@ -254,12 +256,12 @@ u'confirmed':18,
 	mydict=arabicDictionary('verbs', VERB_DICTIONARY_INDEX);
 	wordlist=[u"استقلّ", u'استقل']
 	for word in wordlist:
-		print "jjjjjjjj"
+		print("jjjjjjjj")
 		idlist=mydict.lookupByStamp(word);
-		print idlist;
+		print(idlist);
 		for id in idlist:
-			print mydict.getAttribById(id, u'vocalized').encode('utf8');
+			print(mydict.getAttribById(id, u'vocalized').encode('utf8'));
 			myentry= mydict.getEntryById(id);
-			print repr(myentry);
+			print(repr(myentry));
 			for k in myentry.keys():
-				print u"\t".join([k,unicode(myentry[k])]).encode('utf8');
+				print(u"\t".join([k,unicode(myentry[k])]).encode('utf8'));

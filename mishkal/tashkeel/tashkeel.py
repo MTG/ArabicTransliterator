@@ -536,15 +536,15 @@ class TashkeelClass:
 			#lookup for syntaxic syntaxic and syntaxic semantic
 
 			if condidateSynList and max(condidateSynList)>lenCCS:
-				print "Warrning,----------------------------"
-				print 'Nexts',condidateSynList;
-				print 'curre',
-				print hash(previous),previous.getWord().encode('utf8'),currentCasesList[0].getWord().encode('utf8');
-				for i in range(lenCCS):
-					print i,':',currentCasesList[i].getOrder(),',',
-				print ;
+				print("Warrning,----------------------------")
+                print('Nexts', condidateSynList)
+                print('curre', end=' ')
+                print(hash(previous), previous.getWord().encode('utf8'), currentCasesList[0].getWord().encode('utf8'))
+                for i in range(lenCCS):
+                    print(i, ':', currentCasesList[i].getOrder(), ',', end=' ')
+                print(;
 
-			for i in condidateSynList:
+            for i in condidateSynList:
 				#print condidateSynList, i, len(currentCasesList), #currentCasesList[i].getOrder();
 				# one relation with previous
 				if i<len(currentCasesList) and  currentCasesList[i].hasNext():
@@ -602,10 +602,12 @@ class TashkeelClass:
 				#to do select
 				# temporary
 				if debug: 
-					print "chosen", len(chosenList), round(float(len(chosenList))*100/len(currentCasesList)), len(currentCasesList)
-					for i in chosenList:
-						print '\t', currentCasesList[i].getVocalized().encode('utf8'), currentCasesList[i].getFreq(),currentCasesList[i].isForcedCase()
-				if chosenList[0]<len(currentCasesList): #valid cases
+					print("chosen", len(chosenList), round(float(len(chosenList)) * 100 / len(currentCasesList)),
+                          len(currentCasesList))
+                    for i in chosenList:
+                        print('\t', currentCasesList[i].getVocalized().encode('utf8'), currentCasesList[i].getFreq(),
+                              currentCasesList[i].isForcedCase())
+                if chosenList[0]<len(currentCasesList): #valid cases
 					if len(chosenList)==1:
 						chosen = currentCasesList[chosenList[0]]
 					else:
@@ -620,9 +622,9 @@ class TashkeelClass:
 								highScoreIndex = chosenList[0]
 						chosen = currentCasesList[highScoreIndex]
 				else: #warning chosen tashkeel out of range
-					print "warning: chosen tashkeel out of range";
+                    print("warning: chosen tashkeel out of range")
 
-		#---------------------------
+        #---------------------------
 		#no relation no nexts
 		#----------------------------
 		#choose a case of stop word

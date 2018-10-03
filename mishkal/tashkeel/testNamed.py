@@ -1,4 +1,6 @@
 ﻿#! /usr/bin/python
+from __future__ import print_function
+
 import sys
 sys.path.append('lib');
 import core.adaat 
@@ -15,19 +17,19 @@ scriptversion = '0.1'
 AuthorName="Taha Zerrouki"
 def usage():
 # "Display usage options"
-	print "(C) CopyLeft 2009, %s"%AuthorName
-	print "Usage: %s -f filename [OPTIONS]" % scriptname
+	print("(C) CopyLeft 2009, %s"%AuthorName)
+	print("Usage: %s -f filename [OPTIONS]" % scriptname)
 #"Display usage options"
-	print "\t[-h | --help]\t\toutputs this usage message"
-	print "\t[-v | --version]\tprogram version"
-	print "\t[-l | --limit]\t vocalize only a limited number of line"
-	print "\t[-s | --syntax]\t  disable syntaxic analysis"
-	print "\t[-m | --semantic]\t disable semantic analysis"
-	print "\t[-c | --compare]\t compare the vocalized text with the program output"
-	print "\t[-t | --stat]\t disable statistic tashkeel"
-	print "\t[-i | --ignore]\t ignore the last Mark on output words."	
-	print "\t[-f | --file= filename]\tinput file to %s"%scriptname
-	print "\r\nThis program is licensed under the GPL License\n"
+	print("\t[-h | --help]\t\toutputs this usage message")
+	print("\t[-v | --version]\tprogram version")
+	print("\t[-l | --limit]\t vocalize only a limited number of line")
+	print("\t[-s | --syntax]\t  disable syntaxic analysis")
+	print("\t[-m | --semantic]\t disable semantic analysis")
+	print("\t[-c | --compare]\t compare the vocalized text with the program output")
+	print("\t[-t | --stat]\t disable statistic tashkeel")
+	print("\t[-i | --ignore]\t ignore the last Mark on output words.")	
+	print("\t[-f | --file= filename]\tinput file to %s"%scriptname)
+	print("\r\nThis program is licensed under the GPL License\n")
 
 def grabargs():
 #  "Grab command-line arguments"
@@ -53,7 +55,7 @@ def grabargs():
 			usage()
 			sys.exit(0)
 		if o in ("-V", "--version"):
-			print scriptversion
+			print(scriptversion)
 			sys.exit(0)
 		if o in ("-s", "--syntax"):
 			disableSyntax = True
@@ -85,7 +87,7 @@ if __name__ == '__main__':
 	try:
 		myfile=open(filename)
 	except:
-		print " Can't Open the given File ", filename;
+		print(" Can't Open the given File ", filename);
 
 	counter=1;
 	if not limit : 
@@ -104,7 +106,7 @@ if __name__ == '__main__':
 		# print named
 		for n in named:
 			#display context (previous, named, next)
-			print u"\t".join([str(counter),u'\t'.join(n)]).encode('utf8');			
+			print(u"\t".join([str(counter),u'\t'.join(n)]).encode('utf8'));			
 
 
 

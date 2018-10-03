@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+from __future__ import print_function
+
 import tashaphyne2
 import stem_verb_const
 conjStemmer=tashaphyne2.stemming.ArabicLightStemmer();
@@ -14,10 +16,10 @@ conjStemmer.set_max_suffix_length(stem_verb_const.CONJ_MAX_SUFFIX);
 conjStemmer.set_min_stem_length(stem_verb_const.CONJ_MIN_STEM);
 conjStemmer.set_prefix_list(stem_verb_const.CONJ_PREFIX_LIST);
 conjStemmer.set_suffix_list(stem_verb_const.CONJ_SUFFIX_LIST);
-print 'stem_verb_const.CONJ_PREFIX_LETTERS', stem_verb_const.CONJ_PREFIX_LETTERS.encode('utf8');
+print('stem_verb_const.CONJ_PREFIX_LETTERS', stem_verb_const.CONJ_PREFIX_LETTERS.encode('utf8'));
 
 
 wordlist=[u'يضرب', u"استقلّ", u'استقل', ]
 for word in wordlist:
 	conjStemmer.segment(word);
-	print conjStemmer.get_affix_list();
+	print(conjStemmer.get_affix_list());

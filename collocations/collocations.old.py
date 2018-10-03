@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 import collocationdictionary
 #import collocationdictionary as colloDict
 import collocation_const
@@ -216,7 +218,7 @@ class CollocationClass:
 					# sublist=[];
 					# break;
 			if sublist:
-				print "bsublis", u' '.join(sublist).encode('utf8');
+				print("bsublis", u' '.join(sublist).encode('utf8'));
 				result=self.isCollocated(sublist);
 				if result:
 					newlist.append(result);
@@ -345,4 +347,4 @@ if __name__ == '__main__':
 	
 	for i in range(100):
 		newlist=collo.lookup(wordlist);
-		print u'\t'.join(newlist).encode('utf8')
+		print(u'\t'.join(newlist).encode('utf8'))

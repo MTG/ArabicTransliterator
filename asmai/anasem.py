@@ -10,6 +10,7 @@
 # Copyright:   (c) Taha Zerrouki 2012
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
 
 import sys
 sys.path.append('../');
@@ -114,7 +115,7 @@ class SemanticAnalyzer:
 						previous, stmword  =  self.bigramAnalyze(previous, stmword, previousCasePosition, stmwordCasePosition);
 						previousCasePosition +=1 ; 
 							
-					if debug: print u"stmword.getSyntax",stmword.getSyntax()
+					if debug: print(u"stmword.getSyntax",stmword.getSyntax())
 				# if the current word is transparent, ignore it and fix the previous index to the previous word.
 				if stmword.isTransparent():
 					ignore=True;
@@ -133,8 +134,8 @@ class SemanticAnalyzer:
 
 			# previousIndex = currentIndex;
 
-			if debug:print previousIndex , currentIndex;
-		if debug: print " counter total of items analyzed", counter;
+			if debug:print(previousIndex , currentIndex);
+		if debug: print(" counter total of items analyzed", counter);
 		#
 		# for stList in stemmedSynWordListList:
 			# for st in stList:
@@ -371,7 +372,7 @@ class SemanticAnalyzer:
 			curorigin = u'فلان'
 		key=u" ".join([preorigin, curorigin])
 		relation = sem_const.SemanticTable.get(key,'');
-		if debug: print u" ".join([key,unicode(relation)]).encode('utf8');
+		if debug: print(u" ".join([key,unicode(relation)]).encode('utf8'));
 		
 		if relation=='':
 			return False;
@@ -460,5 +461,5 @@ if __name__ == "__main__":
 	# the result contains objets
 	#print repr(result);
 	TextToDisplay  =  anasynt.display(result);
-	print TextToDisplay.encode('utf8');
+	print(TextToDisplay.encode('utf8'));
 

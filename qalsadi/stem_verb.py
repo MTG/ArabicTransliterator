@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 import re
 import pyarabic.araby as araby
 import tashaphyne.stemming
@@ -460,13 +462,13 @@ if __name__ == '__main__':
 	verbstemmer.set_debug(True);
 	for word in wordlist:
 		verbstemmer.conjStemmer.segment(word);
-		print verbstemmer.conjStemmer.get_affix_list();
+		print(verbstemmer.conjStemmer.get_affix_list());
 	for word in wordlist:
 		result=verbstemmer.stemming_verb(word);
 		for analyzed in  result:
-			print repr(analyzed);
-			print u'\n'.join(analyzed.keys());
+			print(repr(analyzed));
+			print(u'\n'.join(analyzed.keys()));
 			for key in analyzed.keys():
-				print u'\t'.join([key, unicode(analyzed[key])]).encode('utf8')
-			print;
-			print;
+				print(u'\t'.join([key, unicode(analyzed[key])]).encode('utf8'))
+			print();
+			print();

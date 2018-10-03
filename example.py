@@ -19,6 +19,8 @@
 # Email: mohamed ^dot^ sordo ^at^ gmail ^dot^ com
 # Website: http://msordo.weebly.com
 
+from __future__ import print_function
+
 import codecs, platform
 import arabic_reshaper #
 from bidi.algorithm import get_display
@@ -42,16 +44,16 @@ if __name__ == '__main__':
     f = codecs.open("example_arabic_script.dat", "r", "utf-8")
     transliterator = ALA_LC_Transliterator()
     for line in f:
-        print "--------------Original Text--------------"
+        print("--------------Original Text--------------")
         text = line.strip()
-        print reshape(text)
-        print "--------------Vocalized Text--------------"
+        print(reshape(text))
+        print("--------------Vocalized Text--------------")
         vocalizer=tashkeel.TashkeelClass()
         voc = vocalizer.tashkeel(text)
-        print reshape(voc)
-        print "--------------Transliterated Text--------------"
+        print(reshape(voc))
+        print("--------------Transliterated Text--------------")
         tr = transliterator.do(voc.strip())
-        print reshape(tr)
-        print "#########################################"
+        print(reshape(tr))
+        print("#########################################")
     f.close()
 

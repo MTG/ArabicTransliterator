@@ -10,6 +10,7 @@
 # Copyright:   (c) Taha Zerrouki 2012
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
 
 import pyarabic.araby as araby
 import analex_const 
@@ -930,7 +931,7 @@ class stemmedWord:
 		return text.encode('utf8');
 
 if __name__=="__main__":
-	print "test";
+	print("test");
 	rdict={}
 	rdict = {"word": "الحياة",		# input word
 			"vocalized": "الْحَيَاةُ",   # vocalized form of the input word 
@@ -950,7 +951,7 @@ if __name__=="__main__":
 			u'semantic':'',
 			};
 	stmwrd=stemmedWord(rdict);
-	print stmwrd.getDict();
+	print(stmwrd.getDict());
 	
 	stmwrd.setWord("4444");
 	stmwrd.setVocalized("4444");
@@ -968,5 +969,5 @@ if __name__=="__main__":
 	# stmwrd.setSyntax("4444");
 	# stmwrd.setSyntax("4444");
 	
-	print stmwrd;
+	print(stmwrd);
 	

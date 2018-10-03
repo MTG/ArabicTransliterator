@@ -4,6 +4,8 @@
 Arabic Word Type Guessing:
 This class can identify the type of word (noun, verb, prepostion).
 """
+from __future__ import print_function
+
 import re
 import string
 if __name__ == "__main__":
@@ -635,7 +637,7 @@ u"وتأسست",
  )
 
     if len(word_list)==0:
-        print 'emplty wordlist'
+        print('emplty wordlist')
     else:
         list_result=[];
         previous=u"";
@@ -644,9 +646,9 @@ u"وتأسست",
             tag='';
             if tagger.is_stopword(word):tag='t';
             else:
-                print word.encode('utf8'), tagger.is_possible_noun(word);			
+                print(word.encode('utf8'), tagger.is_possible_noun(word));			
                 if tagger.is_noun(word):tag+='n';
-                print word.encode('utf8'),tagger.is_possible_verb(word);
+                print(word.encode('utf8'),tagger.is_possible_verb(word));
                 if tagger.is_verb(word):tag+='v';
                 if tag in ("","nv"):
                     tag=tagger.context_analyse(previous, word, previous_tag)+"1";
@@ -654,4 +656,4 @@ u"وتأسست",
             previous=word;
             previous_tag = tag;
         for item  in list_result:
-            print ("%s\t%s"%(item['word'],item['tag'])).encode('utf8');
+            print(("%s\t%s"%(item['word'],item['tag'])).encode('utf8'));

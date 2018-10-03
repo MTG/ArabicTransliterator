@@ -14,6 +14,8 @@
 Arabic Stop Word Dictionary Class from Arramooz Al Waseet.
 Used in multiporpus morpholigical treatment
 """
+from __future__ import print_function
+
 import re
 import sys, os
 
@@ -72,10 +74,10 @@ class stopWordsDictionary:
 				self.dbConnect.row_factory = sqlite.Row 				
 				self.cursor = self.dbConnect.cursor()
 			except:
-				print "Fatal Error Can't find the database file", file_path
+				print("Fatal Error Can't find the database file", file_path)
 
 		else:
-			print u" ".join(["Inexistant File", file_path, " current dir ", os.curdir]).encode('utf8');
+			print(u" ".join(["Inexistant File", file_path, " current dir ", os.curdir]).encode('utf8'));
 		#create index to speed up search
 		indexField='unvocalized'
 		self.createTableIndex(indexField);
@@ -233,11 +235,11 @@ if __name__ == '__main__':
 	wordlist=[u"بعضهما", u'في',u"منً", u"أن", u'عندما']
 	
 	for word in wordlist:
-		print "-------"
-		print "word freq", mydict.isStopWord(word);
+		print("-------")
+		print("word freq", mydict.isStopWord(word));
 		idlist=mydict.lookup(word);
-		print idlist;
+		print(idlist);
 		for id in idlist:
-			print mydict.getAttribById(id, 'original').encode('utf8');
+			print(mydict.getAttribById(id, 'original').encode('utf8'));
 			myentry= mydict.getEntryById(id);
-			print repr(myentry);
+			print(repr(myentry));

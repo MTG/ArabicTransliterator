@@ -24,6 +24,8 @@ Arabic module
 @date:2010/03/01
 @version: 0.1
 """
+from __future__ import print_function
+
 import re
 from stack import *
 #class araby:
@@ -908,31 +910,31 @@ def waznlike(word1,wazn):
 	root=Stack()	
 	last1=stack1.pop();
 	last2=stack2.pop();
-	if debug: print "+0", stack1, stack2;
+	if debug: print("+0", stack1, stack2);
 	vowels=HARAKAT
 	while  last1!=None and  last2!=None:
 		if last1==last2 and last2 not in (FEH, AIN,LAM):
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last1=stack1.pop();
 			last2=stack2.pop();
 		elif last1 not in vowels and last2 in (FEH, AIN,LAM):
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			root.push(last1);
-			print "t";
+			print("t");
 			last1=stack1.pop();
 			last2=stack2.pop();
 		elif last1 in vowels and last2 not in vowels:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last1=stack1.pop();
 		elif last1 not in vowels and last2 in vowels:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last2=stack2.pop();
 		else:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			break;
 	# reverse the root letters
 	root.items.reverse();
-	print " the root is ", root.items#"".join(root.items);
+	print(" the root is ", root.items)#"".join(root.items);
 	if not (stack1.isEmpty() and stack2.isEmpty()):
 		return False;
 	else: return True;
@@ -950,21 +952,21 @@ def shaddalike(partial,fully):
 	Vstack=Stack(fully)
 	Plast=Pstack.pop();
 	Vlast=Vstack.pop();
-	if debug: print "+0", Pstack, Vstack;
+	if debug: print("+0", Pstack, Vstack);
 	vowels=SHADDA
 	while  Plast!=None and  Vlast!=None:
 		if Plast==Vlast:
-			if debug: print "+2", Pstack.items,Plast, Vstack.items,Vlast
+			if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
 			Plast=Pstack.pop();
 			Vlast=Vstack.pop();
 		elif Plast ==SHADDA and Vlast !=SHADDA:
-			if debug: print "+2", Pstack.items,Plast, Vstack.items,Vlast
+			if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
 			break;
 		elif Plast !=SHADDA and Vlast ==SHADDA:
-			if debug: print "+2", Pstack.items,Plast, Vstack.items,Vlast
+			if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
 			Vlast=Vstack.pop();
 		else:
-			if debug: print "+2", Pstack.items,Plast, Vstack.items,Vlast
+			if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
 			break;
 	if not (Pstack.isEmpty() and Vstack.isEmpty()):
 		return False;
@@ -1011,21 +1013,21 @@ def vocalizedSimilarity(word1,word2):
 	last1=stack1.pop();
 	last2=stack2.pop();
 	errCount=0;
-	if debug: print "+0", stack1, stack2;
+	if debug: print("+0", stack1, stack2);
 	vowels=HARAKAT
 	while  last1!=None and  last2!=None:
 		if last1==last2:
-			if debug: print u"\t".join(["0", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8');
+			if debug: print(u"\t".join(["0", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
 			last1=stack1.pop();
 			last2=stack2.pop();
 		elif last1 in vowels and last2 not in vowels:
-			if debug: print u"\t".join(["1", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8');
+			if debug: print(u"\t".join(["1", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
 			last1=stack1.pop();
 		elif last1 not in vowels and last2 in vowels:
-			if debug: print u"\t".join(["2", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8');
+			if debug: print(u"\t".join(["2", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
 			last2=stack2.pop();
 		else:
-			if debug: print u"\t".join(["3", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8');
+			if debug: print(u"\t".join(["3", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
 			#break;
 			if last1==SHADDA:
 				last1=stack1.pop();
@@ -1088,9 +1090,9 @@ u'سّلّامْ',
 	]
 	for word in words:
 		l,m,s=separate(word,True);
-		print u'\t'.join([word, l,m,s]).encode('utf8');
+		print(u'\t'.join([word, l,m,s]).encode('utf8'));
 		l=joint(l,s);
-		print u'\t'.join([word, l,m,s]).encode('utf8');		
+		print(u'\t'.join([word, l,m,s]).encode('utf8'));		
 		newword= joint(l,m);
-		print u'\t'.join([word, newword]).encode('utf8');
+		print(u'\t'.join([word, newword]).encode('utf8'));
 	

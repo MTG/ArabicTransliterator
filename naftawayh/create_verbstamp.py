@@ -1,4 +1,6 @@
-﻿import re
+﻿from __future__ import print_function
+
+import re
 
 from arabic_const import *
 from ar_ctype import *
@@ -17075,7 +17077,7 @@ for verb in VERB_DICTIONARY.keys():
 		VERB_STAMP[stamp].append(verb);
 	else:
 		VERB_STAMP[stamp]=[verb];
-print "VERB_STAMP={";
+print("VERB_STAMP={");
 for stamp in VERB_STAMP.keys():
-	print (u"u'%s':[u'%s'],"%( stamp,"', u'".join(VERB_STAMP[stamp]))).encode('utf8');
-print "}";
+	print((u"u'%s':[u'%s'],"%( stamp,"', u'".join(VERB_STAMP[stamp]))).encode('utf8'));
+print("}");

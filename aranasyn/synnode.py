@@ -10,6 +10,8 @@
 # Copyright:   (c) Taha Zerrouki 2012
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
+
 if __name__ == "__main__":
 	import sys
 	sys.path.append('../lib')
@@ -326,4 +328,4 @@ class synNode:
 
 if __name__=="__main__":
 	pass;
-	print "Syn Node module"
+	print("Syn Node module")

@@ -13020,4 +13020,4 @@ STOPWORDS[u'كيت']={'word':u'كَيْتَ','procletic':u'','tags':u'أداة:�
 STOPWORDS[u'وكيت']={'word':u'وكيت','procletic':u'-وَ','tags':u'أداة:كناية:معطوف','vocalized':u'وَكَيْتَ','stem':u'كَيْتَ','type':u'STOPWORD','original':u'كَيْتَ','encletic':u''}
 STOPWORDS[u'فكيت']={'word':u'فكيت','procletic':u'-فَ','tags':u'أداة:كناية:معطوف','vocalized':u'فَكَيْتَ','stem':u'كَيْتَ','type':u'STOPWORD','original':u'كَيْتَ','encletic':u''}
 if __name__ == "__main__":
-	print len(STOPWORDS)-13021;
+	print(len(STOPWORDS)-13021);

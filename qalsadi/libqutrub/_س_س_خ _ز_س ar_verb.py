@@ -1036,9 +1036,9 @@ def standard2(word_nm, harakat):
 		harakat_before=harakat;
 		word_nm,harakat=homogenize(word_nm,harakat);
 		if len(word_nm)!=len(harakat):
-			print "len word: ",len(word_nm),  word_nm.encode('utf8'); 
-			print "len harakat: ", len(harakat),repr(harakat);
-			print repr(harakat_before), word_before.encode('utf8')
+			print("len word: ",len(word_nm),  word_nm.encode('utf8')); 
+			print("len harakat: ", len(harakat),repr(harakat));
+			print(repr(harakat_before), word_before.encode('utf8'))
 			return u"";
 		word_nm=tahmeez2(word_nm,harakat);
 
@@ -1253,7 +1253,7 @@ def homogenize(word_nm,harakat):
 	"""
 	# inequal length between letters and harakat
 	if len(word_nm)!=len(harakat):
-		print "Homogenize:inequal length", len(word), len(harakat);
+		print("Homogenize:inequal length", len(word), len(harakat));
 		return (word_nm, harakat);
 	# word without weak letters doesn't need treatment
 	elif not re.search(r'[%s%s%s%s]'%(ALEF_MAKSURA,ALEF_MAMDUDA,YEH,WAW),word_nm):
@@ -1760,7 +1760,7 @@ def find_alltriverb(triverb, givenharaka=FATHA,VocalisedEntree=False):
 			else:
 				liste.append(TriVerbTable[verb_voc_id]);
 	else:
-		print "triverb has no verb";
+		print("triverb has no verb");
 	return liste;
 
 

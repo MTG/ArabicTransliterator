@@ -2,6 +2,8 @@
 # -*- coding=utf-8 -*-
 #************************************************************************
 # from arabic_const import *
+from __future__ import print_function
+
 from pyarabic.araby import *
 from verb_const import *
 class Stack :
@@ -111,21 +113,21 @@ def vocalizedlike(word1,word2):
 	stack2=Stack(word2)
 	last1=stack1.pop();
 	last2=stack2.pop();
-	if debug: print "+0", stack1, stack2;
+	if debug: print("+0", stack1, stack2);
 	vowels=('a','u')
 	while  last1!=None and  last2!=None:
 		if last1==last2:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last1=stack1.pop();
 			last2=stack2.pop();
 		elif last1 in vowels and last2 not in vowels:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last1=stack1.pop();
 		elif last1 not in vowels and last2 in vowels:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last2=stack2.pop();
 		else:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			break;
 	if not (stack1.isEmpty() and stack2.isEmpty()):
 		return False;
@@ -147,31 +149,31 @@ def waznlike(word1,wazn):
 	root=Stack()
 	last1=stack1.pop();
 	last2=stack2.pop();
-	if debug: print "+0", stack1, stack2;
+	if debug: print("+0", stack1, stack2);
 	vowels=('a','u')
 	while  last1!=None and  last2!=None:
 		if last1==last2 and last2 not in (FEH, AIN,LAM):
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last1=stack1.pop();
 			last2=stack2.pop();
 		elif last1 not in vowels and last2 in (FEH, AIN,LAM):
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			root.push(last1);
-			print "t";
+			print("t");
 			last1=stack1.pop();
 			last2=stack2.pop();
 		elif last1 in vowels and last2 not in vowels:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last1=stack1.pop();
 		elif last1 not in vowels and last2 in vowels:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			last2=stack2.pop();
 		else:
-			if debug: print "+2", stack1.items,last1, stack2.items,last2
+			if debug: print("+2", stack1.items,last1, stack2.items,last2)
 			break;
 	# reverse the root letters
 	root.items.reverse();
-	print " the root is ", root.items#"".join(root.items);
+	print(" the root is ", root.items)#"".join(root.items);
 	if not (stack1.isEmpty() and stack2.isEmpty()):
 		return False;
 	else: return True;
