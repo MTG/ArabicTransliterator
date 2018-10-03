@@ -3,11 +3,11 @@
 from setuptools import setup, find_packages
 
 setup(name='arabictransliterator',
-      version='0.1',
+      version='0.2',
       description='A code for transliterating (romanizing) Arabic text using the ALA-LC standard',
       author='CompMusic / MTG UPF',
       url='http://compmusic.upf.edu',
-      packages=["mishkal", 'pyarabic', 'naftawayh', 'tashaphyne', 'qalsadi',"qalsadi.libqutrub","arabic"],
+      packages=['aranasyn', 'arramooz', 'asmai', 'collocations', 'collocations.pyarabic', 'mishkal', 'mishkal.tashkeel', 'pyarabic', 'naftawayh', 'tashaphyne', 'qalsadi', 'qalsadi.libqutrub', 'arabic', 'CodernityDB'],
       package_dir={
               'tashaphyne':'tashaphyne',
               'naftawayh':'naftawayh',
