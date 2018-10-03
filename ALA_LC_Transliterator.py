@@ -20,7 +20,7 @@
 # Website: http://msordo.weebly.com
 
 import string
-from ArabicTransliterator import ArabicTransliterator
+from arabic.ArabicTransliterator import ArabicTransliterator
 
 class ALA_LC_Transliterator(ArabicTransliterator):
     """Arabic Transliterator using the American Library Association - Library of Congress (ALA-LC) romanization standard
@@ -29,10 +29,10 @@ class ALA_LC_Transliterator(ArabicTransliterator):
         self.invtable = {}
         self.table = {}
         self.__load_dictionary()
-    
+
     def __unicode__(self):
         return u"Arabic ALA-LC Transliterator"
-    
+
     def __load_dictionary(self):
         self.invtable = {u"\u2019": u"\u0621", # hamza-on-the-line
             u"\u0101": u"\u0622", # madda
@@ -87,9 +87,9 @@ class ALA_LC_Transliterator(ArabicTransliterator):
         # which is the reverse of the above alalc2uni is essential.
         self.table = {}
         # Iterate through all the items in the alalc2uni dict.
-        for (key, value) in self.invtable.iteritems():
+        for (key, value) in self.invtable.items():
             self.table[value] = key
-            
+
     def do(self, data):
         trans_data = u""
         #print `data[:]`
@@ -118,7 +118,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         continue # don't add anything
                     else:
                         trans_data += u"\u0101"
-                
+
                 elif data[i] == u"\u064A": # YAA' - RULES 1, 2 and 4
                     #print `data[:]`
                     #if i>0 and data[i-1] == u"\u0650" or (i>1 and data[i-2] not in (u"\u064E", u"\u064F")) and ((len(data)>i+1 and data[i+1] not in (u"\u064E", u"\u064F", u"\u0650")) or len(data) == i+1): # kasra
@@ -137,7 +137,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                             trans_data += u"\u012B" #long kasra
                     else:
                         trans_data += u"y"
-                
+
                 elif data[i] == u"\u0648": # WAAW - RULES 1, 2 and 4
                     if i>0 and data[i-1] == u"\u064F" and ((len(data)==i+1) or (len(data)>i+1 and data[i+1] not in (u"\u064E", u"\u0650"))): # damma
                         trans_data = trans_data[:-1]+u"\u016B" #long damma
@@ -153,7 +153,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         #    trans_data += u"w"
                     else:
                         trans_data += u"w"
-                
+
                 elif data[i] == u"\u0644": # LAAM
                     if i>0 and data[i-1] == u"\u0627": # bare 'alif at the beggining
                         if (i==1 or (i>1 and data[i-2]==u" ")):
@@ -167,7 +167,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                             trans_data += u"l"
                     else:
                         trans_data += u"l"
-                
+
                 elif data[i] == u"\u0629": # TAA' MARBUUTA - RULE 7
                     if len(data) > i+3 and data[i+1:i+4] == u" \u0627\u0644": # space + laam + 'alif
                         trans_data += u"t"
@@ -177,7 +177,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         trans_data += u"t"
                     else:
                         trans_data += u"h"
-                
+
                 elif data[i] == u"\u0649": # 'ALIF MAQSUURA - RULE 6
                     if i>0 and data[i-1] == u"\u064E": # fatHa
                         trans_data = trans_data[:-1]+u"\u00E1" # long fatha but with alif maqSuura
@@ -185,20 +185,20 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         continue # don't add anything
                     else:
                         trans_data += u"\u00E1"
-                
+
                 elif data[i] in (u"\u0623", u"\u0624", u"\u0625", u"\u0626"): # HAMZA-ON-'ALIF, HAMZA-ON-WAAW, HAMZA-UNDER-'ALIF, HAMZA-ON-YAA' - RULE 8
                     if i==0 or (i>0 and data[i-1] == " ") or (i>1 and data[i-2:i] == u"\u0627\u0644") or (i>2 and data[i-3:i] == u"\u0627\u0644\u0652"): # hamza at the begigging or preceeded by al- or al- plus sukun
                         continue # don't add anything
                     else:
                         trans_data += u"\u2019"
-                        
-                
+
+
                 elif data[i] == u"\u064E": # FATHA
                     if i>0 and data[i-1] == u"\u0627": # bare 'alif
                         continue # don't add anything
                     else:
                         trans_data += 'a'
-                
+
                 elif data[i] == u"\u0651": #SHADDA - RULE 11
                     if i>0 and data[i-1] not in (u"\u064A", u"\u0648"): # not yaa' nor waaw' --> double character
                         if i>2 and data[i-3:i-1] == u"\u0627\u0644": # if shadda is preceeded by al-
@@ -216,7 +216,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                             continue # don't add anything
                         else:
                             trans_data += "y"
-                elif data[i] in string.punctuation or data[i].isdigit(): # don't trasnliterate punctuation marks and digits 
+                elif data[i] in string.punctuation or data[i].isdigit(): # don't trasnliterate punctuation marks and digits
                     trans_data += data[i]
                 else:
                     trans_data += u"[UNK]"

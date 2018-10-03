@@ -58,7 +58,7 @@ class SuperLock(type):
                     else:
                         # setattr(base, b_attr, SuperLock.wrapper(a))
                         new_attr[b_attr] = SuperLock.wrapper(a)
-        for attr_name, attr_value in attr.iteritems():
+        for attr_name, attr_value in attr.items():
             if isinstance(attr_value, FunctionType) and not attr_name.startswith('_'):
                 attr_value = SuperLock.wrapper(attr_value)
             new_attr[attr_name] = attr_value
@@ -91,13 +91,13 @@ class SuperThreadSafeDatabase(Database):
 
     def open(self, *args, **kwargs):
         res = super(SuperThreadSafeDatabase, self).open(*args, **kwargs)
-        for name in self.indexes_names.iterkeys():
+        for name in self.indexes_names.keys():
             self.__patch_index_gens(name)
         return res
 
     def create(self, *args, **kwargs):
         res = super(SuperThreadSafeDatabase, self).create(*args, **kwargs)
-        for name in self.indexes_names.iterkeys():
+        for name in self.indexes_names.keys():
             self.__patch_index_gens(name)
             return res
 

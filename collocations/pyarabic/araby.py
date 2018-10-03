@@ -293,19 +293,19 @@ NAMES ={
 
 # regular expretion
 
-HARAKAT_pattern =re.compile(ur"["+u"".join(HARAKAT)+u"]", re.UNICODE)
+HARAKAT_pattern =re.compile(r"["+u"".join(HARAKAT)+u"]", re.UNICODE)
 """ pattern to strip Harakat"""
-LASTHARAKA_pattern =re.compile(ur"["+u"".join(HARAKAT)+u"]$|["+u''.join(TANWIN)+"]", re.UNICODE)
+LASTHARAKA_pattern =re.compile(r"["+u"".join(HARAKAT)+u"]$|["+u''.join(TANWIN)+"]", re.UNICODE)
 """ Pattern to strip only the last haraka """
-SHORTHARAKAT_pattern =re.compile(ur"["+u"".join(SHORTHARAKAT)+u"]", re.UNICODE)
+SHORTHARAKAT_pattern =re.compile(r"["+u"".join(SHORTHARAKAT)+u"]", re.UNICODE)
 """ Pattern to lookup Short Harakat (Fatha,Damma, Kasra, sukun, tanwin), but not shadda"""
-TASHKEEL_pattern =re.compile(ur"["+u"".join(TASHKEEL)+u"]", re.UNICODE)
+TASHKEEL_pattern =re.compile(r"["+u"".join(TASHKEEL)+u"]", re.UNICODE)
 """ Harakat and shadda pattern  """
-HAMZAT_pattern =re.compile(ur"["+u"".join(HAMZAT)+u"]", re.UNICODE);
+HAMZAT_pattern =re.compile(r"["+u"".join(HAMZAT)+u"]", re.UNICODE);
 """ all hamzat pattern"""
-ALEFAT_pattern =re.compile(ur"["+u"".join(ALEFAT)+u"]", re.UNICODE);
+ALEFAT_pattern =re.compile(r"["+u"".join(ALEFAT)+u"]", re.UNICODE);
 """ all alef like letters """
-LIGUATURES_pattern =re.compile(ur"["+u"".join(LIGUATURES)+u"]", re.UNICODE);
+LIGUATURES_pattern =re.compile(r"["+u"".join(LIGUATURES)+u"]", re.UNICODE);
 """ all liguatures pattern """
 TOKEN_pattern=re.compile(u"[^\w\u064b-\u0652']+",re.UNICODE);
 """ pattern to tokenize a text"""
@@ -825,7 +825,7 @@ def separate(word, ExtractShadda=False):
 		# the shadda is considered as letter
 		wordletters =	u''.join(letters.items)
 		# print wordletters.encode('utf8')
-		shaddaPlaces = re.sub(ur'[^%s]'%SHADDA, TATWEEL,wordletters)
+		shaddaPlaces = re.sub(r'[^%s]'%SHADDA, TATWEEL,wordletters)
 		shaddaPlaces = re.sub(u'%s%s'%(TATWEEL,SHADDA),SHADDA, shaddaPlaces); 
 		# print wordletters.encode('utf8')		
 		wordletters = stripShadda(wordletters);

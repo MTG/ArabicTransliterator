@@ -1194,7 +1194,7 @@ you should check index code.""" % (index.name, ex), RuntimeWarning)
             raise IndexNotFoundException("Index doesn't exist")
 
         props = {}
-        for key, value in db_index.__dict__.iteritems():
+        for key, value in db_index.__dict__.items():
             if not callable(value):  # not using inspect etc...
                 props[key] = value
 

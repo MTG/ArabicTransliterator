@@ -38,8 +38,8 @@ def chomp(s):
     return s[:-1]
   else:
     return s;
-HARAKAT_pat =re.compile(ur"^[%s%s%s%s%s%s%s%s]$"%(FATHATAN,DAMMATAN,KASRATAN,FATHA,DAMMA,KASRA,SUKUN,SHADDA) )
-HARAKAT_NO_SHADDA_pat =re.compile(ur"^[%s%s%s%s%s%s%s]$"%(FATHATAN,DAMMATAN,KASRATAN,FATHA,DAMMA,KASRA,SUKUN) )
+HARAKAT_pat =re.compile(r"^[%s%s%s%s%s%s%s%s]$"%(FATHATAN,DAMMATAN,KASRATAN,FATHA,DAMMA,KASRA,SUKUN,SHADDA) )
+HARAKAT_NO_SHADDA_pat =re.compile(r"^[%s%s%s%s%s%s%s]$"%(FATHATAN,DAMMATAN,KASRATAN,FATHA,DAMMA,KASRA,SUKUN) )
 #--------------------------------------
 def ar_isvowel(w):
 	" return True if the letter is an arabic vowel. SHADDA is  a vowel."
@@ -64,12 +64,12 @@ def ar_strip_vowel(w):
 #--------------------------------------
 def ar_strip_tatweel(w):
 	"strip tatweel from a word and return a result word"
-	return re.sub(ur'[%s]' % TATWEEL,	'', w)
+	return re.sub(r'[%s]' % TATWEEL,	'', w)
 
 #strip tatweel and vowel from a word and return a result word but keep shadda
 #--------------------------------------
 def ar_strip_marks_keepshadda(w):
-	return re.sub(ur'[%s%s%s%s%s%s%s%s]' % (FATHATAN, DAMMATAN, TATWEEL,
+	return re.sub(r'[%s%s%s%s%s%s%s%s]' % (FATHATAN, DAMMATAN, TATWEEL,
                                             KASRATAN, FATHA, DAMMA, KASRA, SUKUN),	'', w)
 
 
@@ -77,7 +77,7 @@ def ar_strip_marks_keepshadda(w):
 #--------------------------------------
 def ar_strip_marks(w):
 	"strip tatweel and vowel from a word and return a result word"
-	return re.sub(ur'[%s%s%s%s%s%s%s%s%s]' % (FATHATAN, DAMMATAN, TATWEEL,
+	return re.sub(r'[%s%s%s%s%s%s%s%s%s]' % (FATHATAN, DAMMATAN, TATWEEL,
                                             KASRATAN, FATHA, DAMMA, KASRA, SUKUN,SHADDA),	'', w)
 
 
@@ -109,7 +109,7 @@ def vocalizedlike( vocalized,word):
 # this function is to replace all letters non vowel to an unique symbole, to be used for test vowlization
 #--------------------------------------
 def replace_letters(word0):
-	return re.sub(ur'[^%s%s%s%s%s%s%s%s]' % (FATHATAN, DAMMATAN, KASRATAN, FATHA, DAMMA, KASRA,
+	return re.sub(r'[^%s%s%s%s%s%s%s%s]' % (FATHATAN, DAMMATAN, KASRATAN, FATHA, DAMMA, KASRA,
                                             SUKUN,SHADDA),	u'-', word0)
 # للمقارنة بين كلمتين متساويتين في الطول إذا كانتا متشاكلتان: أي يتطابق تشكيلهما جزئيا أو كليا.
 # لا يهم إن كانتا غير متساويتين في الحروف

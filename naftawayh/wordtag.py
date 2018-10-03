@@ -366,7 +366,7 @@ class WordTagger():
     	       max=word_nm2.rfind('*');
     	       if max>=0:
     	           word_nm2=word_nm2[:max+1]
-    	           word_nm2=re.sub(ur"[^%s]"%infixes, '*',word_nm2)
+    	           word_nm2=re.sub(r"[^%s]"%infixes, '*',word_nm2)
     	       if word_nm2.count('*')>=3:
     	           return -1120;
     	       if word_nm2.find(u'*%s*'%araby.ALEF)>=0:

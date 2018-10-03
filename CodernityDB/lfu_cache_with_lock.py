@@ -32,8 +32,8 @@ except ImportError:
 
 
 def twolvl_iterator(dict):
-    for k, v in dict.iteritems():
-        for kk, vv in v.iteritems():
+    for k, v in dict.items():
+        for kk, vv in v.items():
             yield k, kk, vv
 
 
@@ -55,7 +55,7 @@ def create_cache1lvl(lock_obj):
                     with lock:
                         if len(cache) == maxsize:
                             for k, _ in nsmallest(maxsize // 10 or 1,
-                                                  use_count.iteritems(),
+                                                  use_count.items(),
                                                   key=itemgetter(1)):
                                 del cache[k], use_count[k]
                         cache[key] = user_function(key, *args, **kwargs)

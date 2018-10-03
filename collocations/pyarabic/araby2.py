@@ -294,19 +294,19 @@ NAMES ={
 # regular expretion
 HARAKAT_strip = u"".join(HARAKAT);
 TASHKEEL_strip=u"".join(TASHKEEL);
-HARAKAT_pattern =re.compile(ur"["+u"".join(HARAKAT)+u"]", re.UNICODE)
+HARAKAT_pattern =re.compile(r"["+u"".join(HARAKAT)+u"]", re.UNICODE)
 """ pattern to strip Harakat"""
-LASTHARAKA_pattern =re.compile(ur"["+u"".join(HARAKAT)+u"]$|["+u''.join(TANWIN)+"]", re.UNICODE)
+LASTHARAKA_pattern =re.compile(r"["+u"".join(HARAKAT)+u"]$|["+u''.join(TANWIN)+"]", re.UNICODE)
 """ Pattern to strip only the last haraka """
-SHORTHARAKAT_pattern =re.compile(ur"["+u"".join(SHORTHARAKAT)+u"]", re.UNICODE)
+SHORTHARAKAT_pattern =re.compile(r"["+u"".join(SHORTHARAKAT)+u"]", re.UNICODE)
 """ Pattern to lookup Short Harakat (Fatha,Damma, Kasra, sukun, tanwin), but not shadda"""
-TASHKEEL_pattern =re.compile(ur"["+u"".join(TASHKEEL)+u"]", re.UNICODE)
+TASHKEEL_pattern =re.compile(r"["+u"".join(TASHKEEL)+u"]", re.UNICODE)
 """ Harakat and shadda pattern  """
-HAMZAT_pattern =re.compile(ur"["+u"".join(HAMZAT)+u"]", re.UNICODE);
+HAMZAT_pattern =re.compile(r"["+u"".join(HAMZAT)+u"]", re.UNICODE);
 """ all hamzat pattern"""
-ALEFAT_pattern =re.compile(ur"["+u"".join(ALEFAT)+u"]", re.UNICODE);
+ALEFAT_pattern =re.compile(r"["+u"".join(ALEFAT)+u"]", re.UNICODE);
 """ all alef like letters """
-LIGUATURES_pattern =re.compile(ur"["+u"".join(LIGUATURES)+u"]", re.UNICODE);
+LIGUATURES_pattern =re.compile(r"["+u"".join(LIGUATURES)+u"]", re.UNICODE);
 """ all liguatures pattern """
 TOKEN_pattern=re.compile(u"[^\w\u064b-\u0652']+",re.UNICODE);
 """ pattern to tokenize a text"""
@@ -607,7 +607,7 @@ def firstChar(word):
 	@return: the first char
 	@rtype: unicode char;
 	"""
-	return word[0];
+	return word[0]
 def secondChar(word):
 	"""
 	Return the second char
@@ -616,7 +616,7 @@ def secondChar(word):
 	@return: the first char
 	@rtype: unicode char;
 	"""
-	return word[1:2];	
+	return word[1:2]
 def lastChar(word):
 	"""
 	Return the last letter
@@ -626,7 +626,7 @@ def lastChar(word):
 	@return: the last letter
 	@rtype: unicode char;
 	"""
-	return word[-1:];
+	return word[-1:]
 def secondlastChar(word):
 	"""
 	Return the second last letter
@@ -656,7 +656,7 @@ def stripHarakat(text):
 	@return: return a striped text.
 	@rtype: unicode.
 	"""
-	return text.strip(HARAKAT_strip);
+	return text.strip(HARAKAT_strip)
 def stripLastHaraka(text):
 	"""Strip the last Haraka from arabic word except Shadda.
 	The striped marks are :
@@ -675,7 +675,7 @@ def stripLastHaraka(text):
 	"""
 	if text:
 		return  re.sub(LASTHARAKA_pattern,u'',text)
-	return text;
+	return text
 
 def stripTashkeel(text):
 	"""Strip vowels from a text, include Shadda.
@@ -694,7 +694,7 @@ def stripTashkeel(text):
 	@return: return a striped text.
 	@rtype: unicode.
 	"""
-	return text.strip(TASHKEEL_strip);
+	return text.strip(TASHKEEL_strip)
 
 
 def stripTatweel(text):
@@ -711,7 +711,7 @@ def stripTatweel(text):
 	@return: return a striped text.
 	@rtype: unicode.
 	"""
-	return text.strip(TATWEEL);
+	return text.strip(TATWEEL)
 
 def stripShadda(text):
 	"""
@@ -727,7 +727,7 @@ def stripShadda(text):
 	@return: return a striped text.
 	@rtype: unicode.
 	"""
-	return text.strip(SHADDA);
+	return text.strip(SHADDA)
 
 def normalizeLigature(text):
 	"""Normalize Lam Alef ligatures into two letters (LAM and ALEF), and Tand return a result text.
@@ -747,7 +747,7 @@ def normalizeLigature(text):
 	"""
 	if text:
 		return LIGUATURES_pattern.sub(u'%s%s'%(LAM,ALEF), text)
-	return text;
+	return text
 def normalizeHamza(word):
 	"""Standardize the Hamzat into one form of hamza,
 	replace Madda by hamza and alef.
@@ -762,17 +762,17 @@ def normalizeHamza(word):
 	@return: return a converted text.
 	@rtype: unicode.
 	"""
-	HAMZAT= u"إأءئؤ";
+	HAMZAT= u"إأءئؤ"
 	if word.startswith(ALEF_MADDA):
 	   if len(word)>=3 and (word[1] not in HARAKAT) and (word[2]==SHADDA or len(word)==3):
-			word=HAMZA+ALEF+word[1:];
+			word=HAMZA+ALEF+word[1:]
 	   else:
-			word=HAMZA+HAMZA+word[1:];
+			word=HAMZA+HAMZA+word[1:]
 	# convert all Hamza from into one form
-	word=word.replace(ALEF_MADDA,HAMZA+HAMZA);
-	word=HAMZAT_pattern.sub(HAMZA,word);
+	word=word.replace(ALEF_MADDA,HAMZA+HAMZA)
+	word=HAMZAT_pattern.sub(HAMZA,word)
 
-	return word;
+	return word
 
 
 
@@ -785,11 +785,11 @@ def separate(word, ExtractShadda=False):
 	#debug=True;
 	stack1=Stack(word)
 	# the word is inversed in the stack 
-	stack1.items.reverse();
+	stack1.items.reverse()
 	letters=Stack()
 	marks=Stack()	
 	vowels=HARAKAT
-	last1=stack1.pop();
+	last1=stack1.pop()
 	# if the last element must be a letter,
 	# the arabic word can't starts with a haraka
 	# in th stack the word is inversed
@@ -798,28 +798,28 @@ def separate(word, ExtractShadda=False):
 		if last1 in vowels:
 			# we can't have two harakats beside.
 			# the shadda is considered as a letter
-			marks.pop();
-			marks.push(last1);
+			marks.pop()
+			marks.push(last1)
 		elif last1==SHADDA:
 			# is the element is a Shadda,
 			# the previous letter must have a sukun as mark, 
 			# and the shadda take the indefinate  mark
-			marks.pop();
-			marks.push(SUKUN);
-			marks.push(NOT_DEF_HARAKA);
-			letters.push(SHADDA);
+			marks.pop()
+			marks.push(SUKUN)
+			marks.push(NOT_DEF_HARAKA)
+			letters.push(SHADDA)
 		else:
-			marks.push(NOT_DEF_HARAKA);
-			letters.push(last1);
-		last1=stack1.pop();
+			marks.push(NOT_DEF_HARAKA)
+			letters.push(last1)
+		last1=stack1.pop()
 	if ExtractShadda:
 		# the shadda is considered as letter
 		wordletters =	u''.join(letters.items)
 		# print wordletters.encode('utf8')
-		shaddaPlaces = re.sub(ur'[^%s]'%SHADDA, TATWEEL,wordletters)
-		shaddaPlaces = re.sub(u'%s%s'%(TATWEEL,SHADDA),SHADDA, shaddaPlaces); 
+		shaddaPlaces = re.sub(r'[^%s]'%SHADDA, TATWEEL,wordletters)
+		shaddaPlaces = re.sub(u'%s%s'%(TATWEEL,SHADDA),SHADDA, shaddaPlaces)
 		# print wordletters.encode('utf8')		
-		wordletters = stripShadda(wordletters);
+		wordletters = stripShadda(wordletters)
 		# print wordletters.encode('utf8')		
 		return (wordletters,u''.join(marks.items), shaddaPlaces)
 	else:

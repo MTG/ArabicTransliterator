@@ -11,7 +11,7 @@
 # Licence:     GPL
 #-------------------------------------------------------------------------------
 
-import repr as reprlib
+import reprlib
 import sys
 class ArabicRepr(reprlib.Repr):
 	def repr_unicode(self, obj, level):

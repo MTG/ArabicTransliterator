@@ -10,6 +10,7 @@
 # Copyright:   (c) Taha Zerrouki 2011
 # Licence:     GPL
 #-------------------------------------------------------------------------------
+from __future__ import print_function
 import sys
 sys.path.append('../lib')
 sys.path.append('../')
@@ -510,7 +511,7 @@ class TashkeelClass:
 				condidateSemList= [] # semantic previous
 				#condidateSynList= [] # syntaxic previous			
 				condidateSynList=[i for i in range(lenCCS) if currentCasesList[i].hasPrevious()]
-				print 'initial cases', len(condidateSynList)
+				print('initial cases', len(condidateSynList))
 			else: #if previous:
 				condidateSemList= previous.getSemNext();  # semantic previous
 				condidateSynList= previous.getNext();  # syntaxic previous			
@@ -819,21 +820,21 @@ class TashkeelClass:
 		@rtype: unicode
 		"""
 		# min => mina
-		text= re.sub(ur'\sمِنْ\s+ا', u' مِنَ ا', text);
+		text= re.sub(r'\sمِنْ\s+ا', u' مِنَ ا', text)
 		# man => mani
-		text= re.sub(ur'\sمَنْ\s+ا', u' مَنِ ا', text);
+		text= re.sub(r'\sمَنْ\s+ا', u' مَنِ ا', text)
 		#An => ani
-		text= re.sub(ur'\sعَنْ\s+ا', u' عَنِ ا', text);
+		text= re.sub(r'\sعَنْ\s+ا', u' عَنِ ا', text)
 		#sukun + alef => kasra +alef
-		text= re.sub(ur'\s%s\s+ا'%araby.SUKUN, u' %s ا'%araby.SUKUN, text);		
+		text= re.sub(r'\s%s\s+ا'%araby.SUKUN, u' %s ا'%araby.SUKUN, text)
 		#ajust pounctuation
-		text= re.sub(ur" ([.?!,:;)”—]($| ))", ur"\1", text);
+		text= re.sub(r" ([.?!,:;)”—]($| ))", r"\1", text)
 		#binu => bin 
 		# temporary, to be analysed by syntaxical analyzer
-		text= re.sub(ur'\sبْنُ\s', u' بْن ', text);		
+		text= re.sub(r'\sبْنُ\s', u' بْن ', text)
 		# # # اختصارات مثل حدثنا إلى ثنا وه تكثر في كتب التراث
 		# text= re.sub(ur'\seثِنَا\s', u' ثَنَا ', text);		
-		return text;
+		return text
 
 	def ajustVocalizedSuggestionResult(self, SuggestList):
 		"""
@@ -912,12 +913,12 @@ class TashkeelClass:
 		# get the word list
 		# اختصارات مثل حدثنا إلى ثنا وه تكثر في كتب التراث
 		for abr in tashkeel_const.CorrectedTashkeel.keys():
-			text = re.sub(ur"\s%s\s"%abr, ur" %s "%tashkeel_const.CorrectedTashkeel[abr], text);
-		wordlist = self.analyzer.tokenize(text);
-		prevocalizedList = pyarabic.number.preTashkeelNumber(wordlist);
+			text = re.sub(r"\s%s\s"%abr, r" %s "%tashkeel_const.CorrectedTashkeel[abr], text)
+		wordlist = self.analyzer.tokenize(text)
+		prevocalizedList = pyarabic.number.preTashkeelNumber(wordlist)
 		#Todo ajust prevocalization of named enteties
-		prevocalizedList = pyarabic.named.preTashkeelNamed(prevocalizedList);		
-		return u" ".join(prevocalizedList);
+		prevocalizedList = pyarabic.named.preTashkeelNamed(prevocalizedList)
+		return u" ".join(prevocalizedList)
 
 
 

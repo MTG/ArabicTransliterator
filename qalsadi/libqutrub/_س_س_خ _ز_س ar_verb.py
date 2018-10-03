@@ -1256,7 +1256,7 @@ def homogenize(word_nm,harakat):
 		print "Homogenize:inequal length", len(word), len(harakat);
 		return (word_nm, harakat);
 	# word without weak letters doesn't need treatment
-	elif not re.search(ur'[%s%s%s%s]'%(ALEF_MAKSURA,ALEF_MAMDUDA,YEH,WAW),word_nm):
+	elif not re.search(r'[%s%s%s%s]'%(ALEF_MAKSURA,ALEF_MAMDUDA,YEH,WAW),word_nm):
 		return (word_nm, harakat);
 	# treatment
 	else:

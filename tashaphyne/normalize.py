@@ -4,13 +4,13 @@
 Utility functions used by to prepare an arabic text to search and index .
 """
 import re, string,sys
-from arabic_const import *
+from .arabic_const import *
 
 
-HARAKAT_pat =re.compile(ur"["+u"".join([FATHATAN,DAMMATAN,KASRATAN,FATHA,DAMMA,KASRA,SUKUN,SHADDA])+u"]")
-HAMZAT_pat =re.compile(ur"["+u"".join([WAW_HAMZA,YEH_HAMZA])+u"]");
-ALEFAT_pat =re.compile(ur"["+u"".join([ALEF_MADDA,ALEF_HAMZA_ABOVE,ALEF_HAMZA_BELOW,HAMZA_ABOVE,HAMZA_BELOW])+u"]");
-LAMALEFAT_pat =re.compile(ur"["+u"".join([LAM_ALEF,LAM_ALEF_HAMZA_ABOVE,LAM_ALEF_HAMZA_BELOW,LAM_ALEF_MADDA_ABOVE])+u"]");
+HARAKAT_pat =re.compile(r"["+u"".join([FATHATAN,DAMMATAN,KASRATAN,FATHA,DAMMA,KASRA,SUKUN,SHADDA])+u"]")
+HAMZAT_pat =re.compile(r"["+u"".join([WAW_HAMZA,YEH_HAMZA])+u"]");
+ALEFAT_pat =re.compile(r"["+u"".join([ALEF_MADDA,ALEF_HAMZA_ABOVE,ALEF_HAMZA_BELOW,HAMZA_ABOVE,HAMZA_BELOW])+u"]");
+LAMALEFAT_pat =re.compile(r"["+u"".join([LAM_ALEF,LAM_ALEF_HAMZA_ABOVE,LAM_ALEF_HAMZA_BELOW,LAM_ALEF_MADDA_ABOVE])+u"]");
 
 ######################################################################
 #{ Indivudual Functions
@@ -53,7 +53,7 @@ def strip_tatweel(text):
 	@return: return a striped text.
 	@rtype: unicode.
 	"""
-	return re.sub(ur'[%s]' % TATWEEL,	'', text)
+	return re.sub(r'[%s]' % TATWEEL,	'', text)
 
 
 #--------------------------------------
@@ -113,8 +113,8 @@ def normalize_spellerrors(text):
 	@return: return a converted text.
 	@rtype: unicode. 
 	"""
-	text=re.sub(ur'[%s]' % TEH_MARBUTA,	HEH, text)
-	return re.sub(ur'[%s]' % ALEF_MAKSURA,	YEH, text)
+	text=re.sub(r'[%s]' % TEH_MARBUTA,	HEH, text)
+	return re.sub(r'[%s]' % ALEF_MAKSURA,	YEH, text)
 
 ######################################################################
 #{ Normalize One Function
