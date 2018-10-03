@@ -14,7 +14,7 @@ from __future__ import print_function
 
 import syn_const
 import stemmedword
-import stemmedsynword
+from . import stemmedsynword
 import pyarabic.araby as araby
 debug = False;
 class SyntaxAnalyzer:

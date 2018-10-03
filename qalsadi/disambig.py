@@ -16,7 +16,7 @@
 from __future__ import print_function
 
 # import  pyarabic.araby as araby
-import disambig_const
+from . import disambig_const
 import naftawayh.wordtag
 class disambiguator:
 	def __init__(self,):

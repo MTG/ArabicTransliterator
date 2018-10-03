@@ -31,7 +31,7 @@ import re
 # import os
 # import types
 # from arabic_const import *
-from verb_const import *
+from .verb_const import *
 # import ar_ctype
 import pyarabic.araby as araby
 from pyarabic.araby import *
@@ -1716,7 +1716,7 @@ def find_triliteral_verb(db_base_path, triliteralverb, givenharaka):
 
 
 
-from triverbtable import *
+from .triverbtable import *
 TriVerbTable_INDEX={};
 
 def create_index_triverbtable():

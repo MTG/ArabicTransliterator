@@ -12,10 +12,8 @@
 #-------------------------------------------------------------------------------
 
 import arramooz.stopwordsdictionaryclass  as stopwordsdictionaryclass  
-import pyarabic.araby as araby
-import analex_const 
-import wordCase
-#~ import  stemmedword
+from . import wordCase
+
 class stopWordStemmer:
 	"""
         Arabic stopwords stemmer.

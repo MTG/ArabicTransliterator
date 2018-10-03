@@ -16,7 +16,7 @@ sys.path.append('../lib')
 sys.path.append('../')
 import re
 import pyarabic.araby as araby
-import tashkeel_const
+from . import tashkeel_const
 import qalsadi.analex
 import aranasyn.anasyn 
 import asmai.anasem 

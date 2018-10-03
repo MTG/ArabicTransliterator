@@ -15,10 +15,8 @@ from __future__ import print_function
 import sys
 sys.path.append('../');
 sys.path.append('../lib');
-import  sem_const
-import  aranasyn.anasyn
-import  qalsadi.stemmedword as stemmedword
-import  aranasyn.stemmedsynword as stemmedsynword
+from . import sem_const
+import aranasyn.anasyn
 debug = False;
 #debug = True;
 class SemanticAnalyzer:

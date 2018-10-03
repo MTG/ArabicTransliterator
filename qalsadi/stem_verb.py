@@ -15,12 +15,10 @@ from __future__ import print_function
 import re
 import pyarabic.araby as araby
 import tashaphyne.stemming
-import stem_verb_const 
-import analex_const 
-import libqutrub.classverb   
+from . import stem_verb_const
+from .libqutrub import classverb
 import arramooz.arabicdictionary as arabicdictionary 
-import wordCase
-#~ import  stemmedword
+from . import wordCase
 
 class verbStemmer:
 	"""
@@ -261,7 +259,7 @@ class verbStemmer:
 		verb = infinitive_verb;
 		future_type = libqutrub.ar_verb.get_future_type_entree(future_type);
 		#print u"\t".join([verb, future_type]).encode('utf8');
-		vb = libqutrub.classverb.verbclass(verb, transitive, future_type);
+		vb = classverb.verbclass(verb, transitive, future_type);
 		# الألف ليست جزءا من السابقة، لأنها تستعمل لمنع الابتداء بساكن
 		# وتصريف الفعل في الامر يولده
 		if affix.startswith(araby.ALEF): affix=affix[1:]

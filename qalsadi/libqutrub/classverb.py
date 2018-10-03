@@ -30,14 +30,10 @@ Verb Class for conjugation
 @version: 0.9
 """
 import copy
-# from ar_ctype import *
-import sys
-import re
-import string
 import pyarabic.araby as araby
-from ar_verb import *
-from verb_const import *
-from conjugatedisplay import *
+from .ar_verb import *
+from .verb_const import *
+from .conjugatedisplay import *
 
 
 class conjug_stem:

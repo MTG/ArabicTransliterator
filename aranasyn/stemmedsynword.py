@@ -16,7 +16,7 @@ import sys
 sys.path.append('../lib');
 import qalsadi.stemmedword as stemmedword
 
-import syn_const
+from . import syn_const
 import pyarabic.araby as araby
 import math
 class stemmedSynWord (stemmedword.stemmedWord):

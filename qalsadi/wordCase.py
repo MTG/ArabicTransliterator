@@ -15,10 +15,8 @@ from __future__ import print_function
 if __name__=="__main__":
 	import sys
 	sys.path.append('..');
-import pyarabic.araby as araby
 import pyarabic.arabrepr as arabrepr
 arabicRepr = arabrepr.ArabicRepr()
-import analex_const 
 
 class wordCase:
 	"""

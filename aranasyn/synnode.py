@@ -16,8 +16,6 @@ if __name__ == "__main__":
 	import sys
 	sys.path.append('../lib')
 
-import syn_const
-import stemmedsynword
 class synNode:
 	"""
 	synNode represents the regrouped data resulted from the morpholocigal analysis

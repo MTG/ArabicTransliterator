@@ -13,13 +13,10 @@ if __name__ == "__main__":
     sys.path.append('../');
     sys.path.append('lib');    
 import tashaphyne
-import stopwords
-#
-#from arabic_const import *
-#from ar_ctype import *
+from . import stopwords
 import pyarabic.araby as araby
-import  affix_const
-import wordtag_const
+from . import  affix_const
+from . import wordtag_const
 
 class WordTagger():
     """

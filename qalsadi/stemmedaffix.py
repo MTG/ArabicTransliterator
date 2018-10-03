@@ -14,8 +14,7 @@ from __future__ import print_function
 
 import sys
 sys.path.append('../lib/')
-import pyarabic.araby as araby
-import analex_const 
+
 class stemmedAffix:
 	"""
 	stemmedAffix represents the data resulted from the morpholocigal analysis

@@ -24,8 +24,8 @@ import  re, sys
 sys.path.append('tashaphyne/lib/');
 import pyarabic.araby as araby
 
-from normalize import *
-from stem_const import *
+from .normalize import *
+from .stem_const import *
 
 
 class ArabicLightStemmer:

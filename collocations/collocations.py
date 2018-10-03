@@ -12,12 +12,10 @@
 #-------------------------------------------------------------------------------
 from __future__ import print_function
 
-import collocationdictionary
-#import collocationdictionary as colloDict
-import collocation_const
-import pyarabic.araby as araby
-import itertools
-import re
+from . import collocationdictionary
+from . import collocation_const
+from .pyarabic import araby
+
 class CollocationClass:
 	"""
         Arabic Collocations Class

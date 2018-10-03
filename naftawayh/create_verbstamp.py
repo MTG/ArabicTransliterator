@@ -2,8 +2,8 @@
 
 import re
 
-from arabic_const import *
-from ar_ctype import *
+from .arabic_const import *
+from .ar_ctype import *
 
 STAMP_pat=re.compile(u"[%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s]"%(ALEF,YEH,HAMZA,ALEF_HAMZA_ABOVE,WAW_HAMZA,YEH_HAMZA,  WAW, ALEF_MAKSURA,SHADDA,FATHA,DAMMA,KASRA,SUKUN,TEH,NOON),re.UNICODE)
 def verb_stamp(word):

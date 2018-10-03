@@ -12,13 +12,10 @@
 #-------------------------------------------------------------------------------
 from __future__ import print_function
 
-import re
-#from pysqlite2 import dbapi2 as sqlite
 import sqlite3 as sqlite
 import os
 base = os.path.dirname(os.path.realpath(__file__))
 FILE_DB=os.path.abspath(os.path.join(base, os.pardir, os.pardir))+u"/data/collocations.sqlite"
-import pyarabic.araby as araby
 class collocationDictionary:
 	"""
         Arabic dictionary Class

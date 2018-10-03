@@ -21,7 +21,7 @@
 #
 #***********************************************************************/
 
-from verb_const import *
+from .verb_const import *
 # from ar_ctype import *
 import pyarabic.araby as araby
 #import sys

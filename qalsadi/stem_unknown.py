@@ -16,13 +16,11 @@ import re
 import pyarabic.araby as araby
 import tashaphyne.stemming
 import tashaphyne.normalize
-import analex_const 
-import stem_noun_const 
+from . import stem_noun_const
 import arramooz.arabicdictionary as arabicdictionary 
 import arramooz.wordfreqdictionaryclass as wordfreqdictionaryclass
-import wordCase
-#~ import stemmedword
-#import dictionaries.noun_dictionary  as noun_dictionary
+from . import wordCase
+
 #Todo:  remove all individual constants of arabic letters, Done
 NOUN_DICTIONARY_INDEX={
 u'id':0,

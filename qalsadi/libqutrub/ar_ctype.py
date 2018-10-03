@@ -21,7 +21,7 @@
 #***********************************************************************/
 
 import re#, string,sys
-from arabic_const import *
+from .arabic_const import *
 HARAKAT_pat =re.compile(r"[%s%s%s%s%s%s%s%s]"%(FATHATAN,DAMMATAN,KASRATAN,FATHA,DAMMA,KASRA,SUKUN,SHADDA) )
 HARAKAT_NO_SHADDA_pat =re.compile(r"[%s%s%s%s%s%s%s]"%(FATHATAN,DAMMATAN,KASRATAN,FATHA,DAMMA,KASRA,SUKUN) )
 

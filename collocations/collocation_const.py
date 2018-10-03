@@ -1,6 +1,6 @@
 ﻿# -*- coding=utf-8 -*-
 import re
-import pyarabic.araby as araby
+from .pyarabic import araby
 token_pat=re.compile(u"([\w%s]+)"%u"".join(araby.HARAKAT),re.UNICODE);
 
 tab_noun_context=(

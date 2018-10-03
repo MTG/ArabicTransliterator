@@ -18,18 +18,18 @@ if __name__=="__main__":
 
 import re
 import pyarabic.araby as araby  # basic arabic text functions
-import analex_const # special constant for analex
-import stem_noun		# noun stemming 
-import stem_verb		# verb stemming
-import stem_unknown		# unknown word stemming
-import stem_stopwords		# stopwords word stemming
-import stem_pounct_const # pounctaution constants 
+from . import analex_const # special constant for analex
+from . import stem_noun		# noun stemming
+from . import stem_verb		# verb stemming
+from . import stem_unknown		# unknown word stemming
+from . import stem_stopwords		# stopwords word stemming
+from . import stem_pounct_const # pounctaution constants
 import naftawayh.wordtag  # word tagger
 import arramooz.wordfreqdictionaryclass as wordfreqdictionaryclass
-import disambig  # disambiguation const
-import wordCase  
-import stemmedword# the result object for stemming
-import cache
+from . import disambig  # disambiguation const
+from . import wordCase
+from . import stemmedword# the result object for stemming
+from . import cache
 
 class analex :
 	"""

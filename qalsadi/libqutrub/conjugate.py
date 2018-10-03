@@ -21,10 +21,10 @@
 #***********************************************************************/
 from __future__ import print_function
 
-from verb_const import *
+from .verb_const import *
 # from ar_ctype import *
-from classverb import *
-from mosaref_main import *
+from .classverb import *
+from .mosaref_main import *
 import sys,re,string
 import sys, getopt, os
 scriptname = os.path.splitext(os.path.basename(sys.argv[0]))[0]

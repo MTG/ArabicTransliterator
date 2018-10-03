@@ -24,7 +24,7 @@ import sys
 import string
 import sys
 import os
-from classverb import *
+from .classverb import *
 
 create_index_triverbtable()
 """ you nedd to create the trileteral verb dictionary  index to search within triverbs."""

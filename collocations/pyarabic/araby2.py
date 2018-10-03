@@ -27,7 +27,7 @@ Arabic module
 from __future__ import print_function
 
 import re
-from stack import *
+from .stack import *
 #class araby:
 """
 the arabic chars contains all arabic letters, a sub class of unicode,

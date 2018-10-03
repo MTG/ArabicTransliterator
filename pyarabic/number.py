@@ -114,9 +114,8 @@
  """
 
 import math
-import araby
-from number import *
-from number_const import *
+from . import araby
+from .number_const import *
 
 class ArNumbers:
 	_individual = {};

@@ -3,11 +3,9 @@
 #
 from __future__ import print_function
 
-import re, string,sys
-sys.path.append('../lib')
-import pyarabic.araby as araby
-import named_const
-import propernouns
+from . import araby
+from . import named_const
+from . import propernouns
 # from number import *
 DineNamed=(
 u'شمس',

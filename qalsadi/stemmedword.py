@@ -13,9 +13,8 @@
 from __future__ import print_function
 
 import pyarabic.araby as araby
-import analex_const 
-import stemmedaffix
-import wordCase
+from . import stemmedaffix
+
 #used as a cache for affixes
 # GlobalAffixes={'noun':{},
 				# 'verb':{},

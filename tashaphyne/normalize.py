@@ -3,7 +3,7 @@
 """
 Utility functions used by to prepare an arabic text to search and index .
 """
-import re, string,sys
+import re
 from .arabic_const import *
 
 

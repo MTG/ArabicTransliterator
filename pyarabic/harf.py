@@ -25,7 +25,7 @@ Arabic module
 @version: 0.1
 """
 import re
-from stack import *
+from .stack import *
 #class araby:
 """
 the arabic chars contains all arabic letters, a sub class of unicode,

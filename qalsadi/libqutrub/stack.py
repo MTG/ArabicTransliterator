@@ -5,7 +5,7 @@
 from __future__ import print_function
 
 from pyarabic.araby import *
-from verb_const import *
+from .verb_const import *
 class Stack :
 	def __init__(self,text="") :
 		self.items = list(text);

@@ -2,7 +2,7 @@
 # -*- coding=utf-8 -*-
 #
 import re, string,sys
-from arabic_const import *
+from .arabic_const import *
 
 
 pronouns=(

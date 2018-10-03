@@ -199,7 +199,7 @@ class Database(object):
             code = f.read()
         try:
             obj = compile(code, '<Index: %s' % os.path.join(p, ind), 'exec')
-            exec obj in globals()
+            exec(obj, globals())
             ind_obj = globals()[_class](self.path, name, **ind_kwargs)
             ind_obj._order = int(ind[:2])
         except:

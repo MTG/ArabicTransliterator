@@ -28,12 +28,12 @@ import re
 # import sys
 # import os
 # import types
-from arabic_const import *
-from verb_const import *
-from ar_ctype import *
+from .arabic_const import *
+from .verb_const import *
+from .ar_ctype import *
 import pyarabic.araby as araby
 
-from alefmaddaverbtable import *
+from .alefmaddaverbtable import *
 
 #used to
 VALID_INFINITIVE_VERB6_pat=re.compile(u"^است...|ا..ن..|ا..و..|ا..ا.ّ|ا....ّ|ا.ّ.ّ.|ا.ّا..$",re.UNICODE)

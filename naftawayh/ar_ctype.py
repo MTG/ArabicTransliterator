@@ -22,7 +22,7 @@
 
 import re, string,sys
 import types
-from arabic_const import *
+from .arabic_const import *
 #from verb_const import *
 
 #!/usr/bin/python

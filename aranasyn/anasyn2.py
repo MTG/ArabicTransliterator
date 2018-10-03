@@ -15,10 +15,10 @@ from __future__ import print_function
 if __name__ == "__main__":
 	import sys
 	sys.path.append('../lib')
-import syn_const
+from . import syn_const
 import qalsadi.stemmedword as stemmedword
-import stemmedsynword
-import synnode
+from . import stemmedsynword
+from . import synnode
 import pyarabic.araby as araby
 debug = False;
 # debug = True;
