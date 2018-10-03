@@ -503,9 +503,3 @@ def normalizeLigature(text):
 	if text:
 		return LIGUATURES_pattern.sub(u'%s%s'%(LAM,ALEF), text)
 	return text;
-
-
-if __name__=="__main__":
- #generate the Harf Table of Horof features
-	for l in letters:
-		

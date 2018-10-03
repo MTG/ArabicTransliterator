@@ -322,7 +322,7 @@ def isSukun(archar):
     """
     return  archar==SUKUN;
         #return True;
-	#    else: return False;
+    #    else: return False;
 
 def isShadda(archar):
     """Checks for Arabic Shadda Mark.
@@ -372,7 +372,7 @@ def isShortharaka(archar):
     @param archar: arabic unicode char
     @type archar: unicode
     """
-	
+    
     return archar in SHORTHARAKAT;
 
 
@@ -602,488 +602,488 @@ def isArabicword(word):
 #{Char functions
 #####################################
 def firstChar(word):
-	"""
-	Return the first char
-	@param word: given word;
-	@type word: unicode;
-	@return: the first char
-	@rtype: unicode char;
-	"""
-	return word[0];
+    """
+    Return the first char
+    @param word: given word;
+    @type word: unicode;
+    @return: the first char
+    @rtype: unicode char;
+    """
+    return word[0];
 def secondChar(word):
-	"""
-	Return the second char
-	@param word: given word;
-	@type word: unicode;
-	@return: the first char
-	@rtype: unicode char;
-	"""
-	return word[1:2];	
+    """
+    Return the second char
+    @param word: given word;
+    @type word: unicode;
+    @return: the first char
+    @rtype: unicode char;
+    """
+    return word[1:2];    
 def lastChar(word):
-	"""
-	Return the last letter
-	example: zerrouki; 'i' is the last.	
-	@param word: given word;
-	@type word: unicode;
-	@return: the last letter
-	@rtype: unicode char;
-	"""
-	return word[-1:];
+    """
+    Return the last letter
+    example: zerrouki; 'i' is the last.    
+    @param word: given word;
+    @type word: unicode;
+    @return: the last letter
+    @rtype: unicode char;
+    """
+    return word[-1:];
 def secondlastChar(word):
-	"""
-	Return the second last letter
-	example: zerrouki; 'k' is the second last.
-	@param word: given word;
-	@type word: unicode;
-	@return: the second last letter
-	@rtype: unicode char;
-	"""
-	return word[-2:-1]
+    """
+    Return the second last letter
+    example: zerrouki; 'k' is the second last.
+    @param word: given word;
+    @type word: unicode;
+    @return: the second last letter
+    @rtype: unicode char;
+    """
+    return word[-2:-1]
 #####################################
 #{Strip functions
 #####################################
 def stripHarakat(text):
-	"""Strip Harakat from arabic word except Shadda.
-	The striped marks are :
-		- FATHA, DAMMA, KASRA
-		- SUKUN
-		- FATHATAN, DAMMATAN, KASRATAN, , , .
-	Example:
-		>>> text=u"الْعَرَبِيّةُ"
-		>>> stripHarakat(text)
-		العربيّة
+    """Strip Harakat from arabic word except Shadda.
+    The striped marks are :
+        - FATHA, DAMMA, KASRA
+        - SUKUN
+        - FATHATAN, DAMMATAN, KASRATAN, , , .
+    Example:
+        >>> text=u"الْعَرَبِيّةُ"
+        >>> stripHarakat(text)
+        العربيّة
 
-	@param text: arabic text.
-	@type text: unicode.
-	@return: return a striped text.
-	@rtype: unicode.
-	"""
-	return text.strip(HARAKAT_strip);
+    @param text: arabic text.
+    @type text: unicode.
+    @return: return a striped text.
+    @rtype: unicode.
+    """
+    return text.strip(HARAKAT_strip);
 def stripLastHaraka(text):
-	"""Strip the last Haraka from arabic word except Shadda.
-	The striped marks are :
-		- FATHA, DAMMA, KASRA
-		- SUKUN
-		- FATHATAN, DAMMATAN, KASRATAN, , , .
-	Example:
-		>>> text=u"الْعَرَبِيّةُ"
-		>>> stripTashkeel(text)
-		الْعَرَبِيّة
+    """Strip the last Haraka from arabic word except Shadda.
+    The striped marks are :
+        - FATHA, DAMMA, KASRA
+        - SUKUN
+        - FATHATAN, DAMMATAN, KASRATAN, , , .
+    Example:
+        >>> text=u"الْعَرَبِيّةُ"
+        >>> stripTashkeel(text)
+        الْعَرَبِيّة
 
-	@param text: arabic text.
-	@type text: unicode.
-	@return: return a striped text.
-	@rtype: unicode.
-	"""
-	if text:
-		return  re.sub(LASTHARAKA_pattern,u'',text)
-	return text;
+    @param text: arabic text.
+    @type text: unicode.
+    @return: return a striped text.
+    @rtype: unicode.
+    """
+    if text:
+        return  re.sub(LASTHARAKA_pattern,u'',text)
+    return text;
 
 def stripTashkeel(text):
-	"""Strip vowels from a text, include Shadda.
-	The striped marks are :
-		- FATHA, DAMMA, KASRA
-		- SUKUN
-		- SHADDA
-		- FATHATAN, DAMMATAN, KASRATAN, , , .
-	Example:
-		>>> text=u"الْعَرَبِيّةُ"
-		>>> stripTashkeel(text)
-		العربية
+    """Strip vowels from a text, include Shadda.
+    The striped marks are :
+        - FATHA, DAMMA, KASRA
+        - SUKUN
+        - SHADDA
+        - FATHATAN, DAMMATAN, KASRATAN, , , .
+    Example:
+        >>> text=u"الْعَرَبِيّةُ"
+        >>> stripTashkeel(text)
+        العربية
 
-	@param text: arabic text.
-	@type text: unicode.
-	@return: return a striped text.
-	@rtype: unicode.
-	"""
-	return text.strip(TASHKEEL_strip);
+    @param text: arabic text.
+    @type text: unicode.
+    @return: return a striped text.
+    @rtype: unicode.
+    """
+    return text.strip(TASHKEEL_strip);
 
 
 def stripTatweel(text):
-	"""
-	Strip tatweel from a text and return a result text.
+    """
+    Strip tatweel from a text and return a result text.
 
-	Example:
-		>>> text=u"العـــــربية"
-		>>> stripTatweel(text)
-		العربية
+    Example:
+        >>> text=u"العـــــربية"
+        >>> stripTatweel(text)
+        العربية
 
-	@param text: arabic text.
-	@type text: unicode.
-	@return: return a striped text.
-	@rtype: unicode.
-	"""
-	return text.strip(TATWEEL);
+    @param text: arabic text.
+    @type text: unicode.
+    @return: return a striped text.
+    @rtype: unicode.
+    """
+    return text.strip(TATWEEL);
 
 def stripShadda(text):
-	"""
-	Strip Shadda from a text and return a result text.
+    """
+    Strip Shadda from a text and return a result text.
 
-	Example:
-		>>> text=u"الشّمسيّة"
-		>>> stripTatweel(text)
-		الشمسية
+    Example:
+        >>> text=u"الشّمسيّة"
+        >>> stripTatweel(text)
+        الشمسية
 
-	@param text: arabic text.
-	@type text: unicode.
-	@return: return a striped text.
-	@rtype: unicode.
-	"""
-	return text.strip(SHADDA);
+    @param text: arabic text.
+    @type text: unicode.
+    @return: return a striped text.
+    @rtype: unicode.
+    """
+    return text.strip(SHADDA);
 
 def normalizeLigature(text):
-	"""Normalize Lam Alef ligatures into two letters (LAM and ALEF), and Tand return a result text.
-	Some systems present lamAlef ligature as a single letter, this function convert it into two letters,
-	The converted letters into  LAM and ALEF are :
-		- LAM_ALEF, LAM_ALEF_HAMZA_ABOVE, LAM_ALEF_HAMZA_BELOW, LAM_ALEF_MADDA_ABOVE
+    """Normalize Lam Alef ligatures into two letters (LAM and ALEF), and Tand return a result text.
+    Some systems present lamAlef ligature as a single letter, this function convert it into two letters,
+    The converted letters into  LAM and ALEF are :
+        - LAM_ALEF, LAM_ALEF_HAMZA_ABOVE, LAM_ALEF_HAMZA_BELOW, LAM_ALEF_MADDA_ABOVE
 
-	Example:
-		>>> text=u"لانها لالء الاسلام"
-		>>> normalizeLigature(text)
-		لانها لالئ الاسلام
+    Example:
+        >>> text=u"لانها لالء الاسلام"
+        >>> normalizeLigature(text)
+        لانها لالئ الاسلام
 
-	@param text: arabic text.
-	@type text: unicode.
-	@return: return a converted text.
-	@rtype: unicode.
-	"""
-	if text:
-		return LIGUATURES_pattern.sub(u'%s%s'%(LAM,ALEF), text)
-	return text;
+    @param text: arabic text.
+    @type text: unicode.
+    @return: return a converted text.
+    @rtype: unicode.
+    """
+    if text:
+        return LIGUATURES_pattern.sub(u'%s%s'%(LAM,ALEF), text)
+    return text;
 def normalizeHamza(word):
-	"""Standardize the Hamzat into one form of hamza,
-	replace Madda by hamza and alef.
-	Replace the LamAlefs by simplified letters.
-	Example:
-		>>> text=u"سئل أحد الأئمة"
-		>>> normalizeHamza(text)
-		سءل ءحد الءءمة
+    """Standardize the Hamzat into one form of hamza,
+    replace Madda by hamza and alef.
+    Replace the LamAlefs by simplified letters.
+    Example:
+        >>> text=u"سئل أحد الأئمة"
+        >>> normalizeHamza(text)
+        سءل ءحد الءءمة
 
-	@param word: arabic text.
-	@type word: unicode.
-	@return: return a converted text.
-	@rtype: unicode.
-	"""
-	HAMZAT= u"إأءئؤ";
-	if word.startswith(ALEF_MADDA):
-	   if len(word)>=3 and (word[1] not in HARAKAT) and (word[2]==SHADDA or len(word)==3):
-			word=HAMZA+ALEF+word[1:];
-	   else:
-			word=HAMZA+HAMZA+word[1:];
-	# convert all Hamza from into one form
-	word=word.replace(ALEF_MADDA,HAMZA+HAMZA);
-	word=HAMZAT_pattern.sub(HAMZA,word);
+    @param word: arabic text.
+    @type word: unicode.
+    @return: return a converted text.
+    @rtype: unicode.
+    """
+    HAMZAT= u"إأءئؤ";
+    if word.startswith(ALEF_MADDA):
+       if len(word)>=3 and (word[1] not in HARAKAT) and (word[2]==SHADDA or len(word)==3):
+            word=HAMZA+ALEF+word[1:];
+       else:
+            word=HAMZA+HAMZA+word[1:];
+    # convert all Hamza from into one form
+    word=word.replace(ALEF_MADDA,HAMZA+HAMZA);
+    word=HAMZAT_pattern.sub(HAMZA,word);
 
-	return word;
+    return word;
 
 
 
 def separate(word, ExtractShadda=False):
-	"""
-	separate the letters from the vowels, in arabic word,
-	if a letter hasn't a haraka, the not definited haraka is attributed.
-	return ( letters,vowels);
-	"""
-	#debug=True;
-	stack1=Stack(word)
-	# the word is inversed in the stack 
-	stack1.items.reverse();
-	letters=Stack()
-	marks=Stack()	
-	vowels=HARAKAT
-	last1=stack1.pop();
-	# if the last element must be a letter,
-	# the arabic word can't starts with a haraka
-	# in th stack the word is inversed
-	while last1 in vowels: last1=stack1.pop();
-	while  last1!=None:
-		if last1 in vowels:
-			# we can't have two harakats beside.
-			# the shadda is considered as a letter
-			marks.pop();
-			marks.push(last1);
-		elif last1==SHADDA:
-			# is the element is a Shadda,
-			# the previous letter must have a sukun as mark, 
-			# and the shadda take the indefinate  mark
-			marks.pop();
-			marks.push(SUKUN);
-			marks.push(NOT_DEF_HARAKA);
-			letters.push(SHADDA);
-		else:
-			marks.push(NOT_DEF_HARAKA);
-			letters.push(last1);
-		last1=stack1.pop();
-	if ExtractShadda:
-		# the shadda is considered as letter
-		wordletters =	u''.join(letters.items)
-		# print wordletters.encode('utf8')
-		shaddaPlaces = re.sub(r'[^%s]'%SHADDA, TATWEEL,wordletters)
-		shaddaPlaces = re.sub(u'%s%s'%(TATWEEL,SHADDA),SHADDA, shaddaPlaces); 
-		# print wordletters.encode('utf8')		
-		wordletters = stripShadda(wordletters);
-		# print wordletters.encode('utf8')		
-		return (wordletters,u''.join(marks.items), shaddaPlaces)
-	else:
-		return (u''.join(letters.items),u''.join(marks.items))
+    """
+    separate the letters from the vowels, in arabic word,
+    if a letter hasn't a haraka, the not definited haraka is attributed.
+    return ( letters,vowels);
+    """
+    #debug=True;
+    stack1=Stack(word)
+    # the word is inversed in the stack 
+    stack1.items.reverse();
+    letters=Stack()
+    marks=Stack()    
+    vowels=HARAKAT
+    last1=stack1.pop();
+    # if the last element must be a letter,
+    # the arabic word can't starts with a haraka
+    # in th stack the word is inversed
+    while last1 in vowels: last1=stack1.pop();
+    while  last1!=None:
+        if last1 in vowels:
+            # we can't have two harakats beside.
+            # the shadda is considered as a letter
+            marks.pop();
+            marks.push(last1);
+        elif last1==SHADDA:
+            # is the element is a Shadda,
+            # the previous letter must have a sukun as mark, 
+            # and the shadda take the indefinate  mark
+            marks.pop();
+            marks.push(SUKUN);
+            marks.push(NOT_DEF_HARAKA);
+            letters.push(SHADDA);
+        else:
+            marks.push(NOT_DEF_HARAKA);
+            letters.push(last1);
+        last1=stack1.pop();
+    if ExtractShadda:
+        # the shadda is considered as letter
+        wordletters =    u''.join(letters.items)
+        # print wordletters.encode('utf8')
+        shaddaPlaces = re.sub(r'[^%s]'%SHADDA, TATWEEL,wordletters)
+        shaddaPlaces = re.sub(u'%s%s'%(TATWEEL,SHADDA),SHADDA, shaddaPlaces); 
+        # print wordletters.encode('utf8')        
+        wordletters = stripShadda(wordletters);
+        # print wordletters.encode('utf8')        
+        return (wordletters,u''.join(marks.items), shaddaPlaces)
+    else:
+        return (u''.join(letters.items),u''.join(marks.items))
 
 
 
 def joint(letters, marks):
-	"""
-	joint the letters with the marks
-	the length ot letters and marks must be equal 
-	return word;
-	"""
-	#debug=True;
-	debug=False;
+    """
+    joint the letters with the marks
+    the length ot letters and marks must be equal 
+    return word;
+    """
+    #debug=True;
+    debug=False;
 
-	# The length ot letters and marks must be equal 
-	if len(letters)!=len(marks): return "";
+    # The length ot letters and marks must be equal 
+    if len(letters)!=len(marks): return "";
 
-	stackLetter=Stack(letters)
-	stackLetter.items.reverse();
-	stackMark=Stack(marks)
-	stackMark.items.reverse();
+    stackLetter=Stack(letters)
+    stackLetter.items.reverse();
+    stackMark=Stack(marks)
+    stackMark.items.reverse();
 
-	wordStack=Stack();
-	lastLetter=stackLetter.pop();
-	lastMark=stackMark.pop();
+    wordStack=Stack();
+    lastLetter=stackLetter.pop();
+    lastMark=stackMark.pop();
 
 
-	vowels=HARAKAT
-	while  lastLetter!=None and  lastMark!=None:
-		if lastLetter == SHADDA:
-			top=wordStack.pop();
-			if top not in vowels:
-				wordStack.push(top);
-			wordStack.push(lastLetter);
-			if lastMark!= NOT_DEF_HARAKA:
-				wordStack.push(lastMark);
-		else:
-			wordStack.push(lastLetter);
+    vowels=HARAKAT
+    while  lastLetter!=None and  lastMark!=None:
+        if lastLetter == SHADDA:
+            top=wordStack.pop();
+            if top not in vowels:
+                wordStack.push(top);
+            wordStack.push(lastLetter);
+            if lastMark!= NOT_DEF_HARAKA:
+                wordStack.push(lastMark);
+        else:
+            wordStack.push(lastLetter);
 
-			if lastMark!= NOT_DEF_HARAKA:
-				wordStack.push(lastMark);
-		
-		lastLetter=stackLetter.pop();
-		lastMark=stackMark.pop();
+            if lastMark!= NOT_DEF_HARAKA:
+                wordStack.push(lastMark);
+        
+        lastLetter=stackLetter.pop();
+        lastMark=stackMark.pop();
 
-	if not (stackLetter.isEmpty() and stackMark.isEmpty()):
-		return False;
-	else:
+    if not (stackLetter.isEmpty() and stackMark.isEmpty()):
+        return False;
+    else:
 
-		return ''.join(wordStack.items);
+        return ''.join(wordStack.items);
 def vocalizedlike(word1,word2):
-	"""
-	if the two words has the same letters and the same harakats, this fuction return True.
-	The two words can be full vocalized, or partial vocalized
-	"""
-	if vocalizedSimilarity(word1,word2)<0:
-		return False;
-	else: return True;
+    """
+    if the two words has the same letters and the same harakats, this fuction return True.
+    The two words can be full vocalized, or partial vocalized
+    """
+    if vocalizedSimilarity(word1,word2)<0:
+        return False;
+    else: return True;
 
 
 #-------------------------
 # Function def vaznlike(word1,wazn):
 #-------------------------
 def waznlike(word1,wazn):
-	"""
-	if the  word1 is like a wazn (pattern),
-	the letters must be equal,
-	the wazn has FEH, AIN, LAM letters.
-	this are as generic letters.
-	The two words can be full vocalized, or partial vocalized
-	"""
-	debug=False;
-	stack1=Stack(word1)
-	stack2=Stack(wazn)
-	root=Stack()	
-	last1=stack1.pop();
-	last2=stack2.pop();
-	if debug: print("+0", stack1, stack2);
-	vowels=HARAKAT
-	while  last1!=None and  last2!=None:
-		if last1==last2 and last2 not in (FEH, AIN,LAM):
-			if debug: print("+2", stack1.items,last1, stack2.items,last2)
-			last1=stack1.pop();
-			last2=stack2.pop();
-		elif last1 not in vowels and last2 in (FEH, AIN,LAM):
-			if debug: print("+2", stack1.items,last1, stack2.items,last2)
-			root.push(last1);
-			print("t");
-			last1=stack1.pop();
-			last2=stack2.pop();
-		elif last1 in vowels and last2 not in vowels:
-			if debug: print("+2", stack1.items,last1, stack2.items,last2)
-			last1=stack1.pop();
-		elif last1 not in vowels and last2 in vowels:
-			if debug: print("+2", stack1.items,last1, stack2.items,last2)
-			last2=stack2.pop();
-		else:
-			if debug: print("+2", stack1.items,last1, stack2.items,last2)
-			break;
-	# reverse the root letters
-	root.items.reverse();
-	print(" the root is ", root.items)#"".join(root.items);
-	if not (stack1.isEmpty() and stack2.isEmpty()):
-		return False;
-	else: return True;
-	
+    """
+    if the  word1 is like a wazn (pattern),
+    the letters must be equal,
+    the wazn has FEH, AIN, LAM letters.
+    this are as generic letters.
+    The two words can be full vocalized, or partial vocalized
+    """
+    debug=False;
+    stack1=Stack(word1)
+    stack2=Stack(wazn)
+    root=Stack()    
+    last1=stack1.pop();
+    last2=stack2.pop();
+    if debug: print("+0", stack1, stack2);
+    vowels=HARAKAT
+    while  last1!=None and  last2!=None:
+        if last1==last2 and last2 not in (FEH, AIN,LAM):
+            if debug: print("+2", stack1.items,last1, stack2.items,last2)
+            last1=stack1.pop();
+            last2=stack2.pop();
+        elif last1 not in vowels and last2 in (FEH, AIN,LAM):
+            if debug: print("+2", stack1.items,last1, stack2.items,last2)
+            root.push(last1);
+            print("t");
+            last1=stack1.pop();
+            last2=stack2.pop();
+        elif last1 in vowels and last2 not in vowels:
+            if debug: print("+2", stack1.items,last1, stack2.items,last2)
+            last1=stack1.pop();
+        elif last1 not in vowels and last2 in vowels:
+            if debug: print("+2", stack1.items,last1, stack2.items,last2)
+            last2=stack2.pop();
+        else:
+            if debug: print("+2", stack1.items,last1, stack2.items,last2)
+            break;
+    # reverse the root letters
+    root.items.reverse();
+    print(" the root is ", root.items)#"".join(root.items);
+    if not (stack1.isEmpty() and stack2.isEmpty()):
+        return False;
+    else: return True;
+    
 def shaddalike(partial,fully):
-	"""
-	if the two words has the same letters and the same harakats, this fuction return True.
-	The first word is partially vocalized, the second is fully
-	if the partially contians a shadda, it must be at the same place in the fully 
-	"""
-	debug=False;
-	partial=stripHarakat(partial);
-	fully=stripHarakat(fully)
-	Pstack=Stack(partial)
-	Vstack=Stack(fully)
-	Plast=Pstack.pop();
-	Vlast=Vstack.pop();
-	if debug: print("+0", Pstack, Vstack);
-	vowels=SHADDA
-	while  Plast!=None and  Vlast!=None:
-		if Plast==Vlast:
-			if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
-			Plast=Pstack.pop();
-			Vlast=Vstack.pop();
-		elif Plast ==SHADDA and Vlast !=SHADDA:
-			if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
-			break;
-		elif Plast !=SHADDA and Vlast ==SHADDA:
-			if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
-			Vlast=Vstack.pop();
-		else:
-			if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
-			break;
-	if not (Pstack.isEmpty() and Vstack.isEmpty()):
-		return False;
-	else: return True;
+    """
+    if the two words has the same letters and the same harakats, this fuction return True.
+    The first word is partially vocalized, the second is fully
+    if the partially contians a shadda, it must be at the same place in the fully 
+    """
+    debug=False;
+    partial=stripHarakat(partial);
+    fully=stripHarakat(fully)
+    Pstack=Stack(partial)
+    Vstack=Stack(fully)
+    Plast=Pstack.pop();
+    Vlast=Vstack.pop();
+    if debug: print("+0", Pstack, Vstack);
+    vowels=SHADDA
+    while  Plast!=None and  Vlast!=None:
+        if Plast==Vlast:
+            if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
+            Plast=Pstack.pop();
+            Vlast=Vstack.pop();
+        elif Plast ==SHADDA and Vlast !=SHADDA:
+            if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
+            break;
+        elif Plast !=SHADDA and Vlast ==SHADDA:
+            if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
+            Vlast=Vstack.pop();
+        else:
+            if debug: print("+2", Pstack.items,Plast, Vstack.items,Vlast)
+            break;
+    if not (Pstack.isEmpty() and Vstack.isEmpty()):
+        return False;
+    else: return True;
 def reduceTashkeel(text):
-	"""
-	Reduce the Tashkeel, by deleting evident cases.
-	@param text: the input text fully vocalized.
-	@type text: unicode.
-	@return : partially vocalized text.
-	@rtype: unicode.
-	"""
-	reduced=text;
-	# delete all fathat,  except on waw and yeh
-	#delete all sukun, except on waw and yeh.
-	reduced=re.sub(u"(?<!(%s|%s))(%s|%s)"%( WAW, YEH, SUKUN, FATHA),'',reduced);
+    """
+    Reduce the Tashkeel, by deleting evident cases.
+    @param text: the input text fully vocalized.
+    @type text: unicode.
+    @return : partially vocalized text.
+    @rtype: unicode.
+    """
+    reduced=text;
+    # delete all fathat,  except on waw and yeh
+    #delete all sukun, except on waw and yeh.
+    reduced=re.sub(u"(?<!(%s|%s))(%s|%s)"%( WAW, YEH, SUKUN, FATHA),'',reduced);
 
-	#delete damma if followed by waw.
-	reduced=re.sub(u"%s(?=%s)"%(DAMMA, WAW),'',reduced);
+    #delete damma if followed by waw.
+    reduced=re.sub(u"%s(?=%s)"%(DAMMA, WAW),'',reduced);
 
-	#delete kasra if followed by yeh.
-	reduced=re.sub(u"%s(?=%s)"%(KASRA, YEH),'',reduced);
+    #delete kasra if followed by yeh.
+    reduced=re.sub(u"%s(?=%s)"%(KASRA, YEH),'',reduced);
 
-	#delete fatha if followed by alef to reduce yeh maftouha and waw maftouha before alef.
-	reduced=re.sub(u"%s(?=%s)"%(FATHA, ALEF),'',reduced);
+    #delete fatha if followed by alef to reduce yeh maftouha and waw maftouha before alef.
+    reduced=re.sub(u"%s(?=%s)"%(FATHA, ALEF),'',reduced);
 
-	#delete fatha from yeh and waw if they are in the word begining.
-	reduced=re.sub(u"(?<=\s(%s|%s))%s"%(WAW, YEH, FATHA),'',reduced);
-	reduced=re.sub(u"(?<=\A(%s|%s))%s"%(WAW, YEH, FATHA),'',reduced);
-	
-	#delete kasra if preceded by Hamza below alef.
-	reduced=re.sub(u"(?<=%s)%s"%(ALEF_HAMZA_BELOW,KASRA),'',reduced);
+    #delete fatha from yeh and waw if they are in the word begining.
+    reduced=re.sub(u"(?<=\s(%s|%s))%s"%(WAW, YEH, FATHA),'',reduced);
+    reduced=re.sub(u"(?<=\A(%s|%s))%s"%(WAW, YEH, FATHA),'',reduced);
+    
+    #delete kasra if preceded by Hamza below alef.
+    reduced=re.sub(u"(?<=%s)%s"%(ALEF_HAMZA_BELOW,KASRA),'',reduced);
 
-	return reduced;
+    return reduced;
 
 def vocalizedSimilarity(word1,word2):
-	"""
-	if the two words has the same letters and the same harakats, this fuction return True.
-	The two words can be full vocalized, or partial vocalized
-	"""
-	debug=False;
-	stack1=Stack(word1)
-	stack2=Stack(word2)
-	last1=stack1.pop();
-	last2=stack2.pop();
-	errCount=0;
-	if debug: print("+0", stack1, stack2);
-	vowels=HARAKAT
-	while  last1!=None and  last2!=None:
-		if last1==last2:
-			if debug: print(u"\t".join(["0", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
-			last1=stack1.pop();
-			last2=stack2.pop();
-		elif last1 in vowels and last2 not in vowels:
-			if debug: print(u"\t".join(["1", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
-			last1=stack1.pop();
-		elif last1 not in vowels and last2 in vowels:
-			if debug: print(u"\t".join(["2", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
-			last2=stack2.pop();
-		else:
-			if debug: print(u"\t".join(["3", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
-			#break;
-			if last1==SHADDA:
-				last1=stack1.pop();
-			elif last2==SHADDA: 
-				last2=stack2.pop();
-			else:
-				last1=stack1.pop();
-				last2=stack2.pop();
-			errCount+=1;
-	if errCount>0:#not (stack1.isEmpty() and stack2.isEmpty()):
-		return -errCount;#False;
-	else: return True;
+    """
+    if the two words has the same letters and the same harakats, this fuction return True.
+    The two words can be full vocalized, or partial vocalized
+    """
+    debug=False;
+    stack1=Stack(word1)
+    stack2=Stack(word2)
+    last1=stack1.pop();
+    last2=stack2.pop();
+    errCount=0;
+    if debug: print("+0", stack1, stack2);
+    vowels=HARAKAT
+    while  last1!=None and  last2!=None:
+        if last1==last2:
+            if debug: print(u"\t".join(["0", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
+            last1=stack1.pop();
+            last2=stack2.pop();
+        elif last1 in vowels and last2 not in vowels:
+            if debug: print(u"\t".join(["1", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
+            last1=stack1.pop();
+        elif last1 not in vowels and last2 in vowels:
+            if debug: print(u"\t".join(["2", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
+            last2=stack2.pop();
+        else:
+            if debug: print(u"\t".join(["3", u"".join(stack1.items),last1, u''.join(stack2.items),last2]).encode('utf8'));
+            #break;
+            if last1==SHADDA:
+                last1=stack1.pop();
+            elif last2==SHADDA: 
+                last2=stack2.pop();
+            else:
+                last1=stack1.pop();
+                last2=stack2.pop();
+            errCount+=1;
+    if errCount>0:#not (stack1.isEmpty() and stack2.isEmpty()):
+        return -errCount;#False;
+    else: return True;
 def evidentTashkeel(word):
-	"""
-	Vocalize evident cases of word, some sequences of letters have evident vocalization; like any letter before Teh marbuta is maftouh
-	
-	@param word: word to be vocalized by evident cases. 
-	@type word: 
-	"""
-	pass;
+    """
+    Vocalize evident cases of word, some sequences of letters have evident vocalization; like any letter before Teh marbuta is maftouh
+    
+    @param word: word to be vocalized by evident cases. 
+    @type word: 
+    """
+    pass;
 
 def tokenize(text=u""):
-	"""
-	Tokenize Arabic text into words
-	@param text the input text.
-	@type text: unicode.
-	@return: list of words.
-	@rtype: list.
-	"""
+    """
+    Tokenize Arabic text into words
+    @param text the input text.
+    @type text: unicode.
+    @return: list of words.
+    @rtype: list.
+    """
 
-	if text==u'':
-		return [];
-	else:
-		mylist= TOKEN_pattern.split(text)
-		if u'' in mylist: mylist.remove(u'');
-		return mylist;
+    if text==u'':
+        return [];
+    else:
+        mylist= TOKEN_pattern.split(text)
+        if u'' in mylist: mylist.remove(u'');
+        return mylist;
 
 
 
 if __name__=="__main__":
-	# word=u"عاليًا"
-	# print stripLastHaraka(word).encode('utf8');
-	# wordtuples=[
-	# (u'العربية', u'اَلْعَرَبِيَّةُ'),
-	# (u'العربية', u'اَلْعَرَبِيَةُ'),
-	# (u'العربيةَ', u'اَلْعَرَبِيَةُ'),
-	# (u'اَلْعَرْبِيَةِ', u'اَلْعَرَبِيَةُ'),
-	# (u'الدَّجاجَةُ', u'الدَّجَاجَةُ'),
-	# (u' فِي السَّمَاءِ نَجُومُ لاَمِعَةً .', u'فِي السَّمَاءِ نُجُومٌ لاَمِعَةٌ .'),
-	# (u'', u''),
-	# (u'', u''),
-		
+    # word=u"عاليًا"
+    # print stripLastHaraka(word).encode('utf8');
+    # wordtuples=[
+    # (u'العربية', u'اَلْعَرَبِيَّةُ'),
+    # (u'العربية', u'اَلْعَرَبِيَةُ'),
+    # (u'العربيةَ', u'اَلْعَرَبِيَةُ'),
+    # (u'اَلْعَرْبِيَةِ', u'اَلْعَرَبِيَةُ'),
+    # (u'الدَّجاجَةُ', u'الدَّجَاجَةُ'),
+    # (u' فِي السَّمَاءِ نَجُومُ لاَمِعَةً .', u'فِي السَّمَاءِ نُجُومٌ لاَمِعَةٌ .'),
+    # (u'', u''),
+    # (u'', u''),
+        
 # ];
-	# debug=True;
-	# for bilist  in wordtuples:
-		# print u"\t".join([bilist[0], bilist[1], str(vocalizedSimilarity(bilist[0], bilist[1])) ]).encode('utf8');
-	words=[u'الْدَرَاجَةُ',
+    # debug=True;
+    # for bilist  in wordtuples:
+        # print u"\t".join([bilist[0], bilist[1], str(vocalizedSimilarity(bilist[0], bilist[1])) ]).encode('utf8');
+    words=[u'الْدَرَاجَةُ',
 u'الدّرّاجة',
 u'سّلّامْ',
-	]
-	for word in words:
-		l,m,s=separate(word,True);
-		print(u'\t'.join([word, l,m,s]).encode('utf8'));
-		l=joint(l,s);
-		print(u'\t'.join([word, l,m,s]).encode('utf8'));		
-		newword= joint(l,m);
-		print(u'\t'.join([word, newword]).encode('utf8'));
-	
+    ]
+    for word in words:
+        l,m,s=separate(word,True);
+        print(u'\t'.join([word, l,m,s]).encode('utf8'));
+        l=joint(l,s);
+        print(u'\t'.join([word, l,m,s]).encode('utf8'));        
+        newword= joint(l,m);
+        print(u'\t'.join([word, newword]).encode('utf8'));
+    

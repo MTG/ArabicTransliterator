@@ -24,7 +24,7 @@ import dictword
 
 class nounStemmer:
 	"""
-        Arabic noun stemmer
+		  Arabic noun stemmer
 	"""
 	def __init__(self, debug=False):
 		# create a stemmer object for stemming enclitics and procletics
@@ -328,7 +328,7 @@ class nounStemmer:
 		validated_list=possible_noun_list;
 		return validated_list
 
- 	def is_compatible_proaffix_affix(self, noun_tuple, procletic, encletic, suffix):
+	def is_compatible_proaffix_affix(self, noun_tuple, procletic, encletic, suffix):
 		"""
 		Verify if proaffixes (sytaxic affixes) are compatable with affixes ( conjugation) 
 		@param procletic: first level prefix.

@@ -112,6 +112,7 @@
  * @license   LGPL <http://www.gnu.org/licenses/lgpl.txt>
  * @link      http://www.ar-php.org
  """
+
 import math
 import araby
 from number import *

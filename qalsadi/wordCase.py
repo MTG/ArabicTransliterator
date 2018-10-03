@@ -44,8 +44,8 @@ class wordCase:
 		"""the word frequency from Word Frequency database """
 		self.type =  u"",
 		""" the word type  """
- 		self.original =  u""	
- 		""" original word from lexical dictionary"""
+		self.original =  u""
+		""" original word from lexical dictionary"""
 		if resultDict:
 			self.word	= resultDict.get('word',u'');
 			self.vocalized	= resultDict.get('vocalized',u'');

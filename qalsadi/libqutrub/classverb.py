@@ -52,16 +52,16 @@ class conjug_stem:
 	letters=u"";
 	""" letters of the conjugated stem"""
 	marks=u"";
-	""" marks of the conjugated stem"""	
+	""" marks of the conjugated stem"""
 	def __init__(self,tense,letters,marks):
-		""" 
+		"""
 		init method
 		@param tense: the given tense;
 		@type tense: unicode.
 		@param letters: the word letters;
-		@type letters: unicode.		
-		@param marks: the word marks; 
-		@type marks: unicode.		
+		@type letters: unicode.
+		@param marks: the word marks;
+		@type marks: unicode.
 		"""
 		self.tense=tense;
 		self.letters=letters;
@@ -93,15 +93,15 @@ class verbclass:
 
 #---------------------------------------------------------------------------
 	def __init__(self,verb,transitive, future_type=FATHA):
-		""" 
+		"""
 		init method
 		@param verb: the given verb;
 		@type verb: unicode.
 		@param transitive: the verb is transitive or not;
-		@type transitive: Boolean.		
-		@param future_type: The mark of the third radical letter in the verb, used for triletiral verb only. Default value is Fatha; 
-		@type future_type: unicode; one arabic letter (Fatha, Damma, Kasra).		
-		"""	
+		@type transitive: Boolean.
+		@param future_type: The mark of the third radical letter in the verb, used for triletiral verb only. Default value is Fatha;
+		@type future_type: unicode; one arabic letter (Fatha, Damma, Kasra).
+		"""
 		self.verb=verb;
 		# this cache is used to avoid duplicated operatioon in standardisation, treat_sukun, and uniformate suffix
 		self.cacheStandard=cacheStandard;#{'standard':{},
@@ -167,8 +167,8 @@ class verbclass:
 
 	def __del__(self):
 		"""
-		Delete instance 
-		
+		Delete instance
+
 		"""
 		self.conj_display=None;
 		self.tab_conjug_stem=None;
@@ -178,7 +178,7 @@ class verbclass:
 #{ Attributes functions
 #####################################
 	def set_display(self, mode='Text'):
-		""" 
+		"""
 		Set the display mode as:
 			- 'Text':
 			- 'HTML':
@@ -191,7 +191,7 @@ class verbclass:
 			- 'TeX':
 			- 'ROWS':
 		@param mode: the given mode to display result;
-		"""		
+		"""
 		self.conj_display.setmode(mode)
 #-------------------------------------------------------------------------------------
 	def get_conj_display(self):
@@ -207,18 +207,18 @@ class verbclass:
 		#deprecated
 	# def is_teh_zaida(self, verb_normalized_unvocalized):
 		# """
-		# Determine if the verb starts with Teh and the Teh is not original like تفاعل, 
+		# Determine if the verb starts with Teh and the Teh is not original like تفاعل,
 		# Tafa3ala. The verb starting by adde teh change the first vowel of teh, the  future mark will be fatha, else kasra, e.g: yatafa3'a'lu (teh added), yafta3'i'lu ( non added teh);
 		# @param verb_normalized_unvocalized: the unvovalized form f the verb.
 		# @type verb_normalized_unvocalized: unicde;
 		# @return: return True if the start Teh is not original
-		# @rtype: boolean; 
+		# @rtype: boolean;
 		# """
 		# # How to deterine that Teh is Added:
 		# # rule : Teh is added, if the verb is 5 letters lenght and starts by Teh
 		# #الناء الأولى زائدة في الفعل الخماسي مطلقا
 		# # لا يمكن أن يكون الفعل الخماسي مبدوءا بتاء أصلية،
-	 
+
 		# return ( len(verb_normalized_unvocalized)==5 and verb_normalized_unvocalized.startswith(TEH))
 
 
@@ -229,7 +229,7 @@ class verbclass:
 		@param verb_normalized_unvocalized: the unvovalized form f the verb.
 		@type verb_normalized_unvocalized: unicde;
 		@return: return True if the start Teh is not original
-		@rtype: boolean; 
+		@rtype: boolean;
 		"""
 	# if the lenght of verb is exactely 4 letters and starts by hamza
 	# and it is in the AF3Al wazn and not FA33al or FAA3la
@@ -246,7 +246,7 @@ class verbclass:
 		else : return False;
 
 	def homogenize_harakat(self,original_harakat,applied_harakat):
-		""" 
+		"""
 		Treat Harakat to be homogenized with letters in conjugation.
 		إذا كان طول الحركات ألأصلية للفعل أقل من طول حركات الماضي المبني للمجهول
 		هذا يعني وجود حركة طويلة
@@ -255,10 +255,10 @@ class verbclass:
 		@param original_harakat: given original harakatof the verb.
 		@type original_harakat: unicode.
 		@param applied_harakat: given harakat to be applied to  verb.
-		@type applied_harakat: unicode.	
+		@type applied_harakat: unicode.
 		@return: nesw harakat to be applied to the verb.
 		@rtype: unicode.
-		"""	
+		"""
 		marks=original_harakat;
 		new_marks=applied_harakat;
 #  إذا كان طول الحركات ألأصلية للفعل أقل من طول حركات الماضي المبني للمجهول
@@ -275,7 +275,7 @@ class verbclass:
 				second=new_marks[alef_haraka_pos+1];
 				changed_haraka=tab_homogenize_alef_haraka[first][second];
 				new_marks=new_marks[:alef_haraka_pos]+changed_haraka+new_marks[alef_haraka_pos+2:]
-		return new_marks;		
+		return new_marks;
 #####################################
 #{ Preparing  conjugation stems for every tense functions
 #####################################
@@ -283,13 +283,13 @@ class verbclass:
 	def prepare_future_and_imperative_stem(self):
 		"""
 		Prepare the conjugation stems for future tenses (future, jussive, subjective) and imperative tense. Those stems will be concatenated with conjugation affixes. This function store results in self.tab_conjug_stem. This function prepare conjugation stems for the following tenses:
-			- TenseFuture :  تصريف الفعل المضارع 
-			- TenseJussiveFuture : تصريف الفعل المضارع المجزوم 
-			- TenseSubjunctiveFuture : تصريف الفعل المضارع المنصوب 
+			- TenseFuture :  تصريف الفعل المضارع
+			- TenseJussiveFuture : تصريف الفعل المضارع المجزوم
+			- TenseSubjunctiveFuture : تصريف الفعل المضارع المنصوب
 			- TenseConfirmedFuture: المضارع المؤكد الثقيل
 			- TensePassiveFuture :تصريف الفعل المضارع المبني للمجهول
 			- TensePassiveJussiveFuture: تصريف الفعل المضارع المجزوم المني للمجهول
-			- TensePassiveSubjunctiveFuture:تصريف الفعل المضارع المنصوب 
+			- TensePassiveSubjunctiveFuture:تصريف الفعل المضارع المنصوب
 			- TensePassiveConfirmedFuture:المضارع المؤكد الثقيل المنبي للمجهول
 			- TenseImperative:الفعل الامر
 			- TenseConfirmedImperative: الفعل الامر المؤكد.
@@ -382,8 +382,8 @@ class verbclass:
 		# المضارع المؤكد الثقيل
 		self.tab_conjug_stem[TenseConfirmedFuture]=conjug_stem(TenseConfirmedFuture,future_letters,new_marks);
 
-        # المبني للمجهول
-  		self.tab_conjug_stem[TensePassiveFuture]=conjug_stem(TensePassiveFuture,passive_letters,passive_marks);
+		# المبني للمجهول
+		self.tab_conjug_stem[TensePassiveFuture]=conjug_stem(TensePassiveFuture,passive_letters,passive_marks);
 		# تصريف الفعل المضارع المنصوب والمجزوم المني للمجهول
 		self.tab_conjug_stem[TensePassiveJussiveFuture]=conjug_stem(TensePassiveJussiveFuture,passive_letters,passive_marks);
 		self.tab_conjug_stem[TensePassiveSubjunctiveFuture]=conjug_stem(TensePassiveSubjunctiveFuture,passive_letters,passive_marks);
@@ -402,7 +402,7 @@ class verbclass:
 		Those stems will be concatenated with conjugation affixes.
 		This function store results in self.tab_conjug_stem. This function prepare conjugation stems for the following tenses:
 			- TensePast: الفعل الماضي.
-		"""	
+		"""
 		self.past_stem=self.internal_verb;
 		self.tab_conjug_stem[TensePast]=conjug_stem(TensePast,self.word_letters,self.word_marks);
 
@@ -413,7 +413,7 @@ class verbclass:
 		Those stems will be concatenated with conjugation affixes.
 		This function store results in self.tab_conjug_stem. This function prepare conjugation stems for the following tenses:
 			- TensePast: الفعل الماضي
-		"""		
+		"""
 ##		verb=self.internal_verb;
 		letters=self.word_letters;
 		marks=self.word_marks;
@@ -451,7 +451,7 @@ class verbclass:
 		@param pronoun: given pronoun;
 		@type pronoun: unicode name of the pronoun;
 		@return: conjugated verb;
-		@rtype: unicode;		
+		@rtype: unicode;
 		"""
         #prefix
 		pre_val=TableTensePronoun[tense][pronoun][0];
@@ -476,7 +476,7 @@ class verbclass:
 		suf_val=TATWEEL+suf_val;
         #uniformate suffix
 		# the case is used to avoid duplicated staddization
-		if self.cacheStandard['suffix'].has_key( suf_val): 
+		if self.cacheStandard['suffix'].has_key( suf_val):
 			(suf_val_l,suf_val_m)=self.cacheStandard['suffix'][suf_val]
 		else:
 			(suf_val_l,suf_val_m)=uniformate_suffix(suf_val);
@@ -501,7 +501,7 @@ class verbclass:
 		keyCache=u'-'.join([conj_l, conj_m]);
 		if self.cacheStandard['standard'].has_key(keyCache):
 			conj=self.cacheStandard['standard'][keyCache];
-		else:	
+		else:
 			conj = standard2(conj_l,conj_m);
 			self.cacheStandard['standard'][keyCache]=conj;
 		return conj;
@@ -518,8 +518,8 @@ class verbclass:
 		@param listtense: given tense;
 		@type listtense: list of unicode;
 		@return: conjugated verb ;
-		@rtype: the type is given according to the display mode;		
-		"""	
+		@rtype: the type is given according to the display mode;
+		"""
 		for tense in listtense:
 			if tense==TensePast:
 					conj_ana=self.conjugate_tense_pronoun(tense,PronounAna);
@@ -642,18 +642,18 @@ class verbclass:
 #--------------------------------------------------------------------------------
 	def conjugateTenseForPronoun(self,tense, pronoun):
 		"""
-		Conjugate a verb  for a pronoun in specific tense, 
-		we use an homoginized conjugation 
+		Conjugate a verb  for a pronoun in specific tense,
+		we use an homoginized conjugation
 		@param tense: given tense;
 		@type tense: unicode;
 		@param pronoun: given pronoun;
 		@type pronoun: unicode;
 		@return: conjugated verb ;
-		@rtype: unicode;		
+		@rtype: unicode;
 		"""
 		# the idea is to generate some conjugation from others
 		#  in particalar cases, we can generate conjugation  from others pronouns.
-		#  for each tense we have two pronouns lists: 
+		#  for each tense we have two pronouns lists:
 		#	- direct conjugated pronouns.
 		#	- indirect conjugated pronouns.
 
@@ -665,7 +665,7 @@ class verbclass:
 			# indirect conjugation
 			# from Aana Pronoun
 			elif pronoun in (PronounAnta, PronounAnta, PronounAnti, PronounAntuma, PronounAntuma_f, PronounAntum, PronounAntunna):
-				# test if the verb is conjugated 
+				# test if the verb is conjugated
 				conj_ana = self.conj_display.getConj(tense, pronoun);
 				if conj_ana == u"":
 					conj_ana = self.conjugate_tense_pronoun(tense, PronounAna);
@@ -686,7 +686,7 @@ class verbclass:
 			# indirect conjugation
 			# from  Hya Pronoun
 			elif pronoun ==  PronounHuma_f:
-				# test if the verb is conjugated 
+				# test if the verb is conjugated
 				conj_hya = self.conj_display.getConj(tense, PronounHya);
 				if conj_hya == u"":
 					conj_hya = self.conjugate_tense_pronoun(tense, PronounHya);
@@ -702,7 +702,7 @@ class verbclass:
 					conj_ana = self.conj_display.getConj(tense, PronounAna);
 					if conj_ana == u"":
 						conj_ana = self.conjugate_tense_pronoun(tense, PronounAna);
-						self.conj_display.add(tense, PronounAna, conj_ana);	
+						self.conj_display.add(tense, PronounAna, conj_ana);
 					conj_ana_without_last_mark=conj_ana[:-1];
 					if pronoun == PronounAnta:
 						self.conj_display.add(tense, PronounAnta, conj_ana_without_last_mark+FATHA);
@@ -804,7 +804,7 @@ class verbclass:
 		return self.conj_display.getConj(tense, pronoun);
 #####################################
 #{ Irregular verbs functions
-#####################################		
+#####################################
 #--------------------------------------------------------
 
 #
@@ -816,10 +816,10 @@ class verbclass:
 		الأفعال العربية الخاصة هي
 		رأى، أكل أمر سأل،
 		ج- إذا كان يتصرف من باب (مَنَعَ يَمْنَعُ)، تحذف واوه, نحو: وَضَعَ، يَضَعُ، وَجَأَ يَجَأُ، وَدَعَ يَدَعُ، وَزَعَ يَزَعُ، وَضَأَ يَضَأُ، وَطَأَ يَطَأُ، وَقَعَ يَقَعُ، وَلَغَ يَلَغُ، وَهَبَ يَهَبُ، عدا خمسة أفعال هي: (وَبَأ)، و(وَبَهَ)، و(وَجَعَ)، و(وَسَعَ)، و(وَهَلَ)، فلا تحذف منها الواو؛ فنقول: يَوْبَأُ، يَوْبَهُ، يَوْجَعُ، يَوْسَعُ، يَوْهَلُ.  الأفعال (وَبَأ)، و(وَبَهَ)، و(وَجَعَ)، و(وَسَعَ)، و(وَهَلَ)، الفعل وبَأ يوبأ
-		
+
 		@return:True if irregular;
 		@rtype: Boolean;
-		"""		
+		"""
 		if len(self.word_letters)!=3: return False;
 		else:
 			# the key is composed from the letters and past and future marks, to identify irregular verb
@@ -834,8 +834,8 @@ class verbclass:
 		"""
 		Get the future stem for irregular verb.
 		@return: the future conjuagtion stem;
-		@rtype: unicode;		
-		"""		
+		@rtype: unicode;
+		"""
 	  # the key is composed from the letters and past and future marks, to identify irregular verb
 		key=self.word_letters+self.past_haraka+self.future_type
 		if  IrregularVerbsConjug.has_key(key):
@@ -847,8 +847,8 @@ class verbclass:
 		"""
 		Get the passive future stem for irregular verb.
 		@return: the passive future conjuagtion stem;
-		@rtype: unicode;		
-		"""		
+		@rtype: unicode;
+		"""
       # the key is composed from the letters and past and future marks, to identify irregular verb
 		key=self.word_letters+self.past_haraka+self.future_type
 		if IrregularVerbsConjug.has_key(key):
@@ -860,8 +860,8 @@ class verbclass:
 		"""
 		Get the imperative stem for irregular verb.
 		@return: the passive imperative conjuagtion stem;
-		@rtype: unicode;		
-		"""		
+		@rtype: unicode;
+		"""
       # the key is composed from the letters and past and future marks, to identify irregular verb
 		key=self.word_letters+self.past_haraka+self.future_type
 		if  IrregularVerbsConjug.has_key(key):
@@ -878,7 +878,7 @@ class verbclass:
 		"""
 		Prepare the conjugation stems for future tenses (future, jussive, subjective) and imperative tense.
 		Those stems will be concatenated with conjugation affixes.
-		"""			
+		"""
 		##	   if self.word_letters in IrregularVerbsConjug.keys():
 		if self.is_irregular_verb():
 			(l,m)=self.get_irregular_future_stem();
@@ -914,7 +914,7 @@ class verbclass:
 		@type pronoun: unicode;
 		@return : conjugated form of verb if exists.
 		@rtype : unicode;
-		
+
 		"""
 		return self.conj_display.getConj(tense, pronoun);
 

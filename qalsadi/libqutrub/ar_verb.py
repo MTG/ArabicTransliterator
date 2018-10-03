@@ -32,7 +32,7 @@ import re
 # import types
 # from arabic_const import *
 from verb_const import *
-# import ar_ctype 
+# import ar_ctype
 import pyarabic.araby as araby
 from pyarabic.araby import *
 #from alefmaddaverbtable import *
@@ -173,11 +173,11 @@ def get_past_harakat_by_babsarf(vtype):
 	"""
 	marks=KASRA*3; # make three kasraat by default
 	if vtype in ('1','2','3'):
-	   marks=FATHA*3
+		marks=FATHA*3
 	elif vtype in ('4','6'):
-	   marks=u"%s%s%s"%(FATHA, KASRA, FATHA)
+		marks=u"%s%s%s"%(FATHA, KASRA, FATHA)
 	elif vtype=='5':
-	   marks=u"%s%s%s"%(FATHA,DAMMA,FATHA);
+		marks=u"%s%s%s"%(FATHA,DAMMA,FATHA);
 	return marks;
 
 def get_future_harakat_by_babsarf(vtype):
@@ -198,11 +198,11 @@ def get_future_harakat_by_babsarf(vtype):
 	#ToDo Review
 	marks=KASRA+KASRA+KASRA;
 	if vtype in ('1','2','3'):
-	   marks=FATHA+FATHA+FATHA
+		marks=FATHA+FATHA+FATHA
 	elif vtype in ('4','6'):
-	   marks=FATHA+KASRA+FATHA
+		marks=FATHA+KASRA+FATHA
 	elif vtype=='5':
-	   marks=FATHA+DAMMA+FATHA
+		marks=FATHA+DAMMA+FATHA
 	return marks;
 
 def get_future_haraka_by_babsarf(vtype):
@@ -244,7 +244,7 @@ def get_haraka_by_name(haraka_name):
 	@rtype: unicode char;
 	"""
 	if araby.isShortharaka(haraka_name):# in(FATHA,DAMMA,KASRA, SUKUN):
-         return haraka_name;
+		return haraka_name;
 	if haraka_name==u"فتحة"  : return FATHA;
 	elif haraka_name==u"ضمة":return DAMMA;
 	elif haraka_name==u"كسرة":return KASRA;
@@ -312,9 +312,9 @@ def get_transitive_entree(transitive):
 	@rtype: boolean;
 	"""
 	if transitive in (u"متعدي",u"م",u"مشترك",u"ك","t","transitive",True):
-	    transitive=True;
+		transitive=True;
 	else :
-	    transitive=False;
+		transitive=False;
 	return transitive;
 
 #####################################
@@ -380,7 +380,7 @@ def is_valid_infinitive_verb(word, IsVocalized=True):
 		return False;
 
 
-	   # TEH After (DAL,THAL,TAH,ZAH,DAD)
+	# TEH After (DAL,THAL,TAH,ZAH,DAD)
 	elif re.search(u"[%s%s%s%s%s]%s"%(DAL,THAL,DAD,TAH,ZAH,TEH),word_nm):
 		return False;
 	# Contains invalid root sequence in arabic, near in phonetic
@@ -653,11 +653,11 @@ def normalize(word,type="affix"):
 	word=word[i:]
 	# convert all Hamza from into one form
 	word=araby.normalizeHamza(word);
-    #Convert All LAM ALEF Ligature into separate letters
+	#Convert All LAM ALEF Ligature into separate letters
 	word=word.replace(LAM_ALEF,simple_LAM_ALEF);
 	word=word.replace(LAM_ALEF_HAMZA_ABOVE,simple_LAM_ALEF_HAMZA_ABOVE);
 	word=word.replace(LAM_ALEF_MADDA_ABOVE,simple_LAM_ALEF_MADDA_ABOVE);
-    # deprecated
+	# deprecated
 	# invalid letter
 	#	word=word.replace(LAM_ALEF_HAMZA_BELOW,simple_LAM_ALEF_HAMZA_BELOW);
 
@@ -679,14 +679,14 @@ def normalize(word,type="affix"):
 def uniformate_alef_origin(marks,word_nm,future_type=KASRA):
 	"""
 	Convert toi its origin according to the future type haraka
-    @param marks: given marks.
-    @type marks: unicode.
-    @param word_nm: given word unvocalized.
-    @type word_nm: unicode.
-    @param future_type: The future mark of the triletiral verb.
-    @type future_type: unicode char, default KASRA.
-    @return: converted marks.
-    @rtype: unicode.
+	@param marks: given marks.
+	@type marks: unicode.
+	@param word_nm: given word unvocalized.
+	@type word_nm: unicode.
+	@param future_type: The future mark of the triletiral verb.
+	@type future_type: unicode char, default KASRA.
+	@return: converted marks.
+	@rtype: unicode.
 	"""
 	if len(marks)!=2:return marks;
 # الحرف ماقبل الأخير علة
@@ -710,12 +710,12 @@ def uniformate_alef_origin(marks,word_nm,future_type=KASRA):
 def normalize_affix(word):
 	"""
 	Replace shadda by SUKUN +SHADDA
-    @param word: given word.
-    @type word: unicode.
-    @return: converted word.
-    @rtype: unicode.
+	@param word: given word.
+	@type word: unicode.
+	@return: converted word.
+	@rtype: unicode.
 	"""
-    # convert SHadda to sukun shadda
+	# convert SHadda to sukun shadda
 	word=word.replace(SHADDA,SUKUN+SHADDA);
 
 	return word;
@@ -724,9 +724,9 @@ def normalize_affix(word):
 #--------------------------------------
 def uniformate_suffix(word):
 	""" separate the harakat and the letters of the given word, it return two strings ( the word without harakat and the harakat).
-    If the weaked letters are reprsented as long harakat and striped from the word.
-    """
-    ## type : affix : uniformate affixes
+	If the weaked letters are reprsented as long harakat and striped from the word.
+	"""
+	## type : affix : uniformate affixes
 ##	word=normalize_affix(word);
 	word=word.replace(SHADDA,SUKUN+SHADDA);
 	HARAKAT=(FATHA,DAMMA,KASRA,SUKUN);
@@ -787,30 +787,30 @@ def uniformate_verb(word):
 	"""
 
 	if word=="": return ("","");
-    #normalize ALEF MADDA
-    #TODO : HAMZA HAMZA or HAMZA ALEF
+	#normalize ALEF MADDA
+	#TODO : HAMZA HAMZA or HAMZA ALEF
 	if word.startswith(ALEF_MADDA):
-	   word=word.replace(ALEF_MADDA,HAMZA+HAMZA);
+		word=word.replace(ALEF_MADDA,HAMZA+HAMZA);
 	else:
-	   word=word.replace(ALEF_MADDA,HAMZA+ALEF);
+		word=word.replace(ALEF_MADDA,HAMZA+ALEF);
 
 	word_nm=araby.stripHarakat(word);
 	length=len(word_nm);
 	if len(word_nm)!=3:
-        # تستعمل الهمزات لتخمين حركات الفعل الثلاثي
-        # normalize hamza here, because we use it to detect harakat on the trilateral verb.
-	   word_nm=HAMZAT_pat.sub(HAMZA,word_nm);
-    # length of word after normalization
+		# تستعمل الهمزات لتخمين حركات الفعل الثلاثي
+		# normalize hamza here, because we use it to detect harakat on the trilateral verb.
+		word_nm=HAMZAT_pat.sub(HAMZA,word_nm);
+	# length of word after normalization
 
-    # اهمزات تستعمل لكشف تشكيل الفعل، يتم توحيدها لاحقا
+	# اهمزات تستعمل لكشف تشكيل الفعل، يتم توحيدها لاحقا
 	if length==3:
 		if word_nm[1]in (ALEF,ALEF_HAMZA_ABOVE) or word_nm[2] in(ALEF_MAKSURA, ALEF_HAMZA_ABOVE,ALEF):
 			marks=FATHA+FATHA+FATHA;
 		elif word[1]== YEH_HAMZA or word[2] in (YEH,YEH_HAMZA):
 			marks=FATHA+KASRA+FATHA;
 		else:
-            # TODO
-            # let the verb haraka
+			# TODO
+			# let the verb haraka
 			i=0;
 		## ignore harakat at the began of the word
 			while araby.isShortharaka(word[i]):# in HARAKAT:
@@ -818,13 +818,13 @@ def uniformate_verb(word):
 		# الحرف الأول
 			if not araby.isShortharaka(word[i]):#not in HARAKAT:
 				i+=1;
-        # الحركة الأولى
+		# الحركة الأولى
 			while araby.isShortharaka(word[i]):#word[i] in HARAKAT:
 				i+=1;
 		# الحرف الثاني
 			if not araby.isShortharaka(word[i]):#word[i] not in HARAKAT:
 				i+=1;
-        #الحركة الثانية
+		#الحركة الثانية
 			if not araby.isShortharaka(word[i]):#word[i] not in HARAKAT:
 			#وجدنا مشاكل في تصريف الفعل المضاعف في الماضي
 			# نجعل الحركة الثانية فتحة مؤقتا
@@ -833,8 +833,8 @@ def uniformate_verb(word):
 			else:
 				secondharaka=word[i];
 			marks=u''.join([FATHA, secondharaka, FATHA]);
-        # تستعمل الهمزات لتخمين حركات الفعل الثلاثي
-        # normalize hamza here, because we use it to detect harakat on the trilateral verb.
+		# تستعمل الهمزات لتخمين حركات الفعل الثلاثي
+		# normalize hamza here, because we use it to detect harakat on the trilateral verb.
 		word_nm=HAMZAT_pat.sub(HAMZA,word_nm);
 
 	elif length==4:
@@ -847,7 +847,7 @@ def uniformate_verb(word):
 	elif length==6:
 		marks=UNIFORMATE_MARKS_6;
 	else:
-	    marks=FATHA*len(word_nm);
+		marks=FATHA*len(word_nm);
 
 	i=1;
 # first added automaticlly
@@ -864,12 +864,12 @@ def uniformate_verb(word):
 # the last letter
 ##  حالة الفعل عيا، أعيا، عيّا والتي يتحول إلى ياء بدلا عن واو
 	if word_nm[i]==ALEF:
-	    if len(word_nm)==3 and word_nm[1]!=YEH:
-	       new_word+=ALEF_MAMDUDA;
-	    else:
-	       new_word+=YEH;
+		if len(word_nm)==3 and word_nm[1]!=YEH:
+			new_word+=ALEF_MAMDUDA;
+		else:
+			new_word+=YEH;
 	else:
-	    new_word+=word_nm[i];
+		new_word+=word_nm[i];
 	new_harakat+=marks[i];
 ##	new_word+=word_nm[i];
 	return (new_word,new_harakat);
@@ -892,21 +892,21 @@ def standard_harakat(word):
 	len_word=len(word);
 	while k<len_word:
 	## الحروف من دون العلة لا تؤخذ بيعين الاعتبار، كما لا تؤخذ إذا كانت في أول الكلمة
-	   if word[k] not in (ALEF,YEH,WAW,ALEF_MAKSURA):
+		if word[k] not in (ALEF,YEH,WAW,ALEF_MAKSURA):
 			new_word+=word[k];
-	   else:
+		else:
 	##إذا كان الحرف علة ولم يكن في أول الكلمة
 	##إذا كان ما قبله ليس حركة، ومابعده ليس حركة، أو انتهت الكلمة
-		if not araby.isShortharaka(word[k-1]) and (k+1>=len_word or not araby.isShortharaka(word[k+1])) :
-			if word[k]==ALEF:
-				new_word+=FATHA+ALEF;
-			elif word[k]==WAW :
-				new_word+=DAMMA+WAW;
-			elif word[k]==YEH:
-				new_word+=KASRA+YEH;
+			if not araby.isShortharaka(word[k-1]) and (k+1>=len_word or not araby.isShortharaka(word[k+1])) :
+				if word[k]==ALEF:
+					new_word+=FATHA+ALEF;
+				elif word[k]==WAW :
+					new_word+=DAMMA+WAW;
+				elif word[k]==YEH:
+					new_word+=KASRA+YEH;
+				else:new_word+=word[k];
 			else:new_word+=word[k];
-		else:new_word+=word[k];
-	   k+=1;
+		k+=1;
 	return new_word;
 
 
@@ -1045,7 +1045,7 @@ def standard2(word_nm, harakat):
 		harakat_before=harakat;
 		word_nm,harakat=homogenize(word_nm,harakat);
 		if len(word_nm)!=len(harakat):
-			print("len word: ",len(word_nm),  word_nm.encode('utf8')); 
+			print("len word: ",len(word_nm),  word_nm.encode('utf8'));
 			print("len harakat: ", len(harakat),repr(harakat));
 			print(repr(harakat_before), word_before.encode('utf8'))
 			return u"";
@@ -1113,15 +1113,15 @@ def tahmeez2(word_nm,harakat):
 	##    	   if h==NOT_DEF_HARAKA:
 	##    	       h=FATHA;
 	##    	   elif h==ALEF_YEH_HARAKA or h==ALEF_WAW_HARAKA:
-		   if h==ALEF_YEH_HARAKA or h==ALEF_WAW_HARAKA:
-			   h=ALEF_HARAKA;
-		   ha2+=h;
+			if h==ALEF_YEH_HARAKA or h==ALEF_WAW_HARAKA:
+				h=ALEF_HARAKA;
+			ha2+=h;
 		harakat=ha2;
 		word=u"";
 		HAMZAT= u"إأءئؤ";
 		for i in range(len(word_nm)):
 			if word_nm[i] !=HAMZA and word_nm[i] !=ALEF_HAMZA_ABOVE:
-				 word+=word_nm[i];
+				word+=word_nm[i];
 			else:
 				if i==0:
 					actual=harakat[i];
@@ -1697,10 +1697,10 @@ def find_triliteral_verb(db_base_path, triliteralverb, givenharaka):
 			verb_vocalised=row[0];
 			haraka=row[1]
 			transitive=row[2]
-            # Return the transitivity option
-            #MEEM is transitive
-            # KAF is commun ( transitive and intransitive)
-            # LAM is intransitive
+			# Return the transitivity option
+			#MEEM is transitive
+			# KAF is commun ( transitive and intransitive)
+			# LAM is intransitive
 			if transitive in (KAF,MEEM): transitive=True;
 			else:transitive=False;
 # if the given verb is the list, it will be inserted in the top of the list, to be treated in prior
