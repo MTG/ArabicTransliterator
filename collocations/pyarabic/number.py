@@ -1,4 +1,5 @@
-﻿"""kk
+﻿from __future__ import print_function
+"""
  * ----------------------------------------------------------------------
  *
  * Copyright (C) 2009 by Khaled Al-Shamaa.
@@ -110,7 +111,6 @@
  * @license   LGPL <http://www.gnu.org/licenses/lgpl.txt>
  * @link      http://www.ar-php.org
  """
-from __future__ import print_function
 
 import math
 import araby
