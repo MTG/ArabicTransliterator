@@ -76,7 +76,7 @@ class IU_HashIndex(Index):
         self.hash_lim = hash_lim
         if not storage_class:
             storage_class = IU_Storage
-        if storage_class and not isinstance(storage_class, basestring):
+        if storage_class and not isinstance(storage_class, str):
             storage_class = storage_class.__name__
         self.storage_class = storage_class
         self.storage = None

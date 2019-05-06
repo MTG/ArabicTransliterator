@@ -221,7 +221,7 @@ class Database(object):
         if ind_kwargs is None:
             ind_kwargs = {}
         p = os.path.join(self.path, '_indexes')
-        if isinstance(new_index, basestring) and not new_index.startswith("path:"):
+        if isinstance(new_index, str) and not new_index.startswith("path:"):
             if len(new_index.splitlines()) < 4 or new_index.splitlines()[3] != '# inserted automatically':
                 from indexcreator import Parser
                 par = Parser()
@@ -264,7 +264,7 @@ class Database(object):
 
             ind_obj = self._read_index_single(p, ind_path + '.py')
 
-        elif isinstance(new_index, basestring) and new_index.startswith("path:"):
+        elif isinstance(new_index, str) and new_index.startswith("path:"):
             path = new_index[5:]
             if not path.endswith('.py'):
                 path += '.py'
@@ -770,7 +770,7 @@ you should check index code.""" % (index.name, ex), RuntimeWarning)
         :param index: the index to destroy
         :type index: :py:class:`CodernityDB.index.Index`` instance, or string
         """
-        if isinstance(index, basestring):
+        if isinstance(index, str):
             if not index in self.indexes_names:
                 raise PreconditionsException("No index named %s" % index)
             index = self.indexes_names[index]
@@ -796,7 +796,7 @@ you should check index code.""" % (index.name, ex), RuntimeWarning)
         :param index: the index to destroy
         :type index: :py:class:`CodernityDB.index.Index`` instance, or string
         """
-        if isinstance(index, basestring):
+        if isinstance(index, str):
             if not index in self.indexes_names:
                 raise PreconditionsException("No index named %s" % index)
             index = self.indexes_names[index]
@@ -832,7 +832,7 @@ you should check index code.""" % (index.name, ex), RuntimeWarning)
         :param index: the index to reindex
         :type index: :py:class:`CodernityDB.index.Index`` instance, or string
         """
-        if isinstance(index, basestring):
+        if isinstance(index, str):
             if not index in self.indexes_names:
                 raise PreconditionsException("No index named %s" % index)
             index = self.indexes_names[index]
