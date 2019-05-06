@@ -7,7 +7,9 @@ setup(name='arabictransliterator',
       description='A code for transliterating (romanizing) Arabic text using the ALA-LC standard',
       author='CompMusic / MTG UPF',
       url='http://compmusic.upf.edu',
+      include_package_data=True,
       packages=['aranasyn', 'arramooz', 'asmai', 'collocations', 'collocations.pyarabic', 'mishkal', 'mishkal.tashkeel', 'pyarabic', 'naftawayh', 'tashaphyne', 'qalsadi', 'qalsadi.libqutrub', 'arabic', 'CodernityDB'],
+
       package_dir={
               'tashaphyne':'tashaphyne',
               'naftawayh':'naftawayh',
@@ -15,5 +17,8 @@ setup(name='arabictransliterator',
               'qalsadi':'qalsadi',
               'libqutrub':'qalsadi/libqutrub',
               'arabic':'',
-              'mishkal':'mishkal'}
+              'mishkal':'mishkal'},
+
+      package_data={
+              'arramooz': ['data/*'],}
 )
