@@ -150,7 +150,7 @@ def write_harakat_in_full(harakat):
         ALEF_YEH_ALTERNATIVE:u"ئ",
         }
         for c in harakat:
-                if tab_harakat.has_key(c):
+                if c in tab_harakat:
                         full+=u'-'+tab_harakat[c];
                 else:
                         full+=u"*";
@@ -569,7 +569,7 @@ def  normalize_alef_madda(word):
                 if len(word_nm)==2:
                         return word_nm.replace(ALEF_MADDA, HAMZA+ALEF);
                 elif len(word_nm)==3:
-                        if AlefMaddaVerbTable.has_key(word_nm):
+                        if word_nm in AlefMaddaVerbTable:
                                 #return the first one only
                                 #mylist=AlefMaddaVerbTable[word_nm];
                                 return AlefMaddaVerbTable[word_nm][0];
@@ -1055,7 +1055,7 @@ def standard2(word_nm, harakat):
                         # للعمل :
         # هذه حالة الألف التي أصلها ياء
         # وقد استغنينا عنها بأن جعلنا الحرف الناقص من الفعل الناقص حرفا تاما
-                        if written_haraka.has_key(harakat[i]):
+                        if harakat[i] in written_haraka:
                                 word+=word_nm[i]+written_haraka[harakat[i]];
                         else:
                                 word+=word_nm[i]+harakat[i];
@@ -1137,7 +1137,7 @@ def tahmeez2(word_nm,harakat):
                                                 if before==NOT_DEF_HARAKA: before=FATHA;
                                                 if actual==NOT_DEF_HARAKA: actual=FATHA;
 
-                                                if  tab_tahmeez_middle.has_key(before) and  tab_tahmeez_middle[before].has_key(actual) :
+                                                if  before in tab_tahmeez_middle and  actual in tab_tahmeez_middle[before] :
                                                         swap= tab_tahmeez_middle[before][actual];
                                                 else :
         ##                              print (u"Middle : word %s in letter %s between '%s' and '%s'"%(word_nm,word_nm[i],before,actual)).encode("utf8");
@@ -1146,7 +1146,7 @@ def tahmeez2(word_nm,harakat):
                                                 if before==NOT_DEF_HARAKA: before=FATHA;
                                                 if actual==NOT_DEF_HARAKA: actual=FATHA;
 
-                                                if  tab_tahmeez_final.has_key(before) and  tab_tahmeez_final[before].has_key(actual) :
+                                                if  before in tab_tahmeez_final and  actual in tab_tahmeez_final[before] :
                                                         swap= tab_tahmeez_final[before][actual];
                                                 else :
                                                         swap=word_nm[i];
@@ -1242,7 +1242,7 @@ def treat_sukun2(word_nm, harakat, swaped_haraka=KASRA):
                                         elif i==0 :                                                                     new_harakat+=KASRA;
                                         else:                                                                           new_harakat+=FATHA;
                                 # if the actual haraka is in table use table conversion
-                                elif conversionTable.has_key(harakat[i]):
+                                elif harakat[i] in conversionTable:
                                         new_harakat+=conversionTable[harakat[i]];
                                 else :
                                         new_harakat+=harakat[i];
@@ -1729,7 +1729,7 @@ def create_index_triverbtable():
                 vocverb=TriVerbTable[key]['verb'];
                 unvverb=araby.stripHarakat(vocverb);
                 normverb=araby.normalizeHamza(unvverb);
-                if TriVerbTable_INDEX.has_key(normverb):
+                if normverb in TriVerbTable_INDEX:
                         TriVerbTable_INDEX[normverb].append(key);
                 else:
                         TriVerbTable_INDEX[normverb]=[key,];
@@ -1761,7 +1761,7 @@ def find_alltriverb(triverb, givenharaka=FATHA,VocalisedEntree=False):
                 verb_nm=triverb;
 
         normalized=araby.normalizeHamza(verb_nm);
-        if TriVerbTable_INDEX.has_key(normalized):
+        if normalized in TriVerbTable_INDEX:
                 for verb_voc_id in TriVerbTable_INDEX[normalized]:
                         if triverb==TriVerbTable[verb_voc_id]['verb'] and givenharaka==TriVerbTable[verb_voc_id]['haraka']:
                                 liste.insert(0,TriVerbTable[verb_voc_id])

@@ -481,7 +481,7 @@ def order(archar):
     @return: arabic order.
     @rtype: integer;
     """
-    if AlphabeticOrder.has_key(archar):
+    if archar in AlphabeticOrder:
         return AlphabeticOrder[archar];
     else: return 0;
 
@@ -494,7 +494,7 @@ def name(archar):
     @return: arabic name.
     @rtype: unicode;
     """
-    if NAMES.has_key(archar):
+    if archar in NAMES:
         return NAMES[archar];
     else:
         return u'';

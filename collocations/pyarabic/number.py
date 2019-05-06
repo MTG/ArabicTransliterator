@@ -437,11 +437,11 @@ class ArNumbers:
 		partial=0;
 		words=text.split(' ');
 		for word in words:
-			if ThaousandMultiple.has_key(word):
+			if word in ThaousandMultiple:
 				total+=partial* ThaousandMultiple[word];
 				#re-initiate the partial total
 				partial=0;
-			if NumberWords.has_key(word):
+			if word in NumberWords:
 				partial+=NumberWords[word];
 		# add the final partial to total
 		total+=partial;		
@@ -470,7 +470,7 @@ def text2number(text):
 		if word!=u'واحد' and word.startswith(u'و'):
 			word=word[1:];
 			
-		if NumberWords.has_key(word):
+		if word in NumberWords:
 			actualnumber=NumberWords[word];
 			if actualnumber%1000==0:
 				# the case of 1000 or 1 million
@@ -512,7 +512,7 @@ def vocalizeNumber(wordlist, synTags=""):
 		elif word_nm!=u'واحد' and word_nm.startswith(u'و'):
 			key=word_nm[1:];
 		# تحذب بعض الكلمات لأنها تلتبس مع أسماء الأجزاء مثل خُمس وخمس
-		if NumberWords.has_key(key) and not key in (u'عشر',u'خمس',u'سبع', u'تسع',u'خمسا', u'سبعا',u'تسعا',u'عشرا', u'ألفين',u'عشرة', u'صفر', u'ألف'):
+		if key in NumberWords and not key in (u'عشر',u'خمس',u'سبع', u'تسع',u'خمسا', u'سبعا',u'تسعا',u'عشرا', u'ألفين',u'عشرة', u'صفر', u'ألف'):
 			voc =prefix+VocalizedNumberWords[key]['i']
 		return [voc,];
 	for i in range(len(wordlist)):
@@ -527,7 +527,7 @@ def vocalizeNumber(wordlist, synTags=""):
 			key=word[1:];
 		elif word_nm!=u'واحد' and word_nm.startswith(u'و'):
 			key=word_nm[1:];
-		if NumberWords.has_key(key):
+		if key in NumberWords:
 			if word_nm.endswith(u'ين') : 
 				tags +=u"مجهول"; # إما مجرور أو منصوب
 			elif word_nm.endswith(u'ان')  or word_nm.endswith(u'ون') :
@@ -550,7 +550,7 @@ def vocalizeNumber(wordlist, synTags=""):
 			elif prefix in  ( u'ل', u'ب'):
 				prefix +=u'ِ'
 		else: prefix='';
-		if VocalizedNumberWords.has_key(key):
+		if key in VocalizedNumberWords:
 			voc=u'';
 			if VocalizedNumberWords[key]['s']=="*":
 				voc =prefix+VocalizedNumberWords[key]['i']
@@ -599,7 +599,7 @@ def isUnit(word):
 	@return: if word is a unit return True else False.
 	@rtype: Boolean
 	"""
-	return UnitWords.has_key(word);
+	return word in UnitWords;
 	
 def vocalizeUnit(numeric, unit):
 	""" Vocalize a number words
@@ -742,7 +742,7 @@ def detectNumberPhrasesPosition(wordlist):
 			key=word_nm[1:];
 		elif word_nm!=u'واحد' and word_nm.startswith(u'و'):
 			key=word_nm[1:];
-		if NumberWords.has_key(key):
+		if key in NumberWords:
 			if not key in (u'أحد',u'إحدى',u'اثنا',u'اثني', u'اثنتي', u'اثنتا') or next in (u'عشر', u'عشرة'):
 				if startNumber<0:
 					startNumber = i;

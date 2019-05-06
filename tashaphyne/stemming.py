@@ -635,11 +635,11 @@ class ArabicLightStemmer:
 			# print prefix.encode('utf8');
 			branch = prefixesTree;
 			for c in prefix:
-				if not branch.has_key(c):
+				if c not in branch:
 					branch[c]={}
 				branch=branch[c];
 			# branch['#']='#' # the hash # as an end postion
-			if branch.has_key('#'):
+			if '#' in branch:
 				branch['#'][prefix]="#";
 			else:
 				branch['#']={prefix:"#",};
@@ -652,11 +652,11 @@ class ArabicLightStemmer:
 			branch=suffixesTree;
 			#reverse a string
 			for c in suffix[::-1]:
-				if not branch.has_key(c):
+				if c not in branch:
 					branch[c]={}
 				branch=branch[c];
 			# branch['#']='#' # the hash # as an end postion
-			if branch.has_key('#'):
+			if '#' in branch:
 				branch['#'][suffix]="#";
 			else:
 				branch['#']={suffix:"#",};
@@ -665,17 +665,17 @@ class ArabicLightStemmer:
 		branch = self.PrefixesTree;
 		lefts=[0,];
 		i=0;
-		while i<len(word) and branch.has_key(word[i]):
-			if branch.has_key('#'):
+		while i<len(word) and word[i] in branch:
+			if '#' in branch:
 				# if branch['#'].has_key(word[:i]):
 				lefts.append(i);
-			if branch.has_key(word[i]):
+			if word[i] in branch:
 				branch=branch[word[i]];
 			else:
 				# i+=1;
 				break;
 			i+=1;
-		if i<len(word) and branch.has_key('#') :#and branch['#'].has_key(word[:i]):
+		if i<len(word) and '#' in branch :#and branch['#'].has_key(word[:i]):
 			lefts.append(i);
 		return lefts;	
 
@@ -686,19 +686,19 @@ class ArabicLightStemmer:
 		# rights=[len(word)-1,];
 		rights=[];		
 		i=len(word)-1;
-		while i>=0 and branch.has_key(word[i]):
+		while i>=0 and word[i] in branch:
 			suffix = word[i]+suffix;
-			if branch.has_key('#'):
+			if '#' in branch:
 				# if branch['#'].has_key(word[i:]):
 					# rights.append(i);
 				rights.append(i+1);
-			if branch.has_key(word[i]):
+			if word[i] in branch:
 				branch=branch[word[i]];
 			else:
 				# i-=1;
 				break;
 			i-=1;
-		if i>=0 and branch.has_key('#') :#and branch['#'].has_key(word[i+1:]):
+		if i>=0 and '#' in branch :#and branch['#'].has_key(word[i+1:]):
 			rights.append(i+1);
 		return rights;
 	#########################################################

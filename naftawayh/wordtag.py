@@ -578,7 +578,7 @@ class WordTagger():
         @return: is the word a stop word
         @rtype: Boolean
         """
-        return  stopwords.STOPWORDS.has_key(word);
+        return  word in stopwords.STOPWORDS;
         #if word in STOPWORDS.keys():
         #    return True;
         #else:
@@ -601,7 +601,7 @@ class WordTagger():
             previous_tag = "";
             for word in word_list:
                 tag='';
-                if self.Cache.has_key(word):
+                if word in self.Cache:
                     tag=self.Cache.get(word,'');
                 else:
                     if self.is_stopword(word):tag='t';

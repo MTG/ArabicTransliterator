@@ -184,8 +184,8 @@ class conjugatedisplay:
 		@rtype : unicode;
 		
 		"""
-		if  self.tab_conjug.has_key(tense):
-			if self.tab_conjug[tense].has_key(pronoun):
+		if  tense in self.tab_conjug:
+			if pronoun in self.tab_conjug[tense]:
 				return self.tab_conjug[tense][pronoun];
 		return u"";
 
@@ -200,7 +200,7 @@ class conjugatedisplay:
 		@type verbconjugated:unicode;
 		
 		"""
-		if  not self.tab_conjug.has_key(tense):
+		if  tense not in self.tab_conjug:
 			self.tab_conjug[tense]={}
 		self.tab_conjug[tense][pronoun]=verbconjugated;
 #####################################
@@ -268,7 +268,7 @@ class conjugatedisplay:
 		for pronoun in PronounsTable:
 			text+= u"\n%s" %(pronoun)
 			for tense in listtense:
-				if self.tab_conjug[tense].has_key(pronoun):
+				if pronoun in self.tab_conjug[tense]:
 					text+= u"\t%s" %(self.tab_conjug[tense][pronoun])
 		return text
 
@@ -301,7 +301,7 @@ class conjugatedisplay:
 			text+= u"%s" %(pronoun)
 			for tense in listtense:
 #				print (self.verb).encode("utf-8"),
-				if self.tab_conjug[tense].has_key(pronoun):
+				if pronoun in self.tab_conjug[tense]:
 					text+= u";%s" %(self.tab_conjug[tense][pronoun])
 			text+= u"\n"
 		return text

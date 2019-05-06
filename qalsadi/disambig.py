@@ -64,7 +64,7 @@ class disambiguator:
 		@return : if word is ambiguous
 		@rtype: True/False.
 		"""
-		return disambig_const.DISAMBIGUATATION_TABLE.has_key(word);
+		return word in disambig_const.DISAMBIGUATATION_TABLE;
 
 	def getDisambiguatedByNextNoun(self, word):
 		""" get The disambiguated form of the word by the next word is noun.
@@ -94,7 +94,7 @@ class disambiguator:
 		@return : if word has an disambiguated.
 		@rtype: True/False.
 		"""
-		return disambig_const.DISAMBIGUATATION_TABLE.get(word, {}).has_key('noun');
+		return 'noun' in disambig_const.DISAMBIGUATATION_TABLE.get(word, {});
 
 	def isDisambiguatedByNextVerb(self, word):
 		""" test if the word can be disambiguated if the next word is a verb
@@ -103,7 +103,7 @@ class disambiguator:
 		@return : if word has an disambiguated.
 		@rtype: True/False.
 		"""
-		return disambig_const.DISAMBIGUATATION_TABLE.get(word, {}).has_key('verb');
+		return 'verb' in disambig_const.DISAMBIGUATATION_TABLE.get(word, {});
 
 		
 	def disambiguateWordsOld(self, word_list, tag_list):

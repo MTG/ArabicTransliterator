@@ -134,7 +134,7 @@ class CollocationClass:
 			# the more than 2 words collocations are a small list 
 			# mentioned in Gcollocation_const.GENRAL_COLLOCATIONS
 			# key=u' '.join(wordlist);			
-			if self.CacheEnabled and self.colloCache.has_key(key): 
+			if self.CacheEnabled and key in self.colloCache: 
 				return key;
 		elif  not collocation_const.token_pat.search(key) :
 		# invalid words
@@ -143,7 +143,7 @@ class CollocationClass:
 			# get two element from the list start
 			key=u' '.join(wordlist);
 			# if the key existss in the cache.
-			if self.CacheEnabled and self.colloCache.has_key(key): 
+			if self.CacheEnabled and key in self.colloCache: 
 				return key;			
 			
 			#print key.encode('utf8');
@@ -151,7 +151,7 @@ class CollocationClass:
 			# if the wordlist as key existes in collocation database, 
 			# insert its vocalization in a collocation cache dict
 			if len(idlist)>=1 :
-				if self.CacheEnabled and not self.colloCache.has_key(key): 
+				if self.CacheEnabled and key not in self.colloCache: 
 					firstEntry=idlist[0];
 					#print idlist;
 					# self.colloCache[key]= self.colloDict.getAttribById(id,'vocalized')
@@ -170,7 +170,7 @@ class CollocationClass:
 					# if the wordlist as key existes in collocation data base, 
 					# insert its vocalization in a collocation cache dict
 					if len(idlist)>=1 :
-						if self.CacheEnabled and not self.colloCache.has_key(key): 
+						if self.CacheEnabled and key not in self.colloCache: 
 							# id=idlist[0];
 							#print idlist;
 							# vocalizedCollocation = self.colloDict.getAttribById(id,'vocalized')
@@ -185,7 +185,7 @@ class CollocationClass:
 								self.colloCache[key] = vocalizedCollocation
 
 							# save the found collocation in cache by newKey
-								if not self.colloCache.has_key(newKey):
+								if newKey not in self.colloCache:
 									self.colloCache[newKey] = vocalizedCollocation;
 							
 						# return the given key
@@ -266,7 +266,7 @@ class CollocationClass:
 		newlist=[]
 		#print repr(self.colloCache);
 		for item in collolist:
-			if self.colloCache.has_key(item):
+			if item in self.colloCache:
 				vocalized=self.colloCache[item];
 				#lookup for collocations in dictionary
 				# the dictionary conatins the vocalized collocation,

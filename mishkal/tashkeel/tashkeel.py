@@ -848,7 +848,7 @@ class TashkeelClass:
 		"""
 		for i in range(len(SuggestList)-1):
 			if SuggestList[i]['chosen'] in (u'مَنْ', u'مِنْ', u'عَنْ'):
-				if i+1<len(SuggestList) and SuggestList[i+1].has_key('chosen') and SuggestList[i+1]['chosen'].startswith(araby.ALEF):
+				if i+1<len(SuggestList) and 'chosen' in SuggestList[i+1] and SuggestList[i+1]['chosen'].startswith(araby.ALEF):
 					if SuggestList[i]['chosen']==u'مِنْ':
 						SuggestList[i]['chosen']=u'مِنَ'
 					elif SuggestList[i]['chosen']==u'عَنْ':

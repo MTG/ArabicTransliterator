@@ -85,7 +85,7 @@ class verbStemmer:
 				encletic=verb[seg[1]:]
 				secondsuffix=u'';
 				# حالة الفعل المتعدي لمفعولين
-				if stem_verb_const.TableDoubleTransitiveSuffix.has_key(encletic ):
+				if encletic in stem_verb_const.TableDoubleTransitiveSuffix:
 					firstsuffix=stem_verb_const.TableDoubleTransitiveSuffix[encletic]['first'];
 					secondsuffix=stem_verb_const.TableDoubleTransitiveSuffix[encletic]['second'];
 					encletic=firstsuffix;
@@ -265,13 +265,13 @@ class verbStemmer:
 		if affix.startswith(araby.ALEF): affix=affix[1:]
 		# get all tenses to conjugate the verb one time
 		tenses=[];
-		if stem_verb_const.Table_affix.has_key(affix):
+		if affix in stem_verb_const.Table_affix:
 			for pair in stem_verb_const.Table_affix[affix]:
 				tenses.append(pair[0]);#tense=pair[0]
 		tenses=list(set(tenses)); # avoid duplicata 
 
 
-		if stem_verb_const.Table_affix.has_key(affix):
+		if affix in stem_verb_const.Table_affix:
 			for pair in stem_verb_const.Table_affix[affix]:
 				tense=pair[0]
 				pronoun=pair[1]
@@ -302,7 +302,7 @@ class verbStemmer:
 			procletic_compatible=False;
 			if not procletic :
 				procletic_compatible=True
-			elif stem_verb_const.ExternalPrefixTable.has_key(procletic):
+			elif procletic in stem_verb_const.ExternalPrefixTable:
 				if affix=='-':
 					procletic_compatible=True;
 				else:
@@ -317,7 +317,7 @@ class verbStemmer:
 			if procletic_compatible:
 				if not encletic :
 					return True;
-				elif stem_verb_const.ExternalSuffixTable.has_key(encletic):
+				elif encletic in stem_verb_const.ExternalSuffixTable:
 					if affix=='-':
 						return True;
 					else: 

@@ -33,6 +33,6 @@ class ArabicTransliterator:
         #return data.translate(self.table)
         trans_data = u""
         for c in data:
-            if self.table.has_key(c): trans_data += self.table[c]
+            if c in self.table: trans_data += self.table[c]
             else: trans_data += '[UNK]'
         return trans_data

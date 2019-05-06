@@ -472,7 +472,7 @@ class verbclass:
 		suf_val=TATWEEL+suf_val;
         #uniformate suffix
 		# the case is used to avoid duplicated staddization
-		if self.cacheStandard['suffix'].has_key( suf_val):
+		if suf_val in self.cacheStandard['suffix']:
 			(suf_val_l,suf_val_m)=self.cacheStandard['suffix'][suf_val]
 		else:
 			(suf_val_l,suf_val_m)=uniformate_suffix(suf_val);
@@ -487,7 +487,7 @@ class verbclass:
         # Treat sukun
 		# the case is used to avoid duplicated staddization
 		keyCache=u'-'.join([conj_l, conj_m]);
-		if self.cacheStandard['sukun'].has_key(keyCache):
+		if keyCache in self.cacheStandard['sukun']:
 			conj_m=self.cacheStandard['sukun'][keyCache];
 		else:
 			conj_m = treat_sukun2(conj_l,conj_m,self.future_type);
@@ -495,7 +495,7 @@ class verbclass:
         # standard orthographic form
 		# the case is used to avoid duplicated staddization
 		keyCache=u'-'.join([conj_l, conj_m]);
-		if self.cacheStandard['standard'].has_key(keyCache):
+		if keyCache in self.cacheStandard['standard']:
 			conj=self.cacheStandard['standard'][keyCache];
 		else:
 			conj = standard2(conj_l,conj_m);
@@ -820,7 +820,7 @@ class verbclass:
 		else:
 			# the key is composed from the letters and past and future marks, to identify irregular verb
 			key=self.word_letters+self.past_haraka+self.future_type
-			if IrregularVerbsConjug.has_key(key ):
+			if key in IrregularVerbsConjug:
 				return True;
 	##	            if self.past_haraka== IrregularVerbsConjug[self.word_letters][ConjugBab][0] and self.future_type== IrregularVerbsConjug[self.word_letters][ConjugBab][1]:
 	##	                return True;
@@ -834,7 +834,7 @@ class verbclass:
 		"""
 	  # the key is composed from the letters and past and future marks, to identify irregular verb
 		key=self.word_letters+self.past_haraka+self.future_type
-		if  IrregularVerbsConjug.has_key(key):
+		if  key in IrregularVerbsConjug:
 			return IrregularVerbsConjug[key][TenseFuture];
 		else:
 			self.word_letters
@@ -847,7 +847,7 @@ class verbclass:
 		"""
       # the key is composed from the letters and past and future marks, to identify irregular verb
 		key=self.word_letters+self.past_haraka+self.future_type
-		if IrregularVerbsConjug.has_key(key):
+		if key in IrregularVerbsConjug:
 			return IrregularVerbsConjug[key][TensePassiveFuture];
 		else:
 			self.word_letters
@@ -860,7 +860,7 @@ class verbclass:
 		"""
       # the key is composed from the letters and past and future marks, to identify irregular verb
 		key=self.word_letters+self.past_haraka+self.future_type
-		if  IrregularVerbsConjug.has_key(key):
+		if  key in IrregularVerbsConjug:
 			return IrregularVerbsConjug[key][TenseImperative];
 		else:
 			self.word_letters

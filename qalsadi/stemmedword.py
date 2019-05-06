@@ -80,7 +80,7 @@ class stemmedWord:
 			# #because for verbs, same affixes don't give same tags
 			self.affixKey=u'|'.join([self.affixKey, affixTags]);
 			
-		if not GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey not in GlobalAffixes:
 			GlobalAffixes[self.affixKey] = stemmedaffix.stemmedAffix(resultDict);
 		# init
 		self.tagAdded 		 = False
@@ -234,7 +234,7 @@ class stemmedWord:
 		@rtype: unicode string
 		"""
 		# return self.procletic;
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].getProcletic()
 		return u"";			
 	# def setProcletic(self,newprocletic):
@@ -251,7 +251,7 @@ class stemmedWord:
 		@rtype: Boolean
 		"""
 		# return self.procletic!=u'';
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].hasProcletic()
 		return False;	
 	def getPrefix(self,):
@@ -261,7 +261,7 @@ class stemmedWord:
 		@rtype: unicode string
 		"""
 		# return self.prefix;
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].getPrefix()
 		return u"";			
 	# def setPrefix(self,newprefix):
@@ -280,7 +280,7 @@ class stemmedWord:
 		@rtype: unicode string
 		"""
 		# return self.suffix;
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].getSuffix()
 		return u"";			
 	def getEncletic(self,):
@@ -289,7 +289,7 @@ class stemmedWord:
 		@return: the given encletic.
 		@rtype: unicode string
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].getEncletic()
 		return u"";		
 		
@@ -299,7 +299,7 @@ class stemmedWord:
 		@return: True if encletic not empty.
 		@rtype: Boolean
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].hasEncletic()
 		return False;			
 
@@ -312,7 +312,7 @@ class stemmedWord:
 		@return: has the state added.
 		@rtype: True/False;
 		"""		
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isAdded()
 		return False;	
 	def _isAdded(self):
@@ -330,7 +330,7 @@ class stemmedWord:
 		@return: is Feminin.
 		@rtype: True/False;
 		"""		
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isFeminin()
 		return False;	
 	def _isFeminin(self):
@@ -356,7 +356,7 @@ class stemmedWord:
 		@return: is Feminin.
 		@rtype: True/False;
 		"""		
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isPlural()
 		return False;	
 	def _isPlural(self):
@@ -479,7 +479,7 @@ class stemmedWord:
 		@return: the given tags.
 		@rtype: unicode string
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].getTags()
 		return u"";
 	def getAffix(self,):
@@ -690,7 +690,7 @@ class stemmedWord:
 		@return: has the state majrour.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isMajrour();
 		return False;
 
@@ -701,7 +701,7 @@ class stemmedWord:
 		@return: has the state majrour.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isMajzoum()
 		return False;
 
@@ -712,7 +712,7 @@ class stemmedWord:
 		@return: has the state mansoub.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isMansoub()
 		return False;
 
@@ -723,7 +723,7 @@ class stemmedWord:
 		@return: has the state marfou3.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isMarfou3()
 		return False;
 
@@ -735,7 +735,7 @@ class stemmedWord:
 		@return: has the state defined.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isDefined()
 		return False;
 
@@ -746,7 +746,7 @@ class stemmedWord:
 		@return: has the  tense past.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isPast()
 		return False;
 
@@ -758,7 +758,7 @@ class stemmedWord:
 		@return: has the  tense passive.
 		@rtype: True/False;
 		"""	
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isPassive()
 		return False;
 
@@ -769,7 +769,7 @@ class stemmedWord:
 		@return: has the  tense present.
 		@rtype: True/False;
 		"""	
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isPresent()
 		return False;
 
@@ -779,7 +779,7 @@ class stemmedWord:
 		@return: has the 3rd persontense.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].is3rdperson()
 		return False;		
 
@@ -792,7 +792,7 @@ class stemmedWord:
 		@return: has tanwin.
 		@rtype: True/False;
 		"""		
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isTanwin()
 		return False;
 	def hasJar(self):
@@ -801,7 +801,7 @@ class stemmedWord:
 		@return: has tanwin.
 		@rtype: True/False;
 		"""		
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].hasJar()
 		return False;
 
@@ -825,7 +825,7 @@ class stemmedWord:
 		@return: is masculin plural.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isMasculinPlural()
 		return False;
 	def isDual(self):
@@ -834,7 +834,7 @@ class stemmedWord:
 		@return: is  dual.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isDual()
 		return False;		
 		return self.tagDual;
@@ -845,7 +845,7 @@ class stemmedWord:
 		@return: is Feminin plural.
 		@rtype: True/False;
 		"""
-		if GlobalAffixes.has_key(self.affixKey):
+		if self.affixKey in GlobalAffixes:
 			return GlobalAffixes[self.affixKey].isFemininPlural()
 		return False;
 

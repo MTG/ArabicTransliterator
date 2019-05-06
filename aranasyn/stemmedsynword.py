@@ -233,7 +233,7 @@ class stemmedSynWord (stemmedword.stemmedWord):
 		if not next:
 			return self.next!={};
 		else:
-			return self.next.has_key(next.getOrder());
+			return next.getOrder() in self.next;
 	def hasPrevious(self, previous=None):
 		"""
 		get True if current word has previous relations. If The previous is given, it returns if the previous has relation with current. 
@@ -245,7 +245,7 @@ class stemmedSynWord (stemmedword.stemmedWord):
 		if not previous:
 			return self.previous!={};
 		else:
-			return self.previous.has_key(next.getOrder());
+			return next.getOrder() in self.previous;
 
 	def addPrevious(self, previous, weight=1):
 		"""
@@ -883,11 +883,11 @@ class stemmedSynWord (stemmedword.stemmedWord):
 		# syntaxic relations
 		score  = 1;
 		# if the current node has relation with previous as semantic
-		if self.semPrevious.has_key(previousCasePosition):
+		if previousCasePosition in self.semPrevious:
 			self.semPrevious[previousCasePosition]=max(self.previous[previousCasePosition],previousScore*2);
 			score += self.semPrevious[previousCasePosition]
 		# if the current node has relation with previous as synatxic
-		if self.previous.has_key(previousCasePosition):
+		if previousCasePosition in self.previous:
 			self.previous[previousCasePosition]= max(self.previous[previousCasePosition], previousScore *1);
 			score += self.previous[previousCasePosition*1]
 		# case if the previous has no relation with the current*

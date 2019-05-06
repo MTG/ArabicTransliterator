@@ -95,7 +95,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
         #print `data[:]`
         #multi_character_translation = dict([(k,v) for k,v in self.table.iteritems() if len(v) > 1])
         for i in range(len(data)):
-            if self.table.has_key(data[i]):
+            if data[i] in self.table:
                 trans_data += self.table[data[i]]
             #----------- SPECIAL CASES -----------
             else:
@@ -205,7 +205,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                             continue # don't add anything
                         elif i>1 and data[i-2:i] == u"\u0627\u0644": # if shadda is over the l of al-:
                             trans_data += "l"
-                        elif self.table.has_key(data[i-1]):
+                        elif data[i-1] in self.table:
                             trans_data += self.table[data[i-1]]
                         else:
                             trans_data += trans_data[-1]

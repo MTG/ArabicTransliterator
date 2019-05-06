@@ -27,7 +27,7 @@ def isProperNoun(word):
 	@rtype: Boolean
 	"""
 	# return word in named_const.ProperNouns;
-	return propernouns.ProperNouns.has_key(word);	
+	return word in propernouns.ProperNouns;	
 
 def detectNamedPosition(wordlist):
 	"""

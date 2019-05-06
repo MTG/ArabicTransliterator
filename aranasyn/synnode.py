@@ -59,7 +59,7 @@ class synNode:
 		if caseList:
 			self.word=caseList[0].getWord();
 		for case in caseList:
-			if self.originals.has_key(case.getOriginal()):
+			if case.getOriginal() in self.originals:
 				self.originals[case.getOriginal()].append(case.getOrder());
 			else:
 				self.originals[case.getOriginal()]= [case.getOrder(),];

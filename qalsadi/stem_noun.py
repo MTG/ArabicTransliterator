@@ -140,7 +140,7 @@ class nounStemmer:
 			for infnoun in set(possible_noun_list):
 				# get the noun and get all its forms from the dict
 				# if the noun has plural suffix, don't look up in broken plural dictionary
-				if not self.CacheDictSearch.has_key(infnoun):
+				if infnoun not in self.CacheDictSearch:
 					infnoun_foundL = self.nounDictionary.lookup(infnoun);
 					self.CacheDictSearch[infnoun]  = self.createDictWord(infnoun_foundL);
 				else: 
