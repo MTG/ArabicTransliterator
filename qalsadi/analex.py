@@ -81,7 +81,7 @@ class analex :
 		# used as cache to reduce database access
 		#added as a global variable to avoid duplucated search in mutliple call of analex
 		# cache used to avoid duplicata
-		self.allowCacheUse =True;
+		self.allowCacheUse =False;
 		if self.allowCacheUse:
 			self.cache = cache.cache()
 
