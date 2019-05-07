@@ -20,5 +20,6 @@ setup(name='arabictransliterator',
               'mishkal':'mishkal'},
 
       package_data={
-              'arramooz': ['data/*'],}
+              'arramooz': ['data/*'],
+              'collocations': ['data/*']}
 )
