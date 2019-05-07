@@ -15,7 +15,7 @@ from __future__ import print_function
 import sqlite3 as sqlite
 import os
 base = os.path.dirname(os.path.realpath(__file__))
-FILE_DB=u"/data/collocations.sqlite"
+FILE_DB=u"data/collocations.sqlite"
 class collocationDictionary:
 	"""
         Arabic dictionary Class
@@ -44,7 +44,7 @@ class collocationDictionary:
 			self.attribNumIndex[v]=k;
 		self.tableName=tableName;
 		try:
-			self.dbConnect = sqlite.connect(file_path=os.path.join(base,FILE_DB))
+			self.dbConnect = sqlite.connect(os.path.join(base,FILE_DB))
 			self.dbConnect.row_factory = sqlite.Row 				
 			self.cursor = self.dbConnect.cursor()
 		except:
