@@ -15,6 +15,7 @@ from __future__ import print_function
 from . import collocationdictionary
 from . import collocation_const
 from .pyarabic import araby
+import re
 
 class CollocationClass:
 	"""

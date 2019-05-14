@@ -40,7 +40,7 @@ class disambiguator:
 			return word_list;
 		else:
 			newwordlist=[];
-			wordtaglist=zip(word_list,tag_list);
+			wordtaglist=list(zip(word_list,tag_list));
 			# print wordtaglist
 			for i in range(len(wordtaglist)):
 				currentWord=wordtaglist[i][0]; 

@@ -436,13 +436,10 @@ The analyzed data given by morphological analyzer Qalsadi have the following for
 		filtred_data=[];
 		inputword = araby.stripTashkeel(word_vocalised)
 		for item in  resulted_data:
-			if 'vocalized' in item.__dict__ : #.has_key('vocalized') :
-			#~ if 'vocalized' in item :
-				#~ outputword = araby.stripTashkeel(item['vocalized'])
-				outputword = araby.stripTashkeel(item.__dict__['vocalized'])
-				#print u'\t'.join([inputword, outputword]).encode('utf8');
+			vocalized = getattr(item, 'vocalized') 
+			if vocalized:
+				outputword = araby.stripTashkeel(vocalized)
 				if inputword == outputword:
-					#item['tags']+=':a';
 					filtred_data.append(item);
 		return  filtred_data;
 
@@ -460,8 +457,7 @@ The analyzed data given by morphological analyzer Qalsadi have the following for
 		@return: list of dictionaries of analyzed words with tags.
 		@rtype: list.
 		"""
-		return filter(lambda item: araby.shaddalike(word_vocalised, item.__dict__.get('vocalized','')), resulted_data)
-
+		return [x for x in resulted_data if araby.shaddalike(word_vocalised, getattr(x, 'vocalized', ''))]
 
 
 	def check_partial_vocalized(self, word_vocalised,resulted_data):
@@ -485,8 +481,6 @@ The analyzed data given by morphological analyzer Qalsadi have the following for
 			#print ' is vocalized';
 			for item in  resulted_data:
 				if 'vocalized' in item and araby.vocalizedlike(word_vocalised,item['vocalized']):
-				#~ if 'vocalized' in item.__dict__ and araby.vocalizedlike(word_vocalised,item.__dict__['vocalized']):
-					#~ item.__dict__['tags']+=':'+analex_const.partialVocalizedTag;
 					item['tags']+=':'+analex_const.partialVocalizedTag;
 					filtred_data.append(item);
 			return  filtred_data;
@@ -510,17 +504,16 @@ The analyzed data given by morphological analyzer Qalsadi have the following for
 		# used as cache to reduce database access
 		#added as a global variable to avoid duplucated search in mutliple call of analex
 		#checkedFreqWords={'noun':{}, 'verb':{}}; # global
-		for i in  range(len(resulted_data)):
+		for i in  range(len(resulted_data)):  
 			# get the original word of dictionary,
-			item=resulted_data[i];
+			item=resulted_data[i]
 			# search for the original (lexique entry)
-			#~ original=item.get('original','');
-			original=item.__dict__.get('original','');
+			original = getattr(item, 'original', '')
+
 			# in the freq attribute we found 'freqverb, or freqnoun, or a frequency for stopwords or unkown
 			# the freqtype is used to note the wordtype,
 			# this type is passed by stem_noun ,or stem_verb modules
-			freqtype=item.__dict__.get('freq','');
-			#~ freqtype=item.get('freq','');
+			freqtype=getattr(item, 'freq', ''); 
 			if freqtype=='freqverb':    
 				wordtype='verb';
 			elif freqtype=='freqnoun':
@@ -532,20 +525,16 @@ The analyzed data given by morphological analyzer Qalsadi have the following for
 			if wordtype:
 				# if frequency is already get from database, don't access to database
 				if self.allowCacheUse: 
-					#~ item.__dict__['freq']=self.cache['FreqWords'][wordtype].get(original,0);
-					item.__dict__['freq'] = self.cache.getFreq(original, wordtype);
-
+					setattr(item, 'freq', self.cache.getFreq(original, wordtype)) 
 				else:
 					freq=self.wordfreq.getFreq(original, wordtype);
 					# just used to count funtion calls
 					self.test25();
 					#store the freq in the cache
 					if self.allowCacheUse:
-						#~ self.cache['FreqWords'][wordtype][original]=freq;
 						self.cache.addFreq(original, wordtype, freq);
 
-					#~ item.__dict__['freq']=freq;
-					item.__dict__['freq']=freq;
+					setattr(item, 'freq', freq)
 			resulted_data[i]=item;
 		return  resulted_data;
 

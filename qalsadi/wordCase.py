@@ -59,13 +59,13 @@ class wordCase:
 	#{ Attribut Functions
 	######################################################################
 	def get(self, key, default= u''):
-		return self.__dict__.get(key,default)
+		return getattr(self, key, default)
 	def __getitem__(self, key):
-		return self.__dict__.get(key,'')
+		return getattr(self, key, '')
 	def __setitem__(self, key, value):
-		self.__dict__[key] = value;
+		setattr(self, key,  value)
 	def __contains__(self, item):
-		return item in self.__dict__;
+		return item in self.__dict__; #Alia: Not sure if this is correct
 	def getWord(self,):
 		"""
 		Get the input word given by user
