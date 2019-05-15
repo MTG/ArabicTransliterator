@@ -65,7 +65,7 @@ class wordCase:
 	def __setitem__(self, key, value):
 		setattr(self, key,  value)
 	def __contains__(self, item):
-		return item in self.__dict__; #Alia: Not sure if this is correct
+		return hasattr(self, item) 
 	def getWord(self,):
 		"""
 		Get the input word given by user

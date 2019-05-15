@@ -17,8 +17,10 @@ import pyarabic.araby as araby
 import tashaphyne.stemming
 from . import stem_verb_const
 from .libqutrub import classverb
+from .libqutrub import ar_verb
 import arramooz.arabicdictionary as arabicdictionary 
 from . import wordCase
+
 
 class verbStemmer:
 	"""
@@ -257,7 +259,7 @@ class verbStemmer:
 		if infinitive_verb=="" or unstemed_verb=="" or affix=="":
 			return set();
 		verb = infinitive_verb;
-		future_type = libqutrub.ar_verb.get_future_type_entree(future_type);
+		future_type = ar_verb.get_future_type_entree(future_type);
 		#print u"\t".join([verb, future_type]).encode('utf8');
 		vb = classverb.verbclass(verb, transitive, future_type);
 		# الألف ليست جزءا من السابقة، لأنها تستعمل لمنع الابتداء بساكن
