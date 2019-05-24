@@ -222,9 +222,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                     trans_data += u"[UNK]"
         ret_data = []
         # IGNORE LAST DIACRITIC + POST-PROCESSING
-        #print trans_data.strip()
         for word in trans_data.strip().split(" "):
-            #print word, len(word)
             if len(word) > 0:
                 if word[-1] in (u"a", u"u", u"i"):
                     word = word[:-1]
@@ -232,7 +230,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         word = word[:-2]+u"\u012B"
                 if word.startswith(u"w"+u"\u0101"+u"l-"): # conjunction waaw joined into another word
                     word = u"wal-"+word[4:]
-                if word[-1] == u"t" and (word.startswith(u"al-") or word.startswith(u"wal-")):
+                if len(word) > 0 and word[-1] == u"t" and (word.startswith(u"al-") or word.startswith(u"wal-")):
                     word = word[:-1]+u"h"
                 word = word.replace(u"T", u"t") # taa maftou7a, back to lower case
                 ret_data.append(word)
