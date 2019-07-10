@@ -12,4 +12,4 @@ Most of the dependencies are already included in the code. The only additional d
 
 How to use ArabicTransliterator
 -------------------------------
-We have included an example.py script which is self-explanatory
+Arabic Transliteration Example.ipynb is an example jupyter notebook that transliterates the files phrases.csv and nouns.csv
