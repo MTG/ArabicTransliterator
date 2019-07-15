@@ -15,7 +15,7 @@ Installation
 from inside the directory, run:
 
     python3 setup.py install
-    pip3 install -e . from inside the directory
+    pip3 install -e . 
 
 How to use ArabicTransliterator
 -------------------------------
