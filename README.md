@@ -10,6 +10,11 @@ Most of the dependencies are already included in the code. The only additional d
 
 + [python-bidi](https://pypi.python.org/pypi/python-bidi)
 
+Installation
+------------
+run python3 setup.py install
+then run pip3 install -e . from inside the directory
+
 How to use ArabicTransliterator
 -------------------------------
 Arabic Transliteration Example.ipynb is an example jupyter notebook that transliterates the files phrases.csv and nouns.csv
