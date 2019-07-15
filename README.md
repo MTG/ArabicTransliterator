@@ -12,8 +12,10 @@ Most of the dependencies are already included in the code. The only additional d
 
 Installation
 ------------
-run python3 setup.py install
-then run pip3 install -e . from inside the directory
+from inside the directory, run:
+
+    python3 setup.py install
+    pip3 install -e . from inside the directory
 
 How to use ArabicTransliterator
 -------------------------------
