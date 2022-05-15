@@ -1,0 +1,11 @@
+pyarabic
+#git+https://github.com/linuxscout/thaalab-aranasyn
+sylajone
+arramooz-pysqlite
+asmai
+naftawayh
+tashaphyne
+qalsadi
+libqutrub
+codernitydb3
+mishkal
