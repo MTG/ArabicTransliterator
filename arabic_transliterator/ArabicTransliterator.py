@@ -137,7 +137,7 @@ class ALA_LC_Transliterator(ArabicTransliterator):
             else:
                 if data[i] == u"\u0627": # BARE 'ALIF - RULES 1, 2 and 5
                     #print `data[:]`
-                    if len(data) > i+1 and data[i+1] == u"\u0644" and (i==0 or (i>0 and data[i-1] == ' ')): # laam at the beggining of a word
+                    if (len(data) > i+1 and data[i+1] == u"\u0644") and (i==0 or (i>0 and data[i-1] == ' ')): # laam at the beggining of a word
                         trans_data += u"a"
                     elif i == 0: # Alif as first character
                         continue # don't add anything
@@ -154,6 +154,13 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                         continue # don't add anything
                     else:
                         trans_data += u"\u0101"
+
+                elif data[i] == u"\u0671": # ALEF WASLA - RULE 9
+                    # TODO: Find why this contradicts with: https://en.wiktionary.org/wiki/%D9%B1
+                    if (len(data) > i+1 and data[i+1] == u"\u0644") and (i==0 or (i>0 and data[i-1] == ' ')): # laam at the beggining of a word
+                        trans_data += u"a"
+                    else:
+                        trans_data += u"i"
 
                 elif data[i] == u"\u064A": # YAA' - RULES 1, 2 and 4
                     #print `data[:]`
