@@ -61,22 +61,22 @@ class ALA_LC_Transliterator(ArabicTransliterator):
             u"b": u"\u0628", # baa'
             #u"p": u"\u0629", # taa' marbuuTa # SPECIAL CASE
             u"T": u"\u062A", # taa' # SPECIAL upper case to distinguis ending of words with taa' marbuuta
-            u"th": u"\u062B", # thaa'
+            u"ṯ": u"\u062B", # thaa' (using ISO as intermediate representation to resolve ambiguities)
             u"j": u"\u062C", # jiim
             u"\u1E25": u"\u062D", # Haa'
-            u"kh": u"\u062E", # khaa'
+            u"ẖ": u"\u062E", # khaa' (using ISO as intermediate representation to resolve ambiguities with digraphs)
             u"d": u"\u062F", # daal
-            u"dh": u"\u0630", # dhaal
+            u"ḏ": u"\u0630", # dhaal (using ISO as intermediate representation to resolve ambiguities with digraphs)
             u"r": u"\u0631", # raa'
             u"z": u"\u0632", # zaay
             u"s": u"\u0633", # siin
-            u"sh": u"\u0634", # shiin
+            u"š": u"\u0634", # shiin (using ISO as intermediate representation to resolve ambiguities with digraphs)
             u"\u1E63": u"\u0635", # Saad
             u"\u1E0D": u"\u0636", # Daad
             u"\u1E6D": u"\u0637", # Taa'
             u"\u1E93": u"\u0638", # Zaa' (DHaa')
             u"\u2018": u"\u0639", # cayn
-            u"gh": u"\u063A", # ghayn
+            u"ġ": u"\u063A", # ghayn (using ISO as intermediate representation to resolve ambiguities with digraphs)
             u"–": u"\u0640", # taTwiil
             u"f": u"\u0641", # faa'
             u"q": u"\u0642", # qaaf
@@ -268,4 +268,11 @@ class ALA_LC_Transliterator(ArabicTransliterator):
                     word = word[:-1]+u"h"
                 word = word.replace(u"T", u"t") # taa maftou7a, back to lower case
                 ret_data.append(word)
-        return u" ".join(ret_data)
+        roman_text = " ".join(ret_data)
+
+        # Resolve ambiguities caused by (roman) consonants preceeding 'h'
+        roman_text = roman_text.replace("th", "t·h").replace("kh", "k·h").replace("dh", "d·h").replace("sh", "s·h").replace("gh", "g·h")
+        # Convert ISO to ALA-LC digraphs
+        roman_text = roman_text.replace("ṯ", "th").replace("ẖ", "kh").replace("ḏ", "dh").replace("š", "sh").replace("ġ", "gh")
+
+        return roman_text
