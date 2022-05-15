@@ -127,6 +127,9 @@ class ALA_LC_Transliterator(ArabicTransliterator):
             self.table[value] = key
 
     def do(self, data):
+        # Pre-process
+        data = data.replace(u"\u064e\u0651", u"\u0651\u064e") # For proper transcription of gemination followed by 'a'
+
         trans_data = u""
         #print `data[:]`
         #multi_character_translation = dict([(k,v) for k,v in self.table.iteritems() if len(v) > 1])
